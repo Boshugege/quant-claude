@@ -1,0 +1,10 @@
+14:38:15 device mps args {'run': 'smoke_py311', 'train': ['2020-02', '2020-02'], 'val': ['2020-03', '2020-03'], 'max_inst': 120, 'max_days': 5, 'norm': 'rel', 'target': 'cs_z', 'epochs': 1, 'batch': 512, 'lr': 0.001, 'seed': 42, 'd_model': 64, 'nlayers': 2, 'dim_ff': 128, 'nhead': 4}
+14:38:17 build train ['2020-02', '2020-02']
+14:38:27   202002: samples=4,760 label_cov=0.8750 nan_frac=0.0196 9.4s rss=2.4GB
+14:38:27 build val ['2020-03', '2020-03']
+14:38:34   202003: samples=4,800 label_cov=0.8692 nan_frac=0.0062 7.5s rss=3.8GB
+14:38:34 train X(4165, 64, 10) val X(4800, 64, 10) y_std=0.95740 build=17s rss=3.8GB
+14:38:34 params 71937
+14:38:40 epoch 1: loss=0.960137 val_ic=0.0359 icir=0.231 ls=10.80 turn=0.503 pred_std=0.112 nan=0 3.8s mps_mem=0.00GB rss=3.8GB
+14:38:41 json=e2e/runs/smoke_py311/transformer_model.json bytes=1,571,564 (1.50 MiB) <50MB=True reload_maxdiff=2.38e-07
+14:38:41 done 23s

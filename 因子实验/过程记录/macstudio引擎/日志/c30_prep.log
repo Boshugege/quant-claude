@@ -1,0 +1,25 @@
+r_last     非空率 0.875
+cvwap      非空率 0.935
+r_day      非空率 0.998
+r_intra    非空率 0.999
+pos        非空率 0.967
+obi1       非空率 0.997
+obi3       非空率 0.997
+spread     非空率 0.989
+ocnt       非空率 0.936
+osize      非空率 0.927
+depth      非空率 0.989
+obi_chg    非空率 0.873
+tsize_rel  非空率 0.935
+ushadow    非空率 0.962
+lshadow    非空率 0.962
+amihud     非空率 0.874
+pv_corr    非空率 0.623
+vol_surge  非空率 0.920
+rng_rel    非空率 0.947
+rev_x_vol  非空率 0.860
+r_mkt      非空率 0.998
+gap        非空率 0.998
+p_tail     非空率 0.998
+p_cvw      非空率 0.997
+done

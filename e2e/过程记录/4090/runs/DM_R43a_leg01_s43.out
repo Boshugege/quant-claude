@@ -1,0 +1,27 @@
+2026-10-27 15:57:20 [info     ] 分片完成                           elapsed=20.4 samples=127872 start=2023-01-01
+2026-10-27 15:57:41 [info     ] 分片完成                           elapsed=18.3 samples=159840 start=2023-02-01
+2026-10-27 15:58:07 [info     ] 分片完成                           elapsed=21.5 samples=183816 start=2023-03-01
+2026-10-27 15:58:30 [info     ] 分片完成                           elapsed=18.3 samples=151848 start=2023-04-01
+2026-10-27 15:58:52 [info     ] 分片完成                           elapsed=18.9 samples=159840 start=2023-05-01
+2026-10-27 15:59:15 [info     ] 分片完成                           elapsed=18.6 samples=159840 start=2023-06-01
+2026-10-27 15:59:38 [info     ] 分片完成                           elapsed=19.8 samples=167832 start=2023-07-01
+2026-10-27 16:00:04 [info     ] 分片完成                           elapsed=21.8 samples=183816 start=2023-08-01
+2026-10-27 16:00:28 [info     ] 分片完成                           elapsed=18.6 samples=159840 start=2023-09-01
+2026-10-27 16:00:48 [info     ] 分片完成                           elapsed=16.5 samples=135864 start=2023-10-01
+2026-10-27 16:01:13 [info     ] 分片完成                           elapsed=21.2 samples=175824 start=2023-11-01
+2026-10-27 16:01:37 [info     ] 分片完成                           elapsed=20.4 samples=167952 start=2023-12-01
+2023 融合头与原预测的相关 1.0 行数 1934184 1934184
+2026-10-27 16:02:05 [info     ] 分片完成                           elapsed=20.7 samples=176000 start=2024-01-01
+2026-10-27 16:02:25 [info     ] 分片完成                           elapsed=15.3 samples=120000 start=2024-02-01
+2026-10-27 16:02:48 [info     ] 分片完成                           elapsed=20.1 samples=168000 start=2024-03-01
+2026-10-27 16:03:11 [info     ] 分片完成                           elapsed=18.7 samples=160000 start=2024-04-01
+2026-10-27 16:03:34 [info     ] 分片完成                           elapsed=19.2 samples=160000 start=2024-05-01
+2026-10-27 16:03:56 [info     ] 分片完成                           elapsed=18.3 samples=152000 start=2024-06-01
+2026-10-27 16:04:21 [info     ] 分片完成                           elapsed=21.5 samples=184000 start=2024-07-01
+2026-10-27 16:04:46 [info     ] 分片完成                           elapsed=20.5 samples=176000 start=2024-08-01
+2026-10-27 16:05:09 [info     ] 分片完成                           elapsed=18.1 samples=152000 start=2024-09-01
+2026-10-27 16:05:29 [info     ] 分片完成                           elapsed=17.0 samples=144000 start=2024-10-01
+2026-10-27 16:05:53 [info     ] 分片完成                           elapsed=20.2 samples=168000 start=2024-11-01
+2026-10-27 16:06:17 [info     ] 分片完成                           elapsed=19.7 samples=176000 start=2024-12-01
+2024 融合头与原预测的相关 1.0 行数 1936000 1936000
+done

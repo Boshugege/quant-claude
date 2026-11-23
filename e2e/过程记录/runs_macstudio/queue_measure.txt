@@ -1,0 +1,2 @@
+--run m1_measure_base_c0 --measure --train 2020-01-01 2024-12-31 --fields base --coarse 0 --epochs 1
+--run m2_measure_base_c45 --measure --train 2020-01-01 2024-12-31 --fields base --coarse 45 --epochs 1

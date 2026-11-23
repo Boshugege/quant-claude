@@ -1,0 +1,1 @@
+Get-CimInstance Win32_Process | Where-Object { $_.Name -eq 'cmd.exe' -or $_.Name -eq 'python.exe' } | ForEach-Object { "{0} {1} {2} {3}" -f $_.ProcessId, $_.ParentProcessId, $_.Name, ($_.CommandLine -replace '\s+',' ').Substring(0, [Math]::Min(100, ($_.CommandLine -replace '\s+',' ').Length)) }

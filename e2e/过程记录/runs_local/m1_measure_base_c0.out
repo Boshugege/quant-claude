@@ -1,0 +1,5 @@
+17:49:32 训练设备 device=mps rss=0.3GB peak=0.3GB
+17:49:44 分片完成 start=2020-01-01 samples=109790 elapsed=10.3 rss=2.9GB peak=3.0GB
+17:49:58 分片完成 start=2020-02-01 samples=139764 elapsed=14.4 rss=5.8GB peak=5.9GB
+17:50:15 分片完成 start=2020-03-01 samples=153566 elapsed=16.7 rss=8.5GB peak=8.7GB
+17:50:30 分片完成 start=2020-04-01 samples=146503 elapsed=15.5 rss=8.8GB peak=9.6GB

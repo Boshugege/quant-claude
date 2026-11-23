@@ -1,0 +1,27 @@
+14:23:51 device mps args {'run': 'b02_all_rel_csz', 'train': ['2020-01', '2020-12'], 'val': ['2021-01', '2021-03'], 'max_inst': 0, 'max_days': 0, 'norm': 'rel', 'target': 'cs_z', 'epochs': 5, 'batch': 512, 'lr': 0.001, 'seed': 42, 'd_model': 64, 'nlayers': 2, 'dim_ff': 128, 'nhead': 4}
+14:23:51 build train ['2020-01', '2020-12']
+14:24:04   202001: samples=125,874 label_cov=0.8722 nan_frac=0.0029 13.3s rss=3.8GB
+14:24:25   202002: samples=159,840 label_cov=0.8744 nan_frac=0.0068 20.5s rss=8.3GB
+14:24:48   202003: samples=175,824 label_cov=0.8734 nan_frac=0.0030 23.2s rss=10.4GB
+14:25:11   202004: samples=167,832 label_cov=0.8729 nan_frac=0.0041 22.7s rss=13.2GB
+14:25:30   202005: samples=143,856 label_cov=0.8727 nan_frac=0.0047 19.9s rss=13.2GB
+14:25:52   202006: samples=159,832 label_cov=0.8710 nan_frac=0.0059 21.2s rss=13.2GB
+14:26:16   202007: samples=183,816 label_cov=0.8738 nan_frac=0.0033 24.4s rss=13.5GB
+14:26:40   202008: samples=167,832 label_cov=0.8729 nan_frac=0.0032 23.6s rss=15.0GB
+14:27:03   202009: samples=175,824 label_cov=0.8730 nan_frac=0.0032 23.0s rss=15.0GB
+14:27:21   202010: samples=127,872 label_cov=0.8737 nan_frac=0.0031 18.0s rss=15.7GB
+14:27:42   202011: samples=167,832 label_cov=0.8748 nan_frac=0.0023 21.1s rss=15.7GB
+14:28:06   202012: samples=183,816 label_cov=0.8731 nan_frac=0.0048 24.0s rss=16.8GB
+14:28:06 build val ['2021-01', '2021-03']
+14:28:33   202101: samples=159,840 label_cov=0.8712 nan_frac=0.0037 27.2s rss=20.6GB
+14:28:51   202102: samples=119,880 label_cov=0.8727 nan_frac=0.0039 17.6s rss=20.6GB
+14:29:14   202103: samples=183,816 label_cov=0.8713 nan_frac=0.0043 23.1s rss=20.6GB
+14:29:27 train X(1694030, 64, 10) val X(463536, 64, 10) y_std=0.95419 build=336s rss=33.0GB
+14:29:28 params 71937
+14:31:23 epoch 1: loss=0.90875 val_ic=0.0577 icir=0.645 ls=18.53 turn=0.658 pred_std=0.0578 nan=0 114.9s mps_mem=0.00GB rss=33.0GB
+14:32:42 epoch 2: loss=0.907374 val_ic=0.0680 icir=0.776 ls=18.92 turn=0.663 pred_std=0.0665 nan=0 79.2s mps_mem=0.00GB rss=33.0GB
+14:34:34 epoch 3: loss=0.906986 val_ic=0.0537 icir=0.525 ls=17.74 turn=0.624 pred_std=0.0588 nan=0 112.0s mps_mem=0.00GB rss=33.0GB
+14:36:54 epoch 4: loss=0.906743 val_ic=0.0590 icir=0.634 ls=18.37 turn=0.626 pred_std=0.044 nan=0 139.4s mps_mem=0.00GB rss=33.0GB
+14:38:27 epoch 5: loss=0.906489 val_ic=0.0616 icir=0.693 ls=19.86 turn=0.630 pred_std=0.0509 nan=0 93.4s mps_mem=0.00GB rss=33.0GB
+14:38:31 json=e2e/runs/b02_all_rel_csz/transformer_model.json bytes=1,557,774 (1.49 MiB) <50MB=True reload_maxdiff=1.49e-07
+14:38:35 done 884s

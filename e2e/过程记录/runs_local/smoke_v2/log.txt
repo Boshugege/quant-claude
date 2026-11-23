@@ -1,0 +1,13 @@
+14:50:41 训练设备 device=mps rss=0.3GB
+14:50:45 分片完成 start=2020-02-01 samples=4165 elapsed=2.8 rss=2.4GB
+14:50:45 train 集构建完成 samples=4165 rss=2.4GB
+14:50:45 可训练参数量 n_params=71937 samples=4165 rss=2.4GB
+14:50:46 epoch 完成 epoch=1 loss=0.96057 elapsed=0.4 rss=2.4GB
+14:50:49 分片完成 start=2020-03-01 samples=4172 elapsed=2.0 rss=4.1GB
+14:50:49 train 集构建完成 samples=4172 rss=4.1GB
+14:50:50 [val] epoch 1: ic=0.0364 icir=0.231 ls=11.69 turn=0.522 pred_std=0.115 nan=0 eval=0s mps_mem=0.00GB rss=4.1GB
+14:50:50 模型已保存 path=e2e/runs/smoke_v2/transformer_model.json bytes=1571573 rss=4.1GB
+14:50:50 json=e2e/runs/smoke_v2/transformer_model.json bytes=1,571,573 (1.50 MiB) <50MB=True reload_maxdiff=2.68e-07
+14:50:50 分片完成 start=2020-03-01 samples=4800 elapsed=0.4 rss=5.1GB
+14:50:51 predict_range rows=4,800 matched=4,172 maxdiff=1.49e-07
+14:50:51 done 10s

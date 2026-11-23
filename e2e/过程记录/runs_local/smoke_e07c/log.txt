@@ -1,0 +1,26 @@
+14:49:21 训练设备 device=mps arch=e04 rss=0.3GB peak=0.3GB
+14:49:25 分片完成 start=2020-06-01 samples=30208 elapsed=3.6 rss=3.5GB peak=3.6GB
+14:49:27 分片完成 start=2020-07-01 samples=33096 elapsed=2.4 rss=4.5GB peak=4.7GB
+14:49:28 train 集构建完成 samples=63304 rss=4.8GB peak=4.9GB
+14:49:28 训练剔除特征 mode=proxy cov=0.9874 pind_cov=0.9671 rss=4.8GB peak=4.9GB
+14:49:31 分片完成 start=2020-08-01 samples=33076 elapsed=2.4 rss=5.3GB peak=5.7GB
+14:49:31 train 集构建完成 samples=33076 rss=5.3GB peak=5.7GB
+14:49:31 [val] 平台口径：官方风格暴露覆盖率 0.975
+14:49:31 训练样本 samples=63304 models=1 n_params=148899 rss=5.3GB peak=5.7GB
+14:49:33 训练进度 member=0 epoch=1/1 pct=9% loss=2.792301 samples_per_s=4201 eta_s=13 rss=5.8GB peak=5.9GB
+14:49:34 训练进度 member=0 epoch=1/1 pct=19% loss=2.713022 samples_per_s=5450 eta_s=9 rss=5.8GB peak=6.0GB
+14:49:34 训练进度 member=0 epoch=1/1 pct=28% loss=2.604118 samples_per_s=5873 eta_s=7 rss=5.9GB peak=6.0GB
+14:49:35 训练进度 member=0 epoch=1/1 pct=37% loss=2.780598 samples_per_s=6057 eta_s=6 rss=6.0GB peak=6.1GB
+14:49:36 训练进度 member=0 epoch=1/1 pct=47% loss=2.729302 samples_per_s=6328 eta_s=5 rss=6.0GB peak=6.2GB
+14:49:37 训练进度 member=0 epoch=1/1 pct=56% loss=2.703161 samples_per_s=6462 eta_s=4 rss=6.1GB peak=6.2GB
+14:49:38 训练进度 member=0 epoch=1/1 pct=65% loss=2.712719 samples_per_s=6678 eta_s=3 rss=6.1GB peak=6.2GB
+14:49:38 训练进度 member=0 epoch=1/1 pct=74% loss=2.729784 samples_per_s=6787 eta_s=2 rss=6.1GB peak=6.3GB
+14:49:39 训练进度 member=0 epoch=1/1 pct=84% loss=2.694234 samples_per_s=6869 eta_s=1 rss=6.2GB peak=6.3GB
+14:49:40 训练进度 member=0 epoch=1/1 pct=93% loss=2.634626 samples_per_s=6933 eta_s=0 rss=6.2GB peak=6.3GB
+14:49:40 epoch 完成 member=0 epoch=1/1 loss=2.708357 elapsed=9.0 rss=6.2GB peak=6.3GB
+14:49:41 [val] member 0 epoch 1 平台口径(输出中性化1+09:30置零+风格剔除): ic=0.1019 icir=0.956 ls=27.55 stress=0.820 turn=0.534 | 原始: ic=0.0925 icir=0.705 | pred_std=0.207 nan=0 eval=1s rss=6.4GB
+14:49:41 模型已保存 path=e2e/runs/smoke_e07c/transformer_model.json bytes=3243335 rss=6.2GB peak=6.4GB
+14:49:44 json=e2e/runs/smoke_e07c/transformer_model.json bytes=3,243,335 (3.09 MiB) <50MB=True models=1 reload_maxdiff=1.70e-03
+14:49:46 分片完成 start=2020-08-01 samples=33272 elapsed=1.1 rss=6.6GB peak=6.8GB
+14:49:47 predict_range rows=33,272 matched=33,076 maxdiff=9.12e-03
+14:49:47 done 26s

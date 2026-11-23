@@ -1,0 +1,494 @@
+\documentclass[aspectratio=169,10pt,t]{beamer}
+\input{../_style/slides_preamble.tex}
+\title{分钟级截面因子：\texorpdfstring{\\}{}从交易行为到低换手信号}
+\subtitle{因子赛道决赛展示\quad 公榜第二、私榜总榜第二}
+\author{fx\hbox{战队}}
+\TrackName{因子赛道}
+\date{2026 年 11 月}
+
+% ---------- 本稿局部设置 ----------
+% 负号、正负号、β 用正文字体自带的字形
+\newunicodechar{−}{\char"2212\relax}
+\newunicodechar{±}{\char"00B1\relax}
+\newunicodechar{β}{\char"03B2\relax}
+% 标题与正文之间的留白收紧 0.3 cm
+\addtobeamertemplate{frametitle}{}{\vspace{-0.3cm}}
+% 标题中的数字用粗体
+\newcommand{\tn}[1]{{\bfseries #1}}
+\hyphenation{RankIC ICIR}
+% 要点块的解释文字左对齐，避免西文词造成的行内拉伸
+\let\templatepoint\point
+\renewcommand{\point}[3]{\templatepoint{#1}{#2}{\raggedright #3\par}}
+\tikzset{
+  num/.style  = {circle,fill=snavy,text=white,inner sep=1.4pt,minimum size=0.42cm,font=\numfont\small},
+  onote/.style= {font=\small,text=sorange,align=flush center},
+  gnote/.style= {font=\small,text=sgrey,align=flush center},
+  hbrace/.style={decorate,decoration={brace,amplitude=4pt},line width=0.8pt},
+  dlab/.style = {font=\numfont\small\bfseries,text=sorange,anchor=south},
+}
+\pgfplotsset{
+  slidebar/.style={axis lines*=left, axis y line=none, x axis line style={draw=sline,line width=0.8pt},
+    xtick style={draw=none}, xticklabel style={font=\small,text=sink,align=center},
+    legend style={draw=none,font=\small,text=sink,legend columns=2,
+      /tikz/every even column/.append style={column sep=10pt}},
+    legend image code/.code={\fill[##1] (0cm,-0.11cm) rectangle (0.32cm,0.13cm);},
+    clip=false},
+  inbar/.style={every node near coord/.append style={rotate=90,anchor=east,font=\numfont\small}},
+}
+\newcommand{\charthead}[1]{{\small\color{sgrey}#1}\par\vspace{0.04cm}}
+
+\begin{document}
+
+% =====================================================================
+% 主体 9 页（约 5 分钟）
+% =====================================================================
+\begin{frame}[plain]\titlepage\end{frame}
+
+% ---------------------------------------------------------------------
+\gdef\chaplabel{}
+\begin{frame}{公榜与私榜总榜均列第二}
+  \vspace{0.05cm}
+  \centering
+  \begin{tikzpicture}[x=1cm,y=1cm,
+      fs/.style={minimum width=1.98cm,minimum height=1.08cm,inner xsep=3pt}]
+    \node[node,fs]     (a) at (0,0)     {27 个\\基础信号};
+    \node[tintnode,fs] (b) at (2.38,0)  {基础组合\\16 个浅层树};
+    \node[tintnode,fs] (c) at (4.76,0)  {15 项\\增量信号};
+    \node[key,fs]      (d) at (7.14,0)  {剔除风格\\与行业};
+    \node[key,fs]      (e) at (9.52,0)  {换手\\缓冲带};
+    \node[fillnode,fs] (f) at (11.90,0) {最终因子};
+    \foreach \u/\v in {a/b,b/c,c/d,d/e,e/f}{\draw[flow] (\u)--(\v);}
+    % 与下方三个要点对应的分组
+    \draw[sline,line width=1.2pt] (-0.99,0.78)--(0.99,0.78);
+    \draw[sline,line width=1.2pt] (1.39,0.78)--(5.75,0.78);
+    \draw[sline,line width=1.2pt] (6.15,0.78)--(10.51,0.78);
+    \node[num] at (0,0.78) {1};
+    \node[num] at (3.57,0.78) {2};
+    \node[num] at (8.33,0.78) {3};
+    % 图上标注的三处数字
+    \node[onote,anchor=north] at (2.38,-0.66) {样本外 RankIC\\约 +0.009};
+    \node[onote,anchor=north] at (4.76,-0.66) {14:30 RankIC\\+0.023～+0.025};
+    \node[onote,anchor=north] at (11.90,-0.66) {换手率 −44\%\\RankIC +0.0038};
+  \end{tikzpicture}
+
+  \vspace{0.36cm}
+  \raggedright
+  \begin{minipage}[t]{0.322\textwidth}
+    \point{1}{信号来自交易行为}{超涨超跌后的回补是首要来源；挂单结构与收盘竞价提供新信息。}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.322\textwidth}
+    \point{2}{浅层树组合基础信号}{浅层树处理反转信号的非线性；新信息以小权重逐项叠加，每项可单独检验。}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.322\textwidth}
+    \point{3}{在评测排名上控制换手}{先剔除风格与行业，再设换手缓冲带；换手率下降，RankIC 同时提高。}
+  \end{minipage}
+  \takeaway{私榜 RankIC 0.0790、ICIR 1.559、换手率 0.266，换手率低于公榜的 0.279。}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\gdef\chaplabel{01\enspace 预测目标}
+\begin{frame}{预测半小时漂移，评测先剔除风格与行业}
+  \vspace{0.05cm}
+  \centering
+  \begin{tikzpicture}[x=1cm,y=1cm]
+    % 标签窗口
+    \fill[sline] (0.03,0.24) rectangle (1.47,0.64);
+    \node[font=\small,text=snavy] at (0.75,0.44) {输出 0};
+    \foreach \a in {1.5,3.0,4.5,7.2,8.7,10.2,11.7}{
+      \fill[stint,draw=snavy!45,line width=0.5pt] (\a+0.03,0.24) rectangle (\a+1.47,0.64);}
+    \fill[sorange] (12.72,0.24) rectangle (13.17,0.74);
+    % 时间轴
+    \draw[snavy,line width=1.3pt] (0,0)--(6.0,0);
+    \draw[snavy,line width=1.3pt] (7.2,0)--(13.2,0);
+    \foreach \x/\t in {0/09:30,1.5/10:00,3.0/10:30,4.5/11:00,6.0/11:30,7.2/13:00,8.7/13:30,10.2/14:00,11.7/14:30,13.2/15:00}{
+      \node[font=\numfont\small,text=sgrey] at (\x,-0.32) {\t};}
+    % 8 个截面
+    \fill[sgrey!60] (0,0) circle (2.6pt);
+    \foreach \x in {1.5,3.0,4.5,6.0,8.7,10.2}{\fill[snavy] (\x,0) circle (2.6pt);}
+    \fill[sorange] (11.7,0) circle (3.0pt);
+    % 11:30 跨过午休
+    \draw[flow,draw=snavy] (6.04,0.10) to[out=72,in=112] (7.75,0.70);
+    \node[gnote] at (6.6,1.30) {跨过午休};
+    % 文字
+    \node[gnote] at (3.75,0.92) {每天 8 个截面，各自预测其后 30 分钟};
+    \node[onote,font=\small\bfseries] at (12.45,1.00) {收盘集合竞价};
+    % 公式
+    \node[node,font=\normalsize,inner xsep=10pt] at (6.6,-1.05)
+      {标签 \;=\; 窗口收盘价 ÷ 窗口成交量加权均价（VWAP）− 1};
+  \end{tikzpicture}
+
+  \vspace{0.3cm}
+  \raggedright
+  \begin{minipage}[t]{0.322\textwidth}
+    \point{1}{符号由价格路径决定}{先跌后涨、收在均价之上为正；冲高回落、收在均价之下为负。}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.322\textwidth}
+    \point{2}{评测基于剔除后的排名}{对 10 个风格与 32 个行业回归取残差，多空组合按残差排名划分。}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.322\textwidth}
+    \point{3}{换手只计同日相邻截面}{跨日不计；09:30 截面没有当前价，输出 0，每天 7 个截面计分。}
+  \end{minipage}
+  \takeaway{本地评测系统与平台同口径：RankIC 相同，ICIR 与压力稳定性相差不超过 0.003。}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\gdef\chaplabel{02\enspace 信号来源}
+\begin{frame}{短期超涨超跌回补是首要信号来源}
+  \begin{columns}[T]
+    \column{0.56\textwidth}
+    \charthead{基础组合 1920 棵树的分裂权重，按信号类别汇总}
+    \begin{tikzpicture}
+      \begin{axis}[xbar, width=7.1cm, height=6.0cm, bar width=12pt,
+          xmin=0, xmax=35, ymin=0.4, ymax=7.6,
+          ytick={1,...,7},
+          yticklabels={线性合成初值,收盘习惯类,时段哑变量,分布形态与竞价,同时段季节性,分钟资金流与量价,同伴残差反转},
+          yticklabel style={font=\small,text=sink},
+          axis x line=none, axis y line*=left, y axis line style={draw=sline,line width=0.8pt},
+          ytick style={draw=none}, clip=false,
+          point meta=x,
+          nodes near coords={\pgfmathprintnumber[fixed,fixed zerofill,precision=1]{\pgfplotspointmeta}\%},
+          nodes near coords style={font=\numfont\small,text=snavy}]
+        \addplot[fill=snavy,draw=none,bar shift=0pt] coordinates {(3.5,1) (8.8,2) (9.0,3) (9.6,4) (16.0,5) (24.7,6)};
+        \addplot[fill=sorange,draw=none,bar shift=0pt,
+          nodes near coords style={font=\numfont\normalsize\bfseries,text=sorange}] coordinates {(28.5,7)};
+      \end{axis}
+    \end{tikzpicture}
+    \column{0.42\textwidth}
+    \vspace{0.12cm}
+    \point{1}{相对相似股票的超涨超跌}{4 个版本的参照价格从半小时延伸到数日；过半数的树先按它们划分。}
+    \point{2}{买压过重，其后回吐}{近 60 分钟上涨分钟的成交量占比越高，其后越弱；五年方向一致。}
+    \point{3}{挂单结构提供新信息}{买一笔数多其后偏强，单笔挂单大其后偏弱；约 200 个候选仅此类通过。}
+  \end{columns}
+  \takeaway{分裂权重近三成落在同伴残差反转上；挂单结构与收盘竞价是树之外的新信息。}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\gdef\chaplabel{03\enspace 信号组合}
+\begin{frame}{浅层树组合使样本外 RankIC 提高约 \tn{0.009}}
+  \begin{columns}[T]
+    \column{0.56\textwidth}
+    \charthead{同一批基础信号两种组合方式的 RankIC}
+    \begin{tikzpicture}
+      \begin{axis}[ybar, slidebar, inbar, width=8.0cm, height=5.05cm, bar width=20pt,
+          ymin=0, ymax=0.118, enlarge x limits=0.22,
+          xtick={1,2,3}, xticklabels={{2023 年\\样本外},{2024 年\\样本外},{公榜\\同时上传}},
+          legend style={at={(0.5,1.0)},anchor=south},
+          point meta=y,
+          nodes near coords={\pgfmathprintnumber[fixed,fixed zerofill,precision=4]{\pgfplotspointmeta}}]
+        \addplot[fill=sline,draw=none,nodes near coords style={text=snavy}] coordinates {(1,0.0882) (2,0.0713) (3,0.0937)};
+        \addplot[fill=sorange,draw=none,nodes near coords style={text=white}] coordinates {(1,0.0976) (2,0.0799) (3,0.0993)};
+        \legend{线性合成,浅层树组合}
+        \node[dlab,font=\numfont\normalsize\bfseries] at (axis cs:1,0.1000) {+0.0095};
+        \node[dlab,font=\numfont\normalsize\bfseries] at (axis cs:2,0.0823) {+0.0086};
+        \node[dlab,font=\numfont\normalsize\bfseries] at (axis cs:3,0.1017) {+0.0056};
+      \end{axis}
+    \end{tikzpicture}
+    \column{0.42\textwidth}
+    \vspace{0.12cm}
+    \point{1}{只在 2020–2022 年拟合}{16 个浅层树取平均，不挑随机种子；后两年与公榜均为样本外。}
+    \point{2}{非线性集中在反转上}{其余信号约束为单调、只放开反转时，RankIC 仅降 0.0003～0.0008。}
+    \point{3}{新信息逐项线性叠加}{15 项增量信号以小权重加入；若并入树模型，同等换手下五项均更差。}
+  \end{columns}
+  \takeaway{浅层树在样本外两年 RankIC 均更高，代价是换手率由约 0.38 升至 0.518。}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\gdef\chaplabel{04\enspace 控制换手}
+\begin{frame}{缓冲带使换手下降 \tn{44\%}，RankIC 同步提升}
+  \begin{columns}[T]
+    \column{0.58\textwidth}
+    \vspace{0.1cm}
+    \begin{tikzpicture}[x=1cm,y=0.55cm]
+      \foreach \col/\lab in {0/{10:30 名单},2.1/{11:00 无缓冲},4.6/{10:30 名单},6.7/{11:00 有缓冲}}{
+        \node[font=\small\bfseries,text=snavy] at (\col+0.5,6.95) {\lab};}
+      \foreach \i/\n in {1/A,2/B,3/C,4/D,5/E,6/F}{\node[tintnode,minimum width=1cm] (L\n) at (0.5,7-\i) {\n};}
+      \foreach \i/\n/\c in {1/A/tintnode,2/C/tintnode,3/G/key,4/B/tintnode,5/H/key,6/I/key}{\node[\c,minimum width=1cm] (R\n) at (2.6,7-\i) {\n};}
+      \foreach \n in {A,B,C}{\draw[line width=0.6pt,sline] (L\n.east)--(R\n.west);}
+      \foreach \i/\n in {1/A,2/B,3/C,4/D,5/E,6/F}{\node[tintnode,minimum width=1cm] (P\n) at (5.1,7-\i) {\n};}
+      \foreach \i/\n/\c in {1/A/tintnode,2/C/tintnode,3/B/tintnode,4/D/tintnode,5/E/tintnode,6/G/key}{\node[\c,minimum width=1cm] (Q\n) at (7.2,7-\i) {\n};}
+      \foreach \n in {A,B,C,D,E}{\draw[line width=0.6pt,sline] (P\n.east)--(Q\n.west);}
+      \node[font=\small\bfseries,text=sorange] at (1.55,-0.25) {换入 3 只};
+      \node[font=\small\bfseries,text=sorange] at (6.15,-0.25) {换入 1 只};
+    \end{tikzpicture}
+    \column{0.40\textwidth}
+    \begin{minipage}[t]{0.40\linewidth}\keynum{−44\%}{换手率\\0.518 → 0.290}\end{minipage}\hfill
+    \begin{minipage}[t]{0.56\linewidth}\keynum{+0.0038}{RankIC\\0.0888 → 0.0925}\end{minipage}
+    \par\vspace{0.28cm}
+    \point{1}{只作用在名单边界}{同日上一截面名单内的股票加 1.1 个标准差，小幅回落时仍保留。}
+    \point{2}{缓冲作用于剔除后的排名}{与评测使用同一口径的排名；换手同为 0.357 时 RankIC 高 0.0022。}
+  \end{columns}
+  \takeaway{从基础组合到最终因子，ICIR 提高 0.144，压力稳定性提高 0.128；多空组合夏普比率下降 2.59。}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\gdef\chaplabel{05\enspace 样本外验证}
+\begin{frame}{未参与筛选的三年 RankIC 提高约 \tn{0.008}}
+  \begin{columns}[T]
+    \column{0.58\textwidth}
+    \charthead{逐年 RankIC（本地评测）}
+    \begin{tikzpicture}
+      \begin{axis}[ybar, slidebar, inbar, set layers, width=8.55cm, height=5.15cm, bar width=13pt,
+          ymin=0, ymax=0.150, enlarge x limits=0.11,
+          xtick={1,...,5}, xticklabels={2020,2021,2022,2023,2024},
+          xticklabel style={font=\numfont\small},
+          legend style={at={(0.5,1.0)},anchor=south},
+          point meta=y,
+          nodes near coords={\pgfmathprintnumber[fixed,fixed zerofill,precision=4]{\pgfplotspointmeta}}]
+        \begin{pgfonlayer}{axis background}
+          \fill[stint] (axis cs:0.55,0) rectangle (axis cs:3.45,0.148);
+        \end{pgfonlayer}
+        \addplot[fill=sline,draw=none,nodes near coords style={text=snavy}] coordinates {(1,0.1017) (2,0.0949) (3,0.0855) (4,0.0882) (5,0.0713)};
+        \addplot[fill=sorange,draw=none,nodes near coords style={text=white}] coordinates {(1,0.1096) (2,0.1034) (3,0.0938) (4,0.0963) (5,0.0796)};
+        \legend{线性合成基准,加增量信号与后处理}
+        \node[font=\small\bfseries,text=snavy] at (axis cs:2,0.1405) {未参与筛选};
+        \node[font=\small,text=sgrey] at (axis cs:4.5,0.1405) {筛选所用年份};
+        \node[dlab] at (axis cs:1,0.1116) {+0.0078};
+        \node[dlab] at (axis cs:2,0.1054) {+0.0086};
+        \node[dlab] at (axis cs:3,0.0958) {+0.0082};
+        \node[dlab] at (axis cs:4,0.0983) {+0.0081};
+        \node[dlab] at (axis cs:5,0.0816) {+0.0084};
+      \end{axis}
+    \end{tikzpicture}
+    \column{0.40\textwidth}
+    \vspace{0.12cm}
+    \point{1}{五年检验换用线性基准}{树在 2020–2022 年是样本内，改以线性合成基准为基础组合。}
+    \point{2}{除多空夏普外四项每年改善}{ICIR 每年 +0.196～+0.234，换手率每年 −0.080～−0.098。}
+    \point{3}{私榜回落的是信号水平}{RankIC 较公榜低 23\%，逐截面标准差几乎不变，换手率降至 0.266。}
+  \end{columns}
+  \takeaway{2020–2022 年 RankIC 提高 0.0078～0.0086，与筛选所用两年的 0.0081、0.0084 相当。}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\gdef\chaplabel{06\enspace 研究方法}
+\begin{frame}{每项改动经四道检验后采用}
+  \begin{columns}[T]
+    \column{0.58\textwidth}
+    \vspace{0.05cm}
+    \begin{tikzpicture}[x=1cm,y=1cm,
+        sn/.style={node,minimum width=2.42cm,minimum height=1.02cm}]
+      \node[gnote] at (1.25,0.95) {6600 个评测任务};
+      \node[sn] (n1) at (1.25,0)    {本地评测系统\\与平台同口径};
+      \node[sn] (n2) at (4.05,0)    {准入标准\\两年分别判定};
+      \node[sn] (n3) at (6.85,0)    {截断重算\\只用截面前数据};
+      \node[sn] (n4) at (6.85,-2.05){五年逐年\\时段对照};
+      \node[sn] (n5) at (4.05,-2.05){公榜事后检验\\同一页面对照};
+      \node[key,minimum width=2.42cm,minimum height=1.02cm,font=\small\bfseries,text=snavy] (n6) at (1.25,-2.05) {采用};
+      \draw[flow] (n1)--(n2); \draw[flow] (n2)--(n3); \draw[flow] (n3)--(n4);
+      \draw[flow] (n4)--(n5); \draw[flow] (n5)--(n6);
+      % 不通过即停用
+      \foreach \n in {n2,n3}{
+        \draw[-{Stealth[length=2.2mm]},line width=0.8pt,draw=sgrey!70] (\n.north)--++(0,0.36);
+        \node[gnote,anchor=south] at ([yshift=0.38cm]\n.north) {不通过即停用};}
+      \node[onote,font=\small\bfseries] at (1.25,-2.95) {2 个作品进入私榜};
+    \end{tikzpicture}
+    \column{0.40\textwidth}
+    \vspace{0.12cm}
+    \point{1}{四项不变差才采用}{换手率不升，且至少一项明显更好；2023、2024 年分别判定。}
+    \point{2}{截断重算推翻高分候选}{最高价时段信号重算后，RankIC 由 +0.019 变为 −0.035。}
+    \point{3}{整条增量链通过多重检验}{最保守校正下，最后加入的四项单步未达临界值；整条链 t 约 65.6。}
+  \end{columns}
+  \takeaway{单步增量小而稳定，主要证据是未参与筛选的年份逐年同向，以及公榜上五项同向改善。}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\gdef\chaplabel{07\enspace 结论与局限}
+\begin{frame}{三项做法在样本外成立，交易成本尚待检验}
+  \vspace{0.05cm}
+  {\small\renewcommand{\arraystretch}{1.45}\setlength{\tabcolsep}{5pt}
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3.85cm} >{\raggedright\arraybackslash}p{5.0cm} L}
+    \headrow \thc{做法} & \thc{样本外证据} & \thc{适用边界}\\
+    浅层树组合基础信号 & 2023、2024 年 RankIC 比线性合成高 0.0095、0.0086 & 单变量偏依赖分析未完成\\
+    \ourrow 增量信号逐项叠加 & 2020–2022 年逐年同向提升 & 部分信号逐年减弱；14:30 效应依赖收盘竞价制度\\
+    剔除风格与行业后设缓冲带 & 换手率本地 0.290、私榜 0.266 & 未做交易成本与容量分析\\
+    \bottomrule
+  \end{tabularx}}
+  \par\vspace{0.3cm}
+  \begin{minipage}[t]{0.485\textwidth}
+    \point{1}{私榜回落 16\%～28\%}{区间日期未公布，无法与过拟合完全区分；波动与换手未变差。}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.485\textwidth}
+    \point{2}{最需补做成本与容量分析}{多空夏普衡量信号分离度，不代表可实现收益；空头端受融券约束。}
+  \end{minipage}
+  \takeaway{预测目标与换手控制都按评测口径设计；三项做法在未参与筛选的数据上均成立。}
+\end{frame}
+
+% =====================================================================
+% 备份页（答问用，演讲时不讲）
+% =====================================================================
+\appendix
+
+\gdef\chaplabel{备份 A1}
+\begin{frame}{只使用截面之前已确定的信息}
+  \vspace{0.05cm}
+  {\small\renewcommand{\arraystretch}{1.45}
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.6cm} >{\raggedright\arraybackslash}p{4.4cm} L}
+    \headrow \thc{检查项} & \thc{做法} & \thc{结果}\\
+    截断重算 & 只用截面前的数据逐个重算 & 全部一致；整天聚合类约 240 个候选停用\\
+    \ourrow 多日与分钟统计 & 多日错开 1 日；分钟止于截面 & 收盘竞价惯性只用此前交易日\\
+    风格暴露 & 用前一交易日的风格与行业 & 当天暴露只作上界，不采用\\
+    \ourrow 换手缓冲带 & 同日上一截面的多空名单 & 每天 10:00 重置，不依赖跨日状态\\
+    \bottomrule
+  \end{tabularx}}
+  \par\vspace{0.3cm}
+  \begin{minipage}[t]{0.485\textwidth}
+    \point{1}{逐个信号截断重算全部一致}{各分钟信号与竞价信号分别重算，结果一致；完整因子的截断重算没有留下记录。}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.485\textwidth}
+    \point{2}{只用 1～3 档盘口}{本地数据只有 3 档盘口，全部代码只用 1～3 档；不读标签表，不用外部数据。}
+  \end{minipage}
+  \takeaway{每个信号只读截面之前的数据；缓冲带读取的是截面之前已经确定的名单。}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\gdef\chaplabel{备份 A2}
+\begin{frame}{换手率低于 \tn{0.28} 后公榜得分不再提高}
+  \begin{columns}[T]
+    \column{0.58\textwidth}
+    \charthead{三种做法下换手率与 RankIC 的关系（本地 2023–2024）}
+    \begin{tikzpicture}
+      \begin{axis}[width=8.3cm, height=5.0cm, xmin=0.165, xmax=0.415, ymin=0.071, ymax=0.097,
+          axis lines*=left, axis line style={draw=sline,line width=0.8pt}, tick style={draw=sline},
+          scaled ticks=false,
+          xtick={0.2,0.25,0.3,0.35,0.4}, ytick={0.075,0.080,0.085,0.090,0.095},
+          xticklabel style={/pgf/number format/fixed,/pgf/number format/precision=2,text=sgrey},
+          yticklabel style={/pgf/number format/fixed,/pgf/number format/fixed zerofill,/pgf/number format/precision=3,text=sgrey},
+          xlabel={换手率}, ylabel={RankIC}, xlabel style={text=sgrey,font=\small,yshift=3pt}, ylabel style={text=sgrey,font=\small,yshift=-4pt},
+          clip=false]
+        \addplot[sgrey!45,line width=1.4pt,mark=*,mark size=1.7pt] coordinates {(0.402,0.0859) (0.362,0.0837) (0.305,0.0801) (0.257,0.0766) (0.214,0.0734)};
+        \addplot[snavy,line width=1.4pt,mark=*,mark size=1.7pt] coordinates {(0.357,0.0921) (0.291,0.0914) (0.237,0.0905) (0.207,0.0898) (0.181,0.0889)};
+        \addplot[sorange,line width=1.4pt,mark=*,mark size=1.7pt] coordinates {(0.381,0.0935) (0.356,0.0933) (0.311,0.0928) (0.290,0.0925) (0.280,0.0924)};
+        \fill[sorange] (axis cs:0.290,0.0925) circle (3.6pt);
+        \node[font=\small\bfseries,text=sorange,anchor=east] at (axis cs:0.272,0.0937) {最终因子};
+        \node[font=\small,text=sorange,anchor=south] at (axis cs:0.352,0.0943) {加尾盘与关注度四项};
+        \node[font=\small,text=snavy,anchor=north] at (axis cs:0.255,0.0886) {中性化后最小幅度调整};
+        \node[font=\small,text=sgrey,anchor=north west] at (axis cs:0.300,0.0790) {整体加分的缓冲带};
+      \end{axis}
+    \end{tikzpicture}
+    \column{0.40\textwidth}
+    \vspace{0.05cm}
+    \keynum{−0.017}{换手率由 0.28 降至 0.23 时的公榜 ICIR 变化，其余三项同步下降}
+    \par\vspace{0.12cm}
+    \point{1}{中性化后降换手代价更小}{每降 0.1 换手，RankIC 损失约 0.0018；整体加分时约 0.0066。}
+    \point{2}{缓冲强度 β 取 1.1}{β = 1.0、1.1 时，换手率分别为 0.311、0.290。}
+  \end{columns}
+  \takeaway{最终因子换手率取 0.290；继续降低换手，本地 RankIC 仍有损失，公榜得分也不再提高。}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\gdef\chaplabel{备份 A3}
+\begin{frame}{基础组合是 \tn{16} 个浅层树的等权平均}
+  \begin{columns}[T]
+    \column{0.58\textwidth}
+    \vspace{0.1cm}
+    \begin{tikzpicture}[x=1cm,y=1cm, sq/.style={fill=stint,draw=snavy!60,line width=0.5pt,rounded corners=1pt}]
+      \node[node,minimum width=4.0cm] (in) at (3.0,0.35) {27 个基础信号，每列 32 箱};
+      \foreach \r/\lab/\n in {0/{深度 4，150 棵}/4,1/{深度 4，130 棵}/4,2/{深度 5，100 棵}/8}{
+        \node[font=\small,text=sink,anchor=west] at (0,-0.85-\r*0.62) {\lab};
+        \foreach \k in {1,...,\n}{\fill[sq] (2.45+\k*0.36,-1.0-\r*0.62) rectangle ++(0.3,0.3);}}
+      \draw[flow] (in.south)--(3.0,-0.6);
+      \draw[sline,line width=0.8pt] (5.75,-0.78)--(5.95,-0.78)--(5.95,-2.12)--(5.75,-2.12);
+      \node[fillnode,minimum width=1.2cm] (avg) at (6.9,-1.47) {平均};
+      \draw[flow] (5.95,-1.47)--(avg.west);
+      \node[key,font=\small\bfseries,text=snavy] (out) at (6.9,-2.75) {基础组合};
+      \draw[flow] (avg)--(out);
+      \node[node,draw=sline,dashed,minimum width=4.9cm,font=\small,text=sgrey] (tg) at (2.75,-3.15)
+        {多周期辅助目标\\w = 0.25（深度 4）、0.40（深度 5）};
+      \draw[flow,draw=sline,dashed] (tg.north)--(2.75,-2.38);
+      \node[onote,font=\small\bfseries] at (2.75,-4.1) {只在 2020–2022 年拟合};
+    \end{tikzpicture}
+    \column{0.40\textwidth}
+    \vspace{0.12cm}
+    \point{1}{全部平均，不挑随机种子}{换种子、规模减半、只用两年拟合，样本外增益方向都不变。}
+    \point{2}{目标兼顾之后两个截面}{标签截面秩，加上同日之后两个截面标签之和的秩乘以 w。}
+    \point{3}{强正则，用 numpy 实现}{行抽样 8\%、叶子至少 3000 行、L2 正则 200；平台没有 LightGBM。}
+  \end{columns}
+  \takeaway{推理时不重新拟合，也不使用模型此前的输出；多周期辅助项只改变训练目标。}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\gdef\chaplabel{备份 A4}
+\begin{frame}{\tn{15} 项增量信号，\tn{7} 项只在 \tn{14:30} 起作用}
+  \vspace{0.05cm}
+  {\small\renewcommand{\arraystretch}{1.04}\setlength{\tabcolsep}{4.5pt}
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.05cm} L >{\raggedright\arraybackslash}p{1.3cm} >{\raggedright\arraybackslash}p{3.2cm}}
+    \headrow \thc{类别} & \thc{包含} & \thc{截面} & \thc{权重}\\
+    委托与订单流 & 委托规模比、主动买卖失衡、段末委托结构 & 全部 & +0.30、+0.15、+0.10\\
+    尾盘反转 & 最后 10 分钟收盘位置、签名成交量、收益 & 全部 & 各 +0.10\\
+    关注度消退 & 成交额消退（约一周对约一个月） & 全部 & +0.10\\
+    上午回吐 & 10:30～11:30 相对 10:00 的回吐 & 上午 & +0.10\\
+    \ourrow 竞价惯性 & 收盘竞价惯性，20 日与 5 日 & 14:30 & 各 +0.20\\
+    \ourrow 14:30 反向 & 委托规模比、段末委托结构、主动买卖失衡 & 14:30 & 各 −0.20\\
+    \ourrow 14:30 放量 & 本段放量、当日至今放量（净方向：越放量因子越高） & 14:30 & 各 −0.20\\
+    \bottomrule
+  \end{tabularx}}
+  \par\vspace{0.16cm}
+  \begin{minipage}[t]{0.485\textwidth}
+    \point{1}{权重取固定档位}{最后四项放大 1.5、2 倍后，五项都变差。}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.485\textwidth}
+    \point{2}{按组合效果筛选}{看加入后五项是否变好，不看单独 RankIC。}
+  \end{minipage}
+  \takeaway{每一项都可以单独去掉、单独解释；14:30 的反向调整是组合中的条件效应。}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\gdef\chaplabel{备份 A5}
+\begin{frame}{三组增量信号使 \tn{14:30} RankIC 提高两成}
+  \begin{columns}[T]
+    \column{0.56\textwidth}
+    \charthead{14:30 截面的 RankIC，三组增量信号依次加入}
+    \begin{tikzpicture}
+      \begin{axis}[ybar, slidebar, width=8.0cm, height=5.05cm, bar width=32pt,
+          ymin=0, ymax=0.152, enlarge x limits=0.16,
+          xtick={1,2,3,4}, xticklabels={{加入前},{+收盘竞价\\惯性},{+14:30\\反向调整},{+14:30\\放量项}}]
+        \addplot[fill=snavy,draw=none,bar shift=0pt] coordinates {(1,0.105)};
+        \addplot[fill=sline,draw=none,bar shift=0pt] coordinates {(2,0.110) (3,0.118)};
+        \addplot[fill=sorange,draw=none,bar shift=0pt] coordinates {(4,0.129)};
+        \node[font=\numfont\small,text=white,anchor=north] at (axis cs:1,0.103) {0.105};
+        \node[font=\numfont\small,text=snavy,anchor=north] at (axis cs:2,0.108) {0.110};
+        \node[font=\numfont\small,text=snavy,anchor=north,align=center] at (axis cs:3,0.116) {0.117\\～0.119};
+        \node[font=\numfont\small\bfseries,text=white,anchor=north,align=center] at (axis cs:4,0.127) {0.128\\～0.130};
+        \draw[sorange,line width=0.9pt] (axis cs:1,0.110)--(axis cs:1,0.142)--(axis cs:4,0.142)--(axis cs:4,0.134);
+        \node[font=\numfont\normalsize\bfseries,text=sorange,fill=white,inner xsep=4pt] at (axis cs:2.5,0.142) {+0.023～+0.025};
+      \end{axis}
+    \end{tikzpicture}
+    \column{0.42\textwidth}
+    \vspace{0.12cm}
+    \point{1}{收盘竞价有惯性}{近几日收盘竞价上涨的股票，当天竞价倾向继续上涨；1、5、20 日一致。}
+    \point{2}{14:30 反向调整三项信号}{各加 −0.20，抵消三项全时段信号在 14:30 的正载荷。}
+    \point{3}{放量股尾盘继续上涨}{当天越放量，14:30 后越倾向涨到收盘；全天平均则相反。}
+  \end{columns}
+  \takeaway{同样的项放到其余六个时段，48 组对照的 RankIC 变化都在 ±0.0005 以内；效应只属于 14:30。}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\gdef\chaplabel{备份 A6}
+\begin{frame}{私榜信号水平回落，波动与换手未变差}
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+    \charthead{最终因子 RankIC 的均值与逐截面标准差}
+    \begin{tikzpicture}
+      \begin{axis}[ybar, slidebar, width=7.3cm, height=5.05cm, bar width=24pt,
+          ymin=0, ymax=0.14, enlarge x limits=0.42,
+          xtick={1,2}, xticklabels={RankIC 均值,逐截面 RankIC 标准差},
+          legend style={at={(0.5,1.0)},anchor=south},
+          point meta=y,
+          nodes near coords={\pgfmathprintnumber[fixed,fixed zerofill,precision=4]{\pgfplotspointmeta}},
+          nodes near coords style={font=\numfont\small}]
+        \addplot[fill=snavy,draw=none,nodes near coords style={text=snavy}] coordinates {(1,0.1028) (2,0.0497)};
+        \addplot[fill=sorange,draw=none,nodes near coords style={text=sorange,font=\numfont\small\bfseries}] coordinates {(1,0.0790) (2,0.0507)};
+        \legend{公榜,私榜}
+        \node[font=\numfont\Large\bfseries,text=sorange] at (axis cs:1,0.1325) {−23\%};
+        \node[font=\numfont\Large\bfseries,text=snavy] at (axis cs:2,0.0790) {+2\%};
+      \end{axis}
+    \end{tikzpicture}
+    \column{0.47\textwidth}
+    \vspace{0.12cm}
+    \point{1}{四项同步回落，换手更低}{四项质量指标回落 16\%～28\%；换手率由 0.279 降至 0.266。}
+    \point{2}{接近本地最弱的 2024 年}{私榜 ICIR 1.559，本地 2024 年为 1.541；私榜区间日期未公布。}
+    \point{3}{短区间内 RankIC 仍显著为正}{按日计 t 本地约 40、2024 年约 24；私榜即使只有约 20 个交易日，t 约 7。}
+  \end{columns}
+  \takeaway{端到端赛道同期 RankIC 也回落至公榜的 0.777 倍；两者不是独立样本，只作旁证。}
+\end{frame}
+
+\end{document}

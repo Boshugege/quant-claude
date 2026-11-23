@@ -1,0 +1,109 @@
+10:10:34 训练设备 device=cuda arch=e04 win_groups=shape,book,tod rss=0.6GB peak=0.6GB
+10:10:35 读取 e04 数据集缓存 e2e\cache\e04_0f0979f22dd8f3fc (train 2020-01-01~2022-12-31)
+10:10:49 多任务辅助目标 w=0.5 cover=[0.875, 0.875] rss=17.9GB peak=18.3GB
+10:12:00 训练剔除特征 mode=proxy_ind cov=0.9793 pind_cov=0.8344 rss=19.7GB peak=19.8GB
+10:13:12 读取数据集缓存 e2e\cache\a2095c78917bc3e8 (train 2023-01-01~2023-12-31)
+10:13:13 [val] 平台口径：官方风格暴露覆盖率 0.979
+10:13:13 训练样本 samples=5078333 models=1 skip_0930=True day_batch=0 turn_w=0.0 icir_w=0.0 aux_w=0.5 aux_n=2 n_params=201830 rss=17.9GB peak=33.7GB
+10:13:32 训练进度 member=0 epoch=1/6 pct=10% loss=3.203273 samples_per_s=38841 eta_s=117 rss=18.8GB peak=33.7GB
+10:13:45 训练进度 member=0 epoch=1/6 pct=20% loss=3.100332 samples_per_s=39460 eta_s=103 rss=18.8GB peak=33.7GB
+10:13:57 训练进度 member=0 epoch=1/6 pct=30% loss=3.091827 samples_per_s=40104 eta_s=89 rss=18.8GB peak=33.7GB
+10:14:09 训练进度 member=0 epoch=1/6 pct=40% loss=3.071584 samples_per_s=40628 eta_s=75 rss=18.8GB peak=33.7GB
+10:14:21 训练进度 member=0 epoch=1/6 pct=49% loss=3.043435 samples_per_s=40831 eta_s=62 rss=18.8GB peak=33.7GB
+10:14:33 训练进度 member=0 epoch=1/6 pct=59% loss=3.046503 samples_per_s=40813 eta_s=50 rss=18.8GB peak=33.7GB
+10:14:46 训练进度 member=0 epoch=1/6 pct=69% loss=3.016811 samples_per_s=40794 eta_s=38 rss=18.8GB peak=33.7GB
+10:14:58 训练进度 member=0 epoch=1/6 pct=79% loss=3.037364 samples_per_s=40714 eta_s=26 rss=18.8GB peak=33.7GB
+10:15:10 训练进度 member=0 epoch=1/6 pct=89% loss=3.007594 samples_per_s=40762 eta_s=13 rss=18.8GB peak=33.7GB
+10:15:23 训练进度 member=0 epoch=1/6 pct=99% loss=2.993626 samples_per_s=40811 eta_s=1 rss=18.8GB peak=33.7GB
+10:15:24 epoch 完成 member=0 epoch=1/6 loss=3.060414 elapsed=124.4 rss=18.8GB peak=33.7GB
+10:16:01 [val] member 0 epoch 1 平台口径(输出中性化1+09:30置零+风格剔除): ic=0.0958 icir=1.975 ls=57.39 stress=1.853 turn=0.620 | 原始: ic=0.1056 icir=1.076 | pred_std=0.289 nan=0 eval=37s rss=33.7GB
+10:16:14 训练进度 member=0 epoch=2/6 pct=10% loss=2.995626 samples_per_s=40035 eta_s=114 rss=24.2GB peak=33.7GB
+10:16:26 训练进度 member=0 epoch=2/6 pct=20% loss=2.99045 samples_per_s=40801 eta_s=99 rss=24.2GB peak=33.7GB
+10:16:39 训练进度 member=0 epoch=2/6 pct=30% loss=2.99798 samples_per_s=40481 eta_s=88 rss=24.2GB peak=33.7GB
+10:16:50 训练进度 member=0 epoch=2/6 pct=40% loss=2.988291 samples_per_s=40925 eta_s=75 rss=24.2GB peak=33.7GB
+10:17:03 训练进度 member=0 epoch=2/6 pct=49% loss=2.989467 samples_per_s=41009 eta_s=62 rss=24.2GB peak=33.7GB
+10:17:15 训练进度 member=0 epoch=2/6 pct=59% loss=2.971709 samples_per_s=41033 eta_s=50 rss=24.2GB peak=33.7GB
+10:17:27 训练进度 member=0 epoch=2/6 pct=69% loss=2.977719 samples_per_s=41120 eta_s=38 rss=24.2GB peak=33.7GB
+10:17:39 训练进度 member=0 epoch=2/6 pct=79% loss=2.991828 samples_per_s=41008 eta_s=25 rss=24.2GB peak=33.7GB
+10:17:52 训练进度 member=0 epoch=2/6 pct=89% loss=2.99294 samples_per_s=41023 eta_s=13 rss=24.2GB peak=33.7GB
+10:18:04 训练进度 member=0 epoch=2/6 pct=99% loss=2.977592 samples_per_s=40978 eta_s=1 rss=24.2GB peak=33.7GB
+10:18:05 epoch 完成 member=0 epoch=2/6 loss=2.987051 elapsed=123.9 rss=24.2GB peak=33.7GB
+10:18:39 [val] member 0 epoch 2 平台口径(输出中性化1+09:30置零+风格剔除): ic=0.1019 icir=2.077 ls=59.53 stress=1.952 turn=0.605 | 原始: ic=0.1107 icir=1.154 | pred_std=0.289 nan=0 eval=34s rss=33.7GB
+10:18:52 训练进度 member=0 epoch=3/6 pct=10% loss=2.97155 samples_per_s=40006 eta_s=114 rss=24.2GB peak=33.7GB
+10:19:04 训练进度 member=0 epoch=3/6 pct=20% loss=2.983278 samples_per_s=40481 eta_s=100 rss=24.2GB peak=33.7GB
+10:19:16 训练进度 member=0 epoch=3/6 pct=30% loss=2.977612 samples_per_s=40773 eta_s=87 rss=24.2GB peak=33.7GB
+10:19:29 训练进度 member=0 epoch=3/6 pct=40% loss=2.963378 samples_per_s=40513 eta_s=75 rss=24.2GB peak=33.7GB
+10:19:41 训练进度 member=0 epoch=3/6 pct=49% loss=2.962368 samples_per_s=40692 eta_s=63 rss=24.2GB peak=33.7GB
+10:19:53 训练进度 member=0 epoch=3/6 pct=59% loss=2.980837 samples_per_s=40733 eta_s=50 rss=24.2GB peak=33.7GB
+10:20:06 训练进度 member=0 epoch=3/6 pct=69% loss=2.966646 samples_per_s=40772 eta_s=38 rss=24.2GB peak=33.7GB
+10:20:18 训练进度 member=0 epoch=3/6 pct=79% loss=2.96818 samples_per_s=40804 eta_s=25 rss=24.2GB peak=33.7GB
+10:20:31 训练进度 member=0 epoch=3/6 pct=89% loss=2.969697 samples_per_s=40642 eta_s=13 rss=24.2GB peak=33.7GB
+10:20:43 训练进度 member=0 epoch=3/6 pct=99% loss=2.953422 samples_per_s=40745 eta_s=1 rss=24.2GB peak=33.7GB
+10:20:44 epoch 完成 member=0 epoch=3/6 loss=2.969908 elapsed=124.6 rss=24.2GB peak=33.7GB
+10:21:18 [val] member 0 epoch 3 平台口径(输出中性化1+09:30置零+风格剔除): ic=0.1052 icir=2.090 ls=61.17 stress=1.988 turn=0.603 | 原始: ic=0.1143 icir=1.195 | pred_std=0.289 nan=0 eval=34s rss=33.7GB
+10:21:31 训练进度 member=0 epoch=4/6 pct=10% loss=2.957429 samples_per_s=39840 eta_s=114 rss=24.2GB peak=33.7GB
+10:21:43 训练进度 member=0 epoch=4/6 pct=20% loss=2.950806 samples_per_s=40576 eta_s=100 rss=24.2GB peak=33.7GB
+10:21:55 训练进度 member=0 epoch=4/6 pct=30% loss=2.949496 samples_per_s=40752 eta_s=87 rss=24.2GB peak=33.7GB
+10:22:07 训练进度 member=0 epoch=4/6 pct=40% loss=2.944568 samples_per_s=40726 eta_s=75 rss=24.2GB peak=33.7GB
+10:22:20 训练进度 member=0 epoch=4/6 pct=49% loss=2.967729 samples_per_s=40690 eta_s=63 rss=24.2GB peak=33.7GB
+10:22:32 训练进度 member=0 epoch=4/6 pct=59% loss=2.95806 samples_per_s=40776 eta_s=50 rss=24.2GB peak=33.7GB
+10:22:44 训练进度 member=0 epoch=4/6 pct=69% loss=2.948431 samples_per_s=40918 eta_s=38 rss=24.2GB peak=33.7GB
+10:22:56 训练进度 member=0 epoch=4/6 pct=79% loss=2.963869 samples_per_s=40995 eta_s=25 rss=24.2GB peak=33.7GB
+10:23:09 训练进度 member=0 epoch=4/6 pct=89% loss=2.970908 samples_per_s=40964 eta_s=13 rss=24.2GB peak=33.7GB
+10:23:21 训练进度 member=0 epoch=4/6 pct=99% loss=2.957463 samples_per_s=40913 eta_s=1 rss=24.2GB peak=33.7GB
+10:23:22 epoch 完成 member=0 epoch=4/6 loss=2.95703 elapsed=124.2 rss=24.2GB peak=33.7GB
+10:23:56 [val] member 0 epoch 4 平台口径(输出中性化1+09:30置零+风格剔除): ic=0.1065 icir=2.084 ls=61.25 stress=2.014 turn=0.602 | 原始: ic=0.1148 icir=1.212 | pred_std=0.289 nan=0 eval=34s rss=33.7GB
+10:24:09 训练进度 member=0 epoch=5/6 pct=10% loss=2.958782 samples_per_s=40709 eta_s=112 rss=24.2GB peak=33.7GB
+10:24:21 训练进度 member=0 epoch=5/6 pct=20% loss=2.93463 samples_per_s=40430 eta_s=100 rss=24.2GB peak=33.7GB
+10:24:33 训练进度 member=0 epoch=5/6 pct=30% loss=2.953627 samples_per_s=40737 eta_s=87 rss=24.2GB peak=33.7GB
+10:24:45 训练进度 member=0 epoch=5/6 pct=40% loss=2.947831 samples_per_s=40852 eta_s=75 rss=24.2GB peak=33.7GB
+10:24:57 训练进度 member=0 epoch=5/6 pct=49% loss=2.951266 samples_per_s=41092 eta_s=62 rss=24.2GB peak=33.7GB
+10:25:10 训练进度 member=0 epoch=5/6 pct=59% loss=2.939289 samples_per_s=41119 eta_s=50 rss=24.2GB peak=33.7GB
+10:25:22 训练进度 member=0 epoch=5/6 pct=69% loss=2.957826 samples_per_s=40925 eta_s=38 rss=24.2GB peak=33.7GB
+10:25:34 训练进度 member=0 epoch=5/6 pct=79% loss=2.947128 samples_per_s=41014 eta_s=25 rss=24.2GB peak=33.7GB
+10:25:46 训练进度 member=0 epoch=5/6 pct=89% loss=2.95802 samples_per_s=41207 eta_s=13 rss=24.2GB peak=33.7GB
+10:25:58 训练进度 member=0 epoch=5/6 pct=99% loss=2.940461 samples_per_s=41272 eta_s=1 rss=24.2GB peak=33.7GB
+10:25:59 epoch 完成 member=0 epoch=5/6 loss=2.948458 elapsed=123.1 rss=24.2GB peak=33.7GB
+10:26:34 [val] member 0 epoch 5 平台口径(输出中性化1+09:30置零+风格剔除): ic=0.1074 icir=2.085 ls=61.14 stress=2.017 turn=0.598 | 原始: ic=0.1150 icir=1.215 | pred_std=0.289 nan=0 eval=34s rss=33.7GB
+10:26:46 训练进度 member=0 epoch=6/6 pct=10% loss=2.944975 samples_per_s=41000 eta_s=111 rss=24.1GB peak=33.7GB
+10:26:58 训练进度 member=0 epoch=6/6 pct=20% loss=2.935489 samples_per_s=41147 eta_s=99 rss=24.1GB peak=33.7GB
+10:27:10 训练进度 member=0 epoch=6/6 pct=30% loss=2.944026 samples_per_s=41445 eta_s=86 rss=24.1GB peak=33.7GB
+10:27:23 训练进度 member=0 epoch=6/6 pct=40% loss=2.945549 samples_per_s=40809 eta_s=75 rss=24.1GB peak=33.7GB
+10:27:35 训练进度 member=0 epoch=6/6 pct=49% loss=2.961634 samples_per_s=40794 eta_s=62 rss=24.1GB peak=33.7GB
+10:27:47 训练进度 member=0 epoch=6/6 pct=59% loss=2.932271 samples_per_s=40790 eta_s=50 rss=24.1GB peak=33.7GB
+10:28:00 训练进度 member=0 epoch=6/6 pct=69% loss=2.944037 samples_per_s=40714 eta_s=38 rss=24.1GB peak=33.7GB
+10:28:13 训练进度 member=0 epoch=6/6 pct=79% loss=2.930844 samples_per_s=40569 eta_s=26 rss=24.1GB peak=33.7GB
+10:28:25 训练进度 member=0 epoch=6/6 pct=89% loss=2.937805 samples_per_s=40716 eta_s=13 rss=24.1GB peak=33.7GB
+10:28:37 训练进度 member=0 epoch=6/6 pct=99% loss=2.930081 samples_per_s=40725 eta_s=1 rss=24.1GB peak=33.7GB
+10:28:38 epoch 完成 member=0 epoch=6/6 loss=2.940586 elapsed=124.7 rss=24.1GB peak=33.7GB
+10:29:12 [val] member 0 epoch 6 平台口径(输出中性化1+09:30置零+风格剔除): ic=0.1076 icir=2.072 ls=60.93 stress=2.017 turn=0.588 | 原始: ic=0.1146 icir=1.213 | pred_std=0.289 nan=0 eval=34s rss=33.7GB
+10:29:13 模型已保存 path=e2e\runs\R39e_b8\transformer_model.json bytes=4389744 rss=24.1GB peak=33.7GB
+10:29:15 json=e2e\runs\R39e_b8\transformer_model.json bytes=4,389,744 (4.19 MiB) <50MB=True models=1 reload_maxdiff=2.00e-03
+10:29:36 分片完成 start=2023-01-01 samples=127872 elapsed=20.3 rss=10.3GB peak=33.7GB
+10:29:57 分片完成 start=2023-02-01 samples=159840 elapsed=17.2 rss=11.2GB peak=33.7GB
+10:30:22 分片完成 start=2023-03-01 samples=183816 elapsed=20.5 rss=11.6GB peak=33.7GB
+10:30:44 分片完成 start=2023-04-01 samples=151848 elapsed=17.5 rss=11.6GB peak=33.7GB
+10:31:06 分片完成 start=2023-05-01 samples=159840 elapsed=18.2 rss=11.4GB peak=33.7GB
+10:31:29 分片完成 start=2023-06-01 samples=159840 elapsed=18.1 rss=11.5GB peak=33.7GB
+10:31:53 分片完成 start=2023-07-01 samples=167832 elapsed=19.6 rss=11.5GB peak=33.7GB
+10:32:20 分片完成 start=2023-08-01 samples=183816 elapsed=22.4 rss=11.7GB peak=33.7GB
+10:32:44 分片完成 start=2023-09-01 samples=159840 elapsed=18.2 rss=11.7GB peak=33.7GB
+10:33:05 分片完成 start=2023-10-01 samples=135864 elapsed=16.5 rss=11.3GB peak=33.7GB
+10:33:29 分片完成 start=2023-11-01 samples=175824 elapsed=20.3 rss=11.4GB peak=33.7GB
+10:33:54 分片完成 start=2023-12-01 samples=167952 elapsed=19.8 rss=11.7GB peak=33.7GB
+10:34:08 predict_range rows=1,934,184 matched=1,933,128 maxdiff=1.03e-01
+10:34:47 analysis（原始输出）
+      ic_mean   ic_ir  ls_sharpe  stress  turnover     cov    s930   s1000   s1030   s1100   s1130   s1330   s1400   s1430  corr_F90
+name                                                                                                                                
+E2E    0.1018  1.7846    52.6394  1.5729    0.6182  1.0000  0.0412  0.1032  0.1005  0.1018  0.1119  0.0997  0.0891  0.1672    0.6786
+F90    0.0815  1.4696    49.4291  1.3219    0.6289  0.9977  0.0401  0.0872  0.0845  0.0893  0.0889  0.0852  0.0802  0.0964       NaN
+10:35:12 analysis（输出中性化 neut1.0）
+      ic_mean   ic_ir  ls_sharpe  stress  turnover  cov    s930   s1000   s1030   s1100   s1130   s1330   s1400  s1430
+name                                                                                                                  
+E2E     0.099  1.7771     52.355  1.5694    0.6234  1.0  0.0385  0.0999  0.0979  0.0995  0.1079  0.0979  0.0884  0.162
+10:35:25 analysis（输出中性化 neut1.5）
+      ic_mean   ic_ir  ls_sharpe  stress  turnover  cov    s930   s1000  s1030   s1100   s1130   s1330  s1400   s1430
+name                                                                                                                 
+E2E    0.0961  1.7536    50.3704  1.5496    0.6233  1.0  0.0365  0.0966  0.095  0.0966  0.1039  0.0958  0.087  0.1577
+10:35:25 风格暴露（与四个特征的平均截面秩相关）: {"raw": {"c_size": 0.05, "c_ivol": 0.115, "c_illiq": 0.008, "c_lowp": 0.094}, "neut1.0": {"c_size": 0.008, "c_ivol": 0.013, "c_illiq": 0.003, "c_lowp": 0.009}, "neut1.5": {"c_size": -0.017, "c_ivol": -0.042, "c_illiq": -0.001, "c_lowp": -0.037}}
+10:35:25 done 1491s

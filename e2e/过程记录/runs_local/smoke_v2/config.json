@@ -1,0 +1,46 @@
+{
+  "run": "smoke_v2",
+  "train": [
+    "2020-02-01",
+    "2020-02-29 23:59:59"
+  ],
+  "val": [
+    "2020-03-01",
+    "2020-03-31 23:59:59"
+  ],
+  "max_inst": 120,
+  "max_days": 5,
+  "norm": "rel",
+  "target": "cs_z",
+  "epochs": 1,
+  "batch": 512,
+  "lr": 0.001,
+  "seed": 42,
+  "d_model": 64,
+  "nlayers": 2,
+  "dim_ff": 128,
+  "nhead": 4,
+  "model_cfg": {
+    "n_feat": 10,
+    "d_model": 64,
+    "nhead": 4,
+    "nlayers": 2,
+    "dim_ff": 128,
+    "seq_len": 64
+  },
+  "torch": "2.14.1",
+  "device": "mps",
+  "label": "local y_v2v1 = VWAP(t+30,t+60]/VWAP(t,t+30]-1 (platform: vwap_return)",
+  "features": [
+    "open",
+    "high",
+    "low",
+    "close",
+    "volume",
+    "amount",
+    "bid_price1",
+    "ask_price1",
+    "bid_volume1",
+    "ask_volume1"
+  ]
+}

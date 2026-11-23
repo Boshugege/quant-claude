@@ -1,0 +1,5 @@
+配置 seed=11 trees=130 depth=4 sub=0.08 lr=0.06 slot=True heads_only=False fit=2020-01-01..2022-12-31 ewma=0.00 extra=['L_5', 'VSH20', 'PACE20', 'DOW10', 'CLS20', 'CLOSEPOS20', 'QS1L', 'QS1A'] drop=['N_dir', 'Y_sd5', 'X_n5d']
+特征 29 列（锚 []），构造 136s
+多期目标：w=0.25 n=2，之后截面标签和的非空率 0.749
+拟合行 5080329（窗 2020-2022）
+已转分箱并释放浮点特征（低内存模式）

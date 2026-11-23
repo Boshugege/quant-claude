@@ -1,0 +1,7 @@
+--run F07_2020-24_proxyind_z930_on1.0_2x3 --arch e04 --norm rel2 --train-neutral proxy_ind --zero-0930 --out-neutral 1.0 --train 2020-01-01 2024-12-31 --val 2024-10-01 2024-12-31 --epochs 3 --n-models 2 --secs-per-batch 4 --no-analyze
+--run H1_skip930 --arch e04 --norm rel2 --train 2020-01-01 2022-12-31 --val 2023-01-01 2023-12-31 --epochs 3 --n-models 1 --train-neutral proxy_ind --zero-0930 --out-neutral 1.0 --skip-0930-loss
+--run H2a_daybatch --arch e04 --norm rel2 --train 2020-01-01 2022-12-31 --val 2023-01-01 2023-12-31 --epochs 3 --n-models 1 --train-neutral proxy_ind --zero-0930 --out-neutral 1.0 --skip-0930-loss --day-batch 1
+--run H2_turn --arch e04 --norm rel2 --train 2020-01-01 2022-12-31 --val 2023-01-01 2023-12-31 --epochs 3 --n-models 1 --train-neutral proxy_ind --zero-0930 --out-neutral 1.0 --skip-0930-loss --day-batch 1 --turn-w 0.2
+--run H3_icir --arch e04 --norm rel2 --train 2020-01-01 2022-12-31 --val 2023-01-01 2023-12-31 --epochs 3 --n-models 1 --train-neutral proxy_ind --zero-0930 --out-neutral 1.0 --skip-0930-loss --icir-w 0.5
+--run H4_winfeat7 --arch e04 --norm rel2 --train 2020-01-01 2022-12-31 --val 2023-01-01 2023-12-31 --epochs 3 --n-models 1 --train-neutral proxy_ind --zero-0930 --out-neutral 1.0 --skip-0930-loss --win-feat 7
+--run H5_peer240 --arch e04 --norm rel2 --train 2020-01-01 2022-12-31 --val 2023-01-01 2023-12-31 --epochs 3 --n-models 1 --train-neutral proxy_ind --zero-0930 --out-neutral 1.0 --skip-0930-loss --peer-daily --peer-len 240

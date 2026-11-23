@@ -1,0 +1,20 @@
+{
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.12045605015009642,
+      "val_sections": 0,
+      "val_ic": NaN,
+      "val_icir": NaN,
+      "val_ls_sharpe": NaN,
+      "val_turnover": NaN,
+      "sec": 3.905519962310791
+    }
+  ],
+  "json_bytes": 1571472,
+  "reload_maxdiff": 2.682209014892578e-07,
+  "total_sec": 14.747661828994751,
+  "max_rss_gb": 5.163859968,
+  "n_train": 1750,
+  "n_val": 2000
+}

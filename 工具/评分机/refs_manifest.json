@@ -1,0 +1,426 @@
+[
+ {
+  "fid": "237",
+  "name": "长上影线三成中性二倍",
+  "public_score": 0.80441,
+  "snapshot": "2026-10-12 第二十七批同批",
+  "calib": true,
+  "job": "1012-012845-4198"
+ },
+ {
+  "fid": "104",
+  "name": "同伴残差阶梯过度中性",
+  "public_score": 0.79694,
+  "snapshot": "2026-10-12 第二十七批同批",
+  "calib": true,
+  "job": "1011-221842-5b2f"
+ },
+ {
+  "fid": "241",
+  "name": "长上影线加实体占比",
+  "public_score": 0.79287,
+  "snapshot": "2026-10-12 第二十七批同批",
+  "calib": true,
+  "job": "1012-020605-9b05"
+ },
+ {
+  "fid": "240",
+  "name": "长影线不对称三成",
+  "public_score": 0.79253,
+  "snapshot": "2026-10-12 第二十七批同批",
+  "calib": true,
+  "job": "1012-020605-036a"
+ },
+ {
+  "fid": "103",
+  "name": "同伴残差阶梯四特征中性",
+  "public_score": 0.79151,
+  "snapshot": "2026-10-12 第二十七批同批",
+  "calib": true,
+  "job": "1011-221843-7b04"
+ },
+ {
+  "fid": "226",
+  "name": "长窗口同伴上影线0930置零",
+  "public_score": 0.79151,
+  "snapshot": "2026-10-12 第二十七批同批",
+  "calib": true,
+  "job": "1012-005018-275c"
+ },
+ {
+  "fid": "246",
+  "name": "长上影线EWMA加权",
+  "public_score": 0.78778,
+  "snapshot": "2026-10-12 第二十七批同批",
+  "calib": true,
+  "job": "1012-023133-774f"
+ },
+ {
+  "fid": "258",
+  "name": "长上影线加平均单笔成交额",
+  "public_score": 0.78744,
+  "snapshot": "2026-10-12 第二十七批同批",
+  "calib": true,
+  "job": "1012-031130-26df"
+ },
+ {
+  "fid": "69",
+  "name": "三尺度反转复合",
+  "public_score": 0.7842,
+  "snapshot": "更早（混合时间，可能含 10-10 前旧口径）",
+  "calib": false,
+  "job": "1011-221843-4d19"
+ },
+ {
+  "fid": "73",
+  "name": "波动标准化日内VWAP反转",
+  "public_score": 0.78343,
+  "snapshot": "更早（混合时间，可能含 10-10 前旧口径）",
+  "calib": false,
+  "job": "1011-221843-b9b2"
+ },
+ {
+  "fid": "71",
+  "name": "滚动240分钟VWAP偏离反转",
+  "public_score": 0.78304,
+  "snapshot": "更早（混合时间，可能含 10-10 前旧口径）",
+  "calib": false,
+  "job": "1011-221843-503f"
+ },
+ {
+  "fid": "248",
+  "name": "长上影线窗口二十",
+  "public_score": 0.78268,
+  "snapshot": "2026-10-12 第二十七批同批",
+  "calib": true,
+  "job": "1012-024741-5229"
+ },
+ {
+  "fid": "233",
+  "name": "长上影线附加三成",
+  "public_score": 0.78234,
+  "snapshot": "2026-10-12 第二十七批同批",
+  "calib": true,
+  "job": "1012-005018-ee99"
+ },
+ {
+  "fid": "80",
+  "name": "滚动VWAP波动标准化反转",
+  "public_score": 0.77935,
+  "snapshot": "更早（混合时间，可能含 10-10 前旧口径）",
+  "calib": false,
+  "job": "1011-221843-ff27"
+ },
+ {
+  "fid": "105",
+  "name": "四尺度阶梯四特征中性",
+  "public_score": 0.7691,
+  "snapshot": "2026-10-12 第二十七批同批",
+  "calib": true,
+  "job": "1011-221843-9deb"
+ },
+ {
+  "fid": "107",
+  "name": "同伴残差反转阶梯",
+  "public_score": 0.76061,
+  "snapshot": "2026-10-12 第二十七批同批",
+  "calib": true,
+  "job": "1011-221843-af9c"
+ },
+ {
+  "fid": "75",
+  "name": "三基准反转复合",
+  "public_score": 0.74721,
+  "snapshot": "更早（混合时间，可能含 10-10 前旧口径）",
+  "calib": false,
+  "job": "1011-221843-6900"
+ },
+ {
+  "fid": "85",
+  "name": "放量加权反转",
+  "public_score": 0.74226,
+  "snapshot": "更早（混合时间，可能含 10-10 前旧口径）",
+  "calib": false,
+  "job": "1011-221843-840b"
+ },
+ {
+  "fid": "74",
+  "name": "振幅标准化日内VWAP反转",
+  "public_score": 0.73565,
+  "snapshot": "更早（混合时间，可能含 10-10 前旧口径）",
+  "calib": false,
+  "job": "1011-221843-71b0"
+ },
+ {
+  "fid": "90",
+  "name": "多尺度反转阶梯",
+  "public_score": 0.73531,
+  "snapshot": "2026-10-12 第二十七批同批",
+  "calib": true,
+  "job": "1011-221843-2faf"
+ },
+ {
+  "fid": "88",
+  "name": "多尺度反转阶梯双版本合成",
+  "public_score": 0.72632,
+  "snapshot": "2026-10-12 第二十七批同批",
+  "calib": true,
+  "job": "1011-221843-6743"
+ },
+ {
+  "fid": "86",
+  "name": "小单主导加权反转",
+  "public_score": 0.72122,
+  "snapshot": "更早（混合时间，可能含 10-10 前旧口径）",
+  "calib": false,
+  "job": "1011-221843-7dd3"
+ },
+ {
+  "fid": "96",
+  "name": "五尺度残差阶梯加低价",
+  "public_score": 0.71545,
+  "snapshot": "2026-10-12 第二十七批同批",
+  "calib": true,
+  "job": "1011-221843-f6ad"
+ },
+ {
+  "fid": "82",
+  "name": "滚动VWAP标准化与日内反转低换手复合",
+  "public_score": 0.7044,
+  "snapshot": "更早（混合时间，可能含 10-10 前旧口径）",
+  "calib": false,
+  "job": "1011-221843-a839"
+ },
+ {
+  "fid": "92",
+  "name": "五尺度VWAP反转阶梯",
+  "public_score": 0.70051,
+  "snapshot": "2026-10-12 第二十七批同批",
+  "calib": true,
+  "job": "1011-221843-2896"
+ },
+ {
+  "fid": "81",
+  "name": "滚动VWAP标准化三尺度复合",
+  "public_score": 0.70017,
+  "snapshot": "2026-10-12 第二十七批同批",
+  "calib": true,
+  "job": "1011-221843-c20f"
+ },
+ {
+  "fid": "93",
+  "name": "五尺度阶梯与残差反转合成",
+  "public_score": 0.69949,
+  "snapshot": "2026-10-12 第二十七批同批",
+  "calib": true,
+  "job": "1011-221843-1794"
+ },
+ {
+  "fid": "91",
+  "name": "五尺度反转阶梯",
+  "public_score": 0.69745,
+  "snapshot": "2026-10-12 第二十七批同批",
+  "calib": true,
+  "job": "1011-221843-4a14"
+ },
+ {
+  "fid": "98",
+  "name": "四尺度阶梯加四特征",
+  "public_score": 0.68995,
+  "snapshot": "2026-10-12",
+  "calib": false,
+  "job": "1011-221843-3cce"
+ },
+ {
+  "fid": "83",
+  "name": "全标准化三尺度复合",
+  "public_score": 0.68353,
+  "snapshot": "2026-10-12 第二十七批同批",
+  "calib": true,
+  "job": "1011-221843-1fee"
+ },
+ {
+  "fid": "68",
+  "name": "日内VWAP与30分钟反转复合",
+  "public_score": 0.68092,
+  "snapshot": "更早（混合时间，可能含 10-10 前旧口径）",
+  "calib": false,
+  "job": "1011-221843-83ed"
+ },
+ {
+  "fid": "76",
+  "name": "振幅标准化VWAP与30分钟反转复合",
+  "public_score": 0.67861,
+  "snapshot": "更早（混合时间，可能含 10-10 前旧口径）",
+  "calib": false,
+  "job": "1011-221843-22f9"
+ },
+ {
+  "fid": "97",
+  "name": "按时段五尺度残差阶梯",
+  "public_score": 0.67504,
+  "snapshot": "2026-10-12 第二十七批同批",
+  "calib": true,
+  "job": "1011-221843-aacf"
+ },
+ {
+  "fid": "89",
+  "name": "两小时VWAP反转",
+  "public_score": 0.6747,
+  "snapshot": "2026-10-12 第二十七批同批",
+  "calib": true,
+  "job": "1011-221843-ae9d"
+ },
+ {
+  "fid": "106",
+  "name": "同伴中性阶梯加四特征",
+  "public_score": 0.67063,
+  "snapshot": "2026-10-12 第二十七批同批",
+  "calib": true,
+  "job": "1011-221843-9b01"
+ },
+ {
+  "fid": "61",
+  "name": "日内区间位置反转",
+  "public_score": 0.65968,
+  "snapshot": "更早（混合时间，可能含 10-10 前旧口径）",
+  "calib": false,
+  "job": "1011-221843-ad8b"
+ },
+ {
+  "fid": "101",
+  "name": "双版本阶梯加三特征",
+  "public_score": 0.65758,
+  "snapshot": "2026-10-12",
+  "calib": false,
+  "job": "1011-221843-3b9d"
+ },
+ {
+  "fid": "99",
+  "name": "四尺度阶梯加三特征",
+  "public_score": 0.6494,
+  "snapshot": "2026-10-12",
+  "calib": false,
+  "job": "1011-221843-c5ea"
+ },
+ {
+  "fid": "100",
+  "name": "四尺度阶梯加特质波动",
+  "public_score": 0.64259,
+  "snapshot": "2026-10-12",
+  "calib": false,
+  "job": "1011-221843-250f"
+ },
+ {
+  "fid": "56",
+  "name": "日内反转",
+  "public_score": 0.60243,
+  "snapshot": "更早（混合时间，可能含 10-10 前旧口径）",
+  "calib": false,
+  "job": "1011-221843-7d99"
+ },
+ {
+  "fid": "63",
+  "name": "开盘后日内反转",
+  "public_score": 0.57944,
+  "snapshot": "更早（混合时间，可能含 10-10 前旧口径）",
+  "calib": false,
+  "job": "1011-221843-e40f"
+ },
+ {
+  "fid": "57",
+  "name": "30分钟价格反转",
+  "public_score": 0.57571,
+  "snapshot": "更早（混合时间，可能含 10-10 前旧口径）",
+  "calib": false,
+  "job": "1011-221843-f8a5"
+ },
+ {
+  "fid": "94",
+  "name": "按时段阶梯加非流动性与低价",
+  "public_score": 0.52621,
+  "snapshot": "更早（混合时间，可能含 10-10 前旧口径）",
+  "calib": false,
+  "job": "1011-221844-2cb0"
+ },
+ {
+  "fid": "95",
+  "name": "按时段阶梯加非流动性",
+  "public_score": 0.51456,
+  "snapshot": "更早（混合时间，可能含 10-10 前旧口径）",
+  "calib": false,
+  "job": "1011-221844-5548"
+ },
+ {
+  "fid": "39",
+  "name": "VWAP偏离反转修复版",
+  "public_score": 0.40763,
+  "snapshot": "更早（混合时间，可能含 10-10 前旧口径）",
+  "calib": false,
+  "job": "1011-221844-aed9"
+ },
+ {
+  "fid": "60",
+  "name": "五日同时刻反转",
+  "public_score": 0.39113,
+  "snapshot": "更早（混合时间，可能含 10-10 前旧口径）",
+  "calib": false,
+  "job": "1011-221844-a7aa"
+ },
+ {
+  "fid": "102",
+  "name": "纯股票特征合成",
+  "public_score": 0.35366,
+  "snapshot": "2026-10-12",
+  "calib": false,
+  "job": "1011-221843-ee58"
+ },
+ {
+  "fid": "87",
+  "name": "隔夜反转",
+  "public_score": 0.2696,
+  "snapshot": "更早（混合时间，可能含 10-10 前旧口径）",
+  "calib": false,
+  "job": "1011-221844-9be1"
+ },
+ {
+  "fid": "50",
+  "name": "日内累计收益",
+  "public_score": 0.20203,
+  "snapshot": "更早（混合时间，可能含 10-10 前旧口径）",
+  "calib": false,
+  "job": "1011-221844-e2b4"
+ },
+ {
+  "fid": "59",
+  "name": "买卖价差反弹",
+  "public_score": 0.08947,
+  "snapshot": "更早（混合时间，可能含 10-10 前旧口径）",
+  "calib": false,
+  "job": "1011-221844-e582"
+ },
+ {
+  "fid": "51",
+  "name": "VWAP窗口间动量",
+  "public_score": 0.04868,
+  "snapshot": "更早（混合时间，可能含 10-10 前旧口径）",
+  "calib": false,
+  "job": "1011-221844-35f7"
+ },
+ {
+  "fid": "84",
+  "name": "同时段收益延续",
+  "public_score": 0.04015,
+  "snapshot": "更早（混合时间，可能含 10-10 前旧口径）",
+  "calib": false,
+  "job": "1011-221844-dac4"
+ },
+ {
+  "fid": "49",
+  "name": "30分钟价格收益",
+  "public_score": 0.0284,
+  "snapshot": "更早（混合时间，可能含 10-10 前旧口径）",
+  "calib": false,
+  "job": "1011-221844-c17d"
+ }
+]

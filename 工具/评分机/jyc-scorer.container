@@ -1,0 +1,53 @@
+# JYC 评分机（Quadlet）。代码在镜像里，数据全部挂载自 ~/jyc_scorer，迁移不需要重算。
+# keep-id 让容器内进程以宿主用户（uid 1000）运行，文件属主不变。
+# 升级：构建新标签的镜像 → 改下面的 Image= → systemctl --user daemon-reload && systemctl --user restart jyc-scorer
+# 回滚到宿主机 venv：systemctl --user stop jyc-scorer; mv ~/.config/systemd/user/jyc-scorer-legacy.service.off \
+#   ~/.config/systemd/user/jyc-scorer-legacy.service; systemctl --user daemon-reload; systemctl --user start jyc-scorer-legacy
+[Unit]
+Description=JYC 本地评分机（容器）
+After=podman-network-ready.service
+Wants=podman-network-ready.service
+
+[Container]
+ContainerName=jyc-scorer
+Image=localhost/jyc-scorer:IMAGE_TAG
+UserNS=keep-id
+Volume=/home/user/jyc_scorer/data:/app/data:ro
+Volume=/home/user/jyc_scorer/store:/app/store
+Volume=/home/user/jyc_scorer/jobs:/app/jobs
+Volume=/home/user/jyc_scorer/logs:/app/logs
+Volume=/srv/media/jyc_scorer/cpt_jyc_2026_e2e_bar1m:/raw1m:ro
+# 已结束任务归档到 HDD（archive_jobs.sh），在容器里挂到同一路径，jobs/ 里的绝对路径符号链接才能解析
+Volume=/srv/media/jyc_scorer/jobs_archive:/srv/media/jyc_scorer/jobs_archive
+Network=observability.network
+NetworkAlias=jyc-scorer
+PublishPort=127.0.0.1:46220:46220/tcp
+# 2026-10-14 整机 OOM 后：30 GB 且不用 swap（超限只在容器内杀任务）；宿主机另有 agent.slice 10 GB，合计不超过 42 GB 物理内存
+PodmanArgs=--memory=38g --memory-swap=38g --cpus=30 --shm-size=2g
+HealthCmd=python /app/healthcheck.py
+HealthInterval=30s
+HealthStartPeriod=60s
+LogDriver=journald
+# 容器默认 UTC，宿主机和迁移前的任务记录是北京时间；统一成北京时间
+Environment=TZ=Asia/Shanghai
+Environment=JYC_MAX_CODE_JOBS=12
+Environment=JYC_MEM_BUDGET_GB=31
+# JSON 值的整条赋值必须用单引号包住，否则 systemd 会去掉双引号（2026-10-11 因此启动失败过）
+Environment='JYC_KIND_MEM_GB={"platform":8.0,"sql":2.5,"factor_py":6,"fid":6,"e2e":12}'
+Environment=JYC_DUCKDB_MAX_THREADS=28
+Environment=JYC_DAI_SQL_SLOTS=4
+Environment=JYC_DAI_CACHE_GB=20
+# 2026-10-14：第 3 级筛选改用 values 提交后，任务大多只剩评分阶段（约 30 s），1 个槽位时 values 任务 60% 的时间在排队等评分，改 2 个
+Environment=JYC_SCORE_SLOTS=3
+Environment=JYC_ENGINE_THREADS=8
+
+[Service]
+Restart=always
+RestartSec=10
+TimeoutStartSec=300
+# 并发与资源（2.4.1）：按内存动态放行。每个任务的预留 = 同 SQL 家族 / 同类型历史峰值的 90% 分位 × 1.1，样本不足时用 JYC_KIND_MEM_GB；
+# 预算 = 容器上限 − 服务进程常驻 − 评分预留，且不超过 JYC_MEM_BUDGET_GB；容器内存压力高时不放行。按季度调用的平台型任务约 4–5 GB，整段调用约 7–8 GB。
+# 数值只影响“同时跑几个”，不影响任何评分口径；改动后 systemctl --user daemon-reload && restart。
+
+[Install]
+WantedBy=default.target

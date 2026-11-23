@@ -1,0 +1,392 @@
+<meta charset="utf-8">
+<title>因子谱系图</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* 布局：上方说明条 + 视图切换；主区左侧是当前视图，右侧固定详情栏（窄屏时叠在下方）。点阵按编号排在横轴上，像一张实验记录的时间线。 */
+:root{
+  --bg:#f3f5f2; --panel:#ffffff; --ink:#1c2420; --muted:#5f6b65; --line:#d6ddd8; --soft:#e8ede9;
+  --accent:#2e6b5a; --accent-ink:#ffffff; --leak:#b93a26; --pub:#a86d12; --good:#2f7d4a; --bad:#b93a26;
+  --e1:#8a8f8c; --e2:#3f6fa3; --e3:#4f9346; --e4:#8f6a52; --e5:#9a5f91; --e6:#3a948e; --e7:#d07a1f; --e8:#c05a86;
+  --f-display:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111513; --panel:#181d1a; --ink:#e3e9e5; --muted:#94a29b; --line:#2b3430; --soft:#212825;
+  --accent:#62b59d; --accent-ink:#0e1411; --leak:#f0705a; --pub:#e2aa4c; --good:#6cc28a; --bad:#f0705a;
+  --e1:#9aa19d; --e2:#6f9fd6; --e3:#7cc271; --e4:#c49a7d; --e5:#c98bc0; --e6:#5fc4bc; --e7:#f0a14e; --e8:#e98bb3; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111513; --panel:#181d1a; --ink:#e3e9e5; --muted:#94a29b; --line:#2b3430; --soft:#212825;
+  --accent:#62b59d; --accent-ink:#0e1411; --leak:#f0705a; --pub:#e2aa4c; --good:#6cc28a; --bad:#f0705a;
+  --e1:#9aa19d; --e2:#6f9fd6; --e3:#7cc271; --e4:#c49a7d; --e5:#c98bc0; --e6:#5fc4bc; --e7:#f0a14e; --e8:#e98bb3; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;line-height:1.5}
+.wrap{padding-inline:16px;padding-block:14px 40px;max-width:1600px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+h1{font-family:var(--f-display);font-weight:600;font-size:26px;margin:0;letter-spacing:.01em;text-wrap:balance}
+h2{font-family:var(--f-display);font-weight:600;font-size:18px;margin:0 0 8px}
+h3{font-family:var(--f-display);font-weight:600;font-size:15px;margin:14px 0 6px}
+.mono,.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 24px}
+header p{margin:4px 0 0;color:var(--muted);max-width:70ch}
+.stats{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px}
+.stats b{font-family:var(--f-mono);font-weight:500;font-size:16px;color:var(--ink);margin-right:4px}
+.stats span{color:var(--muted)}
+.warn{border:1px solid var(--leak);color:var(--ink);background:color-mix(in srgb,var(--leak) 8%,var(--panel));padding:8px 12px;border-radius:6px;font-size:13px}
+.warn b{color:var(--leak)}
+nav{display:flex;flex-wrap:wrap;gap:4px;border-bottom:1px solid var(--line)}
+nav button{font:500 14px var(--f-body);background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);padding:8px 12px;cursor:pointer}
+nav button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+nav button:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.main{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:16px;align-items:start}
+@media (max-width:980px){.main{grid-template-columns:minmax(0,1fr)}}
+.view{min-width:0;display:flex;flex-direction:column;gap:10px}
+.controls{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:13px}
+.controls label{display:flex;align-items:center;gap:6px;color:var(--muted)}
+select,input[type="search"]{font:13px var(--f-body);color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:5px 8px}
+input[type="search"]{width:200px;max-width:100%}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px}
+#plotbox{position:relative;padding:6px}
+canvas{display:block;width:100%;height:560px}
+@media (max-width:600px){canvas{height:420px}}
+#tip{position:absolute;pointer-events:none;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:6px 8px;font-size:12px;box-shadow:0 4px 14px rgb(0 0 0 / .12);max-width:300px;z-index:3}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--muted);padding:0 4px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+.tablebox{overflow-x:auto;max-height:70vh;overflow-y:auto}
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+th,td{padding:5px 8px;border-bottom:1px solid var(--soft);text-align:left;vertical-align:top}
+th{position:sticky;top:0;background:var(--panel);font-weight:600;color:var(--muted);white-space:nowrap;cursor:pointer;z-index:1}
+th.r,td.r{text-align:right}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:var(--soft)}
+tr.sel{background:color-mix(in srgb,var(--accent) 12%,var(--panel))}
+.chip{display:inline-block;font-family:var(--f-mono);font-size:11.5px;padding:1px 6px;border-radius:4px;background:var(--soft);color:var(--ink);margin:1px 3px 1px 0;white-space:nowrap}
+.chip.add{background:color-mix(in srgb,var(--good) 16%,var(--panel))}
+.chip.del{background:color-mix(in srgb,var(--bad) 14%,var(--panel))}
+.chip.neu{background:color-mix(in srgb,var(--e2) 18%,var(--panel))}
+.flag{display:inline-block;font-size:11px;font-weight:600;padding:1px 6px;border-radius:999px;margin-right:4px;white-space:nowrap}
+.flag.leak{color:var(--leak);border:1px solid var(--leak)}
+.flag.pub{color:var(--pub);border:1px solid var(--pub)}
+.pos{color:var(--good)} .neg{color:var(--bad)}
+aside{position:sticky;top:env(safe-area-inset-top,0px);max-height:calc(100vh - 20px);overflow-y:auto;padding:14px;min-width:0}
+@media (max-width:980px){aside{position:static;max-height:none}}
+aside .id{font-family:var(--f-mono);font-size:28px;font-weight:500;line-height:1}
+aside .nm{font-family:var(--f-display);font-weight:600;font-size:17px;margin:4px 0 6px;text-wrap:balance}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font-size:12.5px}
+.kv dt{color:var(--muted)} .kv dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.mtab{width:100%;font-size:12.5px}
+.mtab td,.mtab th{padding:3px 6px;border-bottom:1px solid var(--soft);cursor:default;position:static}
+.bars{display:flex;flex-direction:column;gap:3px;font-size:12px}
+.bar{display:grid;grid-template-columns:120px 1fr 44px;gap:6px;align-items:center}
+.bar .t{font-family:var(--f-mono);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar .b{height:8px;background:var(--accent);border-radius:2px;opacity:.75}
+pre{font-family:var(--f-mono);font-size:11.5px;background:var(--soft);padding:8px;border-radius:6px;overflow-x:auto;max-width:100%;margin:6px 0;white-space:pre}
+pre .a{color:var(--good)} pre .d{color:var(--bad)}
+details summary{cursor:pointer;color:var(--muted);font-size:12.5px;margin-top:8px}
+a.lk{color:var(--accent);text-decoration:none;cursor:pointer;font-family:var(--f-mono)}
+a.lk:hover{text-decoration:underline}
+.chain{display:flex;flex-direction:column}
+.step{display:grid;grid-template-columns:62px minmax(0,1fr) auto;gap:4px 12px;padding:8px 10px;border-bottom:1px solid var(--soft);align-items:start}
+.step:hover{background:var(--soft);cursor:pointer}
+.step.cur{background:color-mix(in srgb,var(--accent) 12%,var(--panel))}
+.step .n{font-family:var(--f-mono);font-weight:500}
+.step .m{font-family:var(--f-mono);font-size:12px;text-align:right;white-space:nowrap}
+.step .nm2{font-size:13px}
+.eras{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.era{padding:12px 14px}
+.era h3{margin:0 0 4px;display:flex;align-items:center;gap:8px}
+.era h3 i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.era ul{margin:6px 0 0;padding-left:16px;font-size:12.5px;color:var(--muted)}
+.era ul li{margin:2px 0}
+.note{font-size:12.5px;color:var(--muted);max-width:90ch}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>因子谱系图</h1>
+      <p>传统因子赛道全部 <span id="mN" class="mono"></span> 个因子：每个因子推断出一个父代（代码最相近的更早因子），记录它在父代上改了什么、成绩怎么变。点任意一点或一行看详情。</p>
+    </div>
+    <div class="stats" id="stats"></div>
+  </header>
+  <div class="warn"><b>未来信息警告：</b>上影线时点重心（c_utime）和日内最高 / 最低价时段（c_hitime / c_lotime）按整天聚合，10:00 的截面也用到了当天之后的数据。带红圈或红色标记的因子分数偏高、不可作为结论，见《未来信息审计_2026-10-13》。</div>
+  <nav role="tablist" id="tabs">
+    <button role="tab" data-v="ov" aria-selected="true">谱系总览</button>
+    <button role="tab" data-v="ln" aria-selected="false">世系</button>
+    <button role="tab" data-v="tb" aria-selected="false">全部因子</button>
+    <button role="tab" data-v="cp" aria-selected="false">分量与遗传效应</button>
+    <button role="tab" data-v="er" aria-selected="false">时代与阶段</button>
+  </nav>
+  <div class="controls" id="filters">
+    <label>搜索 <input type="search" id="q" placeholder="编号、名称或分量，如 c_upsh"></label>
+    <label>时代 <select id="fe"><option value="">全部</option></select></label>
+    <label>含分量 <select id="fc"><option value="">不限</option></select></label>
+    <label><input type="checkbox" id="fl"> 隐藏含未来信息</label>
+    <label><input type="checkbox" id="fp"> 只看上过公榜</label>
+    <span class="muted" id="fcount"></span>
+  </div>
+  <div class="main">
+    <div class="view">
+      <section id="v-ov">
+        <div class="controls">
+          <label>纵轴 <select id="ym">
+            <option value="ir">IC_IR（本地）</option><option value="ic">IC 均值（本地）</option><option value="ls">多空夏普（本地）</option>
+            <option value="st">压力（本地）</option><option value="to">换手（本地，越低越好）</option><option value="c104">与 104 秩相关</option><option value="pub">公榜分（最近一次）</option>
+          </select></label>
+          <label>着色 <select id="cm"><option value="era">时代</option><option value="leak">未来信息</option><option value="pub">是否上公榜</option></select></label>
+          <label><input type="checkbox" id="edges" checked> 父子连线</label>
+        </div>
+        <div class="card" id="plotbox"><canvas id="cv" aria-label="因子谱系散点图：横轴为编号，纵轴为所选指标"></canvas><div id="tip" hidden></div></div>
+        <div class="legend" id="legend"></div>
+        <p class="note">横轴是因子编号（大致就是时间顺序），灰线连接父代与子代。选中一个因子后，它的祖先链用深色粗线标出，子代加圈。没有本地分的因子排在图底部的灰带里。</p>
+      </section>
+      <section id="v-ln" hidden>
+        <div class="card"><div style="padding:10px 12px 0"><h2 id="lnTitle">世系</h2><p class="note" id="lnNote"></p></div><div class="chain" id="chain"></div></div>
+        <div class="card"><div style="padding:10px 12px 0"><h2>直接子代</h2></div><div class="chain" id="kids"></div></div>
+      </section>
+      <section id="v-tb" hidden>
+        <div class="card tablebox"><table id="tbl"><thead></thead><tbody></tbody></table></div>
+      </section>
+      <section id="v-cp" hidden>
+        <p class="note">"遗传效应"统计每一条父→子边：子代在父代上新增某个分量（或改了权重 / 中性化力度）时，本地五项指标平均变了多少。只统计父子两代都有本地分的边。样本少于 3 条的效应只作参考。⚠ 标记的分量含未来信息，它们的"效应"是假的。</p>
+        <div class="card tablebox"><table id="ctbl"><thead></thead><tbody></tbody></table></div>
+      </section>
+      <section id="v-er" hidden>
+        <div class="eras" id="eras"></div>
+      </section>
+    </div>
+    <aside class="card" id="detail"></aside>
+  </div>
+</div>
+
+<script type="application/json" id="data">/*DATA*/</script>
+<script>
+(function(){
+const D = JSON.parse(document.getElementById('data').textContent);
+const N = D.nodes, byN = new Map(N.map(x=>[x.n,x]));
+const ERA_VARS = ['--e1','--e2','--e3','--e4','--e5','--e6','--e7','--e8'];
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const eraIdx = x => Math.max(0, D.eras.indexOf(x.era));
+const latestPub = x => x.pub.length ? x.pub[x.pub.length-1] : null;
+const bestPub = x => x.pub.length ? Math.max(...x.pub.map(p=>p.score)) : null;
+const isLeak = x => x.leak.some(s=>!s.includes('待确认'));
+const fmt = (v,d=4) => v==null||isNaN(v) ? '—' : (+v).toFixed(d);
+const esc = s => String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const M = {ic:['IC 均值',4],ir:['IC_IR',3],ls:['多空',2],st:['压力',3],to:['换手',4],c104:['与104相关',3]};
+const val = (x,k) => k==='pub' ? (latestPub(x)?.score ?? null) : (x.loc ? x.loc[k] : null);
+
+// ---- 头部统计
+document.getElementById('mN').textContent = D.meta.n;
+const best = (k,dir=1) => N.filter(x=>x.loc && !isLeak(x)).sort((a,b)=>dir*(b.loc[k]-a.loc[k]))[0];
+const bIR = best('ir'), bIC = best('ic');
+document.getElementById('stats').innerHTML = [
+  [D.meta.n,'个因子'],[D.meta.with_local,'有本地分'],[D.meta.with_pub,'上过公榜'],[N.filter(isLeak).length,'含未来信息'],
+  [bIR? bIR.loc.ir.toFixed(3):'—', `最高 IC_IR（不含泄漏，#${bIR?.n}）`],[bIC? bIC.loc.ic.toFixed(4):'—', `最高 IC（不含泄漏，#${bIC?.n}）`]
+].map(([a,b])=>`<div><b>${a}</b><span>${b}</span></div>`).join('');
+
+// ---- 过滤器
+const fe = document.getElementById('fe'), fc = document.getElementById('fc');
+D.eras.forEach((e,i)=>fe.insertAdjacentHTML('beforeend',`<option value="${esc(e)}">${esc(e)}</option>`));
+const compCount = {}; N.forEach(x=>x.comps.forEach(([c])=>compCount[c]=(compCount[c]||0)+1));
+Object.entries(compCount).sort((a,b)=>b[1]-a[1]).filter(([,c])=>c>=2).forEach(([c,n])=>fc.insertAdjacentHTML('beforeend',`<option value="${esc(c)}">${esc(c)}（${n}）</option>`));
+const F = {q:'',era:'',comp:'',noleak:false,pub:false};
+function pass(x){
+  if (F.era && x.era!==F.era) return false;
+  if (F.comp && !x.comps.some(([c])=>c===F.comp) && !x.defs.includes(F.comp)) return false;
+  if (F.noleak && isLeak(x)) return false;
+  if (F.pub && !x.pub.length) return false;
+  if (F.q){ const q=F.q.toLowerCase().trim();
+    if (/^\d+$/.test(q)) return String(x.n).startsWith(q);
+    if (!(x.name.toLowerCase().includes(q) || x.comps.some(([c])=>c.toLowerCase().includes(q)) || x.defs.some(d=>d.toLowerCase().includes(q)) || (x.ch||[]).join(' ').toLowerCase().includes(q))) return false; }
+  return true;
+}
+function bindF(){
+  F.q=document.getElementById('q').value; F.era=fe.value; F.comp=fc.value;
+  F.noleak=document.getElementById('fl').checked; F.pub=document.getElementById('fp').checked;
+  const n=N.filter(pass).length; document.getElementById('fcount').textContent=`${n} / ${N.length}`;
+  renderAll();
+}
+['q','fe','fc','fl','fp'].forEach(id=>document.getElementById(id).addEventListener('input',bindF));
+
+// ---- 选择
+let sel = null;
+function select(n, push=true){
+  if (!byN.has(n)) return; sel=n;
+  if (push) { try{ history.replaceState(null,'','#f'+n); }catch(e){} }
+  renderDetail(); renderAll();
+}
+function anc(n){ const out=[]; let x=byN.get(n); const seen=new Set(); while(x && !seen.has(x.n)){ out.unshift(x); seen.add(x.n); x = x.p!=null ? byN.get(x.p) : null; } return out; }
+
+// ---- 视图切换
+let view='ov';
+document.getElementById('tabs').addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b) return; view=b.dataset.v;
+  document.querySelectorAll('#tabs button').forEach(x=>x.setAttribute('aria-selected', x===b));
+  ['ov','ln','tb','cp','er'].forEach(v=>document.getElementById('v-'+v).hidden = v!==view);
+  try{ localStorage.setItem('fg_view',view);}catch(e){}
+  renderAll();
+});
+
+// ---- 总览散点
+const cv=document.getElementById('cv'), tip=document.getElementById('tip'); let pts=[];
+function colorOf(x){
+  const m=document.getElementById('cm').value;
+  if (m==='leak') return isLeak(x)? css('--leak') : (x.leak.length? css('--pub') : css('--e1'));
+  if (m==='pub') return x.pub.length? css('--pub') : css('--e1');
+  return css(ERA_VARS[eraIdx(x)]);
+}
+function drawPlot(){
+  const r=cv.getBoundingClientRect(), dpr=window.devicePixelRatio||1;
+  cv.width=Math.round(r.width*dpr); cv.height=Math.round(r.height*dpr);
+  const g=cv.getContext('2d'); g.setTransform(dpr,0,0,dpr,0,0); g.clearRect(0,0,r.width,r.height);
+  const k=document.getElementById('ym').value, W=r.width, H=r.height, L=52, R=12, T=12, B=56;
+  const vis=N.filter(pass); const vals=vis.map(x=>val(x,k)).filter(v=>v!=null && isFinite(v));
+  let lo=Math.min(...vals), hi=Math.max(...vals); if(!vals.length){lo=0;hi=1;} const pad=(hi-lo)*0.05||0.01; lo-=pad; hi+=pad;
+  const maxN=Math.max(...N.map(x=>x.n))+10;
+  const X=n=>L+(W-L-R)*n/maxN, Y=v=>T+(H-T-B)*(1-(v-lo)/(hi-lo)), noY=H-B+28;
+  g.font='11px '+css('--f-mono'); g.fillStyle=css('--muted'); g.strokeStyle=css('--soft'); g.lineWidth=1;
+  for(let i=0;i<=5;i++){ const v=lo+(hi-lo)*i/5, y=Y(v); g.beginPath(); g.moveTo(L,y); g.lineTo(W-R,y); g.stroke(); g.textAlign='right'; g.fillText(v.toFixed(k==='ls'?1:(k==='ic'||k==='to'||k==='pub')?3:2),L-6,y+4); }
+  g.textAlign='center'; for(let n=0;n<=maxN;n+=100){ g.fillText(n,X(n),H-B+14); }
+  g.fillText('因子编号', (L+W-R)/2, H-6);
+  g.textAlign='left'; g.fillText('无本地分', 4, noY+4);
+  g.strokeStyle=css('--line'); g.beginPath(); g.moveTo(L,noY-8); g.lineTo(W-R,noY-8); g.stroke();
+  const pos=new Map(); vis.forEach(x=>{ const v=val(x,k); pos.set(x.n,[X(x.n), v==null||!isFinite(v)? noY+ (x.n%5-2)*2 : Y(v)]); });
+  if (document.getElementById('edges').checked){ g.strokeStyle=css('--line'); g.lineWidth=0.7; g.beginPath();
+    vis.forEach(x=>{ if(x.p==null) return; const a=pos.get(x.p), b=pos.get(x.n); if(a&&b){ g.moveTo(a[0],a[1]); g.lineTo(b[0],b[1]); } }); g.stroke(); }
+  let chain=[]; if(sel!=null){ chain=anc(sel).filter(x=>pos.has(x.n)); g.strokeStyle=css('--ink'); g.lineWidth=2.2; g.beginPath(); chain.forEach((x,i)=>{const p=pos.get(x.n); i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]);}); g.stroke(); }
+  pts=[];
+  vis.forEach(x=>{ const p=pos.get(x.n); const rr= x.pub.length?4.2:3; g.fillStyle=colorOf(x); g.globalAlpha=0.85; g.beginPath(); g.arc(p[0],p[1],rr,0,7); g.fill(); g.globalAlpha=1;
+    if (isLeak(x)){ g.strokeStyle=css('--leak'); g.lineWidth=1.2; g.beginPath(); g.arc(p[0],p[1],rr+1.8,0,7); g.stroke(); }
+    pts.push([p[0],p[1],x]); });
+  if(sel!=null){ const s=byN.get(sel); s.kids.forEach(c=>{ const p=pos.get(c); if(!p) return; g.strokeStyle=css('--accent'); g.lineWidth=1.6; g.beginPath(); g.arc(p[0],p[1],6.5,0,7); g.stroke(); });
+    const p=pos.get(sel); if(p){ g.strokeStyle=css('--ink'); g.lineWidth=2.4; g.beginPath(); g.arc(p[0],p[1],8,0,7); g.stroke(); } }
+  // 图例
+  const m=document.getElementById('cm').value; const lg=document.getElementById('legend');
+  if(m==='era') lg.innerHTML=D.eras.map((e,i)=>`<span><i style="background:var(${ERA_VARS[i]})"></i>${esc(e)}</span>`).join('')+`<span><i style="background:transparent;border:1.5px solid var(--leak)"></i>含未来信息</span><span>大点 = 上过公榜</span>`;
+  else if(m==='leak') lg.innerHTML=`<span><i style="background:var(--leak)"></i>含未来信息</span><span><i style="background:var(--pub)"></i>待确认</span><span><i style="background:var(--e1)"></i>未发现</span>`;
+  else lg.innerHTML=`<span><i style="background:var(--pub)"></i>上过公榜</span><span><i style="background:var(--e1)"></i>未上公榜</span>`;
+}
+function nearest(ev){ const r=cv.getBoundingClientRect(), mx=ev.clientX-r.left, my=ev.clientY-r.top; let b=null,bd=100; for(const p of pts){ const d=(p[0]-mx)**2+(p[1]-my)**2; if(d<bd){bd=d;b=p;} } return b?[b,mx,my]:null; }
+cv.addEventListener('mousemove',ev=>{ const h=nearest(ev); if(!h){tip.hidden=true;return;} const [[,,x],mx,my]=h;
+  const k=document.getElementById('ym').value, v=val(x,k), lp=latestPub(x);
+  tip.innerHTML=`<b class="mono">#${x.n}</b> ${esc(x.name)}<br><span class="muted">${k==='pub'?'公榜':M[k][0]}：</span><span class="mono">${fmt(v,k==='pub'?5:M[k][1])}</span>${lp?` · 公榜 <span class="mono">${lp.score.toFixed(5)}</span>`:''}${isLeak(x)?'<br><span class="flag leak">含未来信息</span>':''}${x.ch.length?'<br>'+x.ch.slice(0,4).map(c=>`<span class="chip">${esc(c)}</span>`).join(''):''}`;
+  tip.hidden=false; const W=cv.clientWidth; tip.style.left=Math.min(mx+14,W-300)+'px'; tip.style.top=(my+14)+'px'; });
+cv.addEventListener('mouseleave',()=>tip.hidden=true);
+cv.addEventListener('click',ev=>{ const h=nearest(ev); if(h) select(h[0][2].n); });
+['ym','cm','edges'].forEach(id=>document.getElementById(id).addEventListener('input',()=>{drawPlot();}));
+window.addEventListener('resize',()=>{ if(view==='ov') drawPlot(); });
+
+// ---- 改动片
+function chipHTML(c){ const cls = c.startsWith('+')?'add':c.startsWith('−')?'del':c.startsWith('中性化')?'neu':''; return `<span class="chip ${cls}">${esc(c)}</span>`; }
+function dlt(a,b,d,inv){ if(a==null||b==null) return ''; const v=b-a; if(Math.abs(v)<Math.pow(10,-d)/2) return `<span class="muted">±0</span>`; const good = inv? v<0 : v>0; return `<span class="${good?'pos':'neg'}">${v>0?'+':''}${v.toFixed(d)}</span>`; }
+
+// ---- 世系
+function renderLineage(){
+  const ch=document.getElementById('chain'), kd=document.getElementById('kids');
+  if(sel==null){ document.getElementById('lnTitle').textContent='世系'; document.getElementById('lnNote').textContent='先在总览图或表格里选一个因子。'; ch.innerHTML=''; kd.innerHTML=''; return; }
+  const a=anc(sel);
+  document.getElementById('lnTitle').textContent=`#${sel} 的祖先链（${a.length} 代）`;
+  document.getElementById('lnNote').textContent='从最早的祖先到当前因子；每一行写出它在上一代基础上改了什么，右侧是本地 IC / IC_IR / 换手及相对上一代的变化。';
+  const row=(x,prev,cur)=>{ const l=x.loc, pl=prev?.loc; const lp=latestPub(x);
+    return `<div class="step ${cur?'cur':''}" data-n="${x.n}"><div class="n">#${x.n}${isLeak(x)?' <span class="flag leak">泄</span>':''}</div>
+      <div><div class="nm2">${esc(x.name)}</div><div>${x.ch.length? x.ch.map(chipHTML).join(''): (prev? `<span class="muted" style="font-size:12px">配方未变，改了 ${x.dn} 行代码</span>`:'<span class="muted" style="font-size:12px">起点</span>')}</div></div>
+      <div class="m">${l?`IC ${fmt(l.ic)} ${dlt(pl?.ic,l.ic,4)}<br>IR ${fmt(l.ir,3)} ${dlt(pl?.ir,l.ir,3)}<br>换手 ${fmt(l.to)} ${dlt(pl?.to,l.to,4,true)}`:'<span class="muted">无本地分</span>'}${lp?`<br><span style="color:var(--pub)">公榜 ${lp.score.toFixed(5)}</span>`:''}</div></div>`; };
+  ch.innerHTML=a.map((x,i)=>row(x,a[i-1],x.n===sel)).join('');
+  const s=byN.get(sel);
+  kd.innerHTML = s.kids.length ? s.kids.map(c=>row(byN.get(c),s,false)).join('') : '<div class="step"><div></div><div class="muted">没有子代</div><div></div></div>';
+}
+document.getElementById('v-ln').addEventListener('click',e=>{ const r=e.target.closest('[data-n]'); if(r) select(+r.dataset.n); });
+
+// ---- 表格
+const COLS=[['n','编号','r'],['name','名称',''],['era','时代',''],['ic','IC','r'],['ir','IC_IR','r'],['ls','多空','r'],['st','压力','r'],['to','换手','r'],['c104','104相关','r'],['pub','公榜','r'],['p','父代','r'],['ch','本步改动','']];
+let sortK='n', sortD=1;
+function tval(x,k){ if(k==='n'||k==='p') return x[k]; if(k==='name') return x.name; if(k==='era') return eraIdx(x); if(k==='pub') return latestPub(x)?.score ?? null; if(k==='ch') return x.ch.join(' '); return x.loc? x.loc[k]: null; }
+function renderTable(){
+  const t=document.getElementById('tbl');
+  t.tHead.innerHTML='<tr>'+COLS.map(([k,l,c])=>`<th class="${c}" data-k="${k}">${l}${sortK===k?(sortD>0?' ▲':' ▼'):''}</th>`).join('')+'</tr>';
+  const rows=N.filter(pass).slice().sort((a,b)=>{ const va=tval(a,sortK), vb=tval(b,sortK); if(va==null&&vb==null) return 0; if(va==null) return 1; if(vb==null) return -1; return (va>vb?1:va<vb?-1:0)*sortD; });
+  t.tBodies[0].innerHTML=rows.map(x=>{ const l=x.loc||{}; const lp=latestPub(x);
+    return `<tr data-n="${x.n}" class="${x.n===sel?'sel':''}"><td class="r mono">${x.n}</td><td>${esc(x.name)} ${isLeak(x)?'<span class="flag leak">泄</span>':''}</td><td class="muted">${esc(x.era.split(' ')[0])}</td>
+    <td class="r mono">${fmt(l.ic)}</td><td class="r mono">${fmt(l.ir,3)}</td><td class="r mono">${fmt(l.ls,1)}</td><td class="r mono">${fmt(l.st,3)}</td><td class="r mono">${fmt(l.to)}</td><td class="r mono">${fmt(l.c104,3)}</td>
+    <td class="r mono" style="color:var(--pub)">${lp?lp.score.toFixed(5):''}</td><td class="r mono">${x.p??''}</td><td>${x.ch.slice(0,4).map(chipHTML).join('')}</td></tr>`; }).join('');
+}
+document.getElementById('tbl').addEventListener('click',e=>{ const th=e.target.closest('th'); if(th){ const k=th.dataset.k; if(sortK===k) sortD=-sortD; else {sortK=k; sortD= ['n','name','era','p','to','c104'].includes(k)?1:-1;} renderTable(); return; } const tr=e.target.closest('tr[data-n]'); if(tr) select(+tr.dataset.n); });
+
+// ---- 分量与遗传效应
+function effects(){
+  const E={};
+  N.forEach(x=>{ if(x.p==null||!x.loc) return; const pa=byN.get(x.p); if(!pa||!pa.loc) return;
+    x.ch.forEach(c=>{ let key=null;
+      if(c.startsWith('+')) key='新增 '+c.slice(1).replace(/\(.*\)$/,'');
+      else if(c.startsWith('−')) key='去掉 '+c.slice(1);
+      else if(c.startsWith('中性化')) key='中性化 '+c.replace(/^中性化\s*/,'');
+      else if(/→/.test(c) && !c.startsWith('新定义')){ const m=c.match(/^(\S+)\s+([\d.]+)→([\d.]+)/); if(m) key=`${m[1]} 权重${+m[3]>+m[2]?'加大':'减小'}`; }
+      if(!key) return; const e=E[key]||(E[key]={k:key,n:0,ic:0,ir:0,ls:0,st:0,to:0,ex:[]});
+      e.n++; ['ic','ir','ls','st','to'].forEach(m=>e[m]+=x.loc[m]-pa.loc[m]); if(e.ex.length<6) e.ex.push(x.n); }); });
+  return Object.values(E).map(e=>{ ['ic','ir','ls','st','to'].forEach(m=>e[m]/=e.n); return e; });
+}
+let cSort='n', cDir=-1;
+function renderComps(){
+  const ef=effects(); const t=document.getElementById('ctbl');
+  const H=[['k','改动'],['n','边数'],['ic','ΔIC'],['ir','ΔIC_IR'],['ls','Δ多空'],['st','Δ压力'],['to','Δ换手'],['desc','分量说明'],['ex','例子']];
+  t.tHead.innerHTML='<tr>'+H.map(([k,l])=>`<th class="${['n','ic','ir','ls','st','to'].includes(k)?'r':''}" data-k="${k}">${l}${cSort===k?(cDir>0?' ▲':' ▼'):''}</th>`).join('')+'</tr>';
+  const comp=k=>{ const m=k.match(/^(?:新增|去掉) (\S+)$|^(\S+) 权重/); return m? (m[1]||m[2]) : null; };
+  const rows=ef.filter(e=>!F.comp || comp(e.k)===F.comp).sort((a,b)=>{ const va=cSort==='k'?a.k:a[cSort], vb=cSort==='k'?b.k:b[cSort]; return (va>vb?1:va<vb?-1:0)*cDir; });
+  t.tBodies[0].innerHTML=rows.map(e=>{ const c=comp(e.k), g=c&&D.gloss[c]; const leak = c && /utime|hitime|lotime/.test(c);
+    return `<tr><td class="mono">${esc(e.k)}${leak?' <span class="flag leak">⚠</span>':''}</td><td class="r mono">${e.n}</td><td class="r mono">${dlt(0,e.ic,4)}</td><td class="r mono">${dlt(0,e.ir,3)}</td><td class="r mono">${dlt(0,e.ls,2)}</td><td class="r mono">${dlt(0,e.st,3)}</td><td class="r mono">${dlt(0,e.to,4,true)}</td>
+    <td style="max-width:420px">${g?esc(g.desc||g.code):''}</td><td>${e.ex.map(n=>`<a class="lk" data-n="${n}">#${n}</a>`).join(' ')}</td></tr>`; }).join('');
+}
+document.getElementById('ctbl').addEventListener('click',e=>{ const th=e.target.closest('th'); if(th){ const k=th.dataset.k; if(k==='desc'||k==='ex') return; if(cSort===k) cDir=-cDir; else {cSort=k;cDir=k==='k'?1:-1;} renderComps(); return; } const a=e.target.closest('[data-n]'); if(a) select(+a.dataset.n); });
+
+// ---- 时代与阶段
+function renderEras(){
+  const box=document.getElementById('eras');
+  box.innerHTML=D.eras.map((e,i)=>{ const xs=N.filter(x=>x.era===e); const ok=xs.filter(x=>x.loc&&!isLeak(x));
+    const bI=ok.slice().sort((a,b)=>b.loc.ir-a.loc.ir)[0], bC=ok.slice().sort((a,b)=>b.loc.ic-a.loc.ic)[0], bT=ok.filter(x=>x.loc.ir>=1.2).sort((a,b)=>a.loc.to-b.loc.to)[0];
+    const pb=xs.filter(x=>x.pub.length).sort((a,b)=>latestPub(b).score-latestPub(a).score)[0];
+    const st={}; xs.forEach(x=>{ if(x.stage) st[x.stage]=(st[x.stage]||0)+1; });
+    const lk=xs.filter(isLeak).length;
+    return `<div class="card era"><h3><i style="background:var(${ERA_VARS[i]})"></i>${esc(e)}</h3>
+      <div class="kv"><dt>因子数</dt><dd class="mono">${xs.length}（有本地分 ${xs.filter(x=>x.loc).length}，上公榜 ${xs.filter(x=>x.pub.length).length}${lk?`，<span style="color:var(--leak)">含未来信息 ${lk}</span>`:''}）</dd>
+      <dt>最高 IC_IR</dt><dd>${bI?`<a class="lk" data-n="${bI.n}">#${bI.n}</a> ${fmt(bI.loc.ir,3)} ${esc(bI.name)}`:'—'}</dd>
+      <dt>最高 IC</dt><dd>${bC?`<a class="lk" data-n="${bC.n}">#${bC.n}</a> ${fmt(bC.loc.ic)} ${esc(bC.name)}`:'—'}</dd>
+      <dt>低换手代表</dt><dd>${bT?`<a class="lk" data-n="${bT.n}">#${bT.n}</a> 换手 ${fmt(bT.loc.to)}，IR ${fmt(bT.loc.ir,3)}`:'—'}</dd>
+      <dt>公榜最高</dt><dd>${pb?`<a class="lk" data-n="${pb.n}">#${pb.n}</a> ${latestPub(pb).score.toFixed(5)}（${esc(latestPub(pb).snap)}）`:'—'}</dd></div>
+      ${Object.keys(st).length?`<ul>${Object.entries(st).map(([s,c])=>`<li>${esc(s)}（${c}）</li>`).join('')}</ul>`:''}</div>`; }).join('');
+}
+document.getElementById('eras').addEventListener('click',e=>{ const a=e.target.closest('[data-n]'); if(a) select(+a.dataset.n); });
+
+// ---- 详情栏
+function renderDetail(){
+  const el=document.getElementById('detail');
+  if(sel==null){ el.innerHTML=`<div class="muted">选一个因子查看配方、成绩、父代改动和代码差异。</div><h3>读图要点</h3><ul class="note" style="padding-left:16px"><li>"父代"是自动推断的：在更早的因子里找代码行重合最多的一个。相似度一般 0.9 以上，低于 0.6 的边可能是新起点。</li><li>"本步改动"比较的是父子两代最终合成那一行的分量与权重、中性化力度和新定义的特征。</li><li>本地分来自评测机（2023–2024 全区间、官方标签）；公榜分来自《因子得分总表》里记录的几次快照，不同快照之间不可直接比较。</li></ul>`; return; }
+  const x=byN.get(sel), l=x.loc, pa=x.p!=null?byN.get(x.p):null;
+  const comps=x.comps.length? `<div class="bars">${x.comps.map(([c,w])=>`<div class="bar" title="${esc(D.gloss[c]?.desc||'')}"><span class="t">${esc(c)}</span><span class="b" style="width:${Math.min(100,(w??1)/Math.max(...x.comps.map(z=>z[1]??1))*100)}%"></span><span class="mono">${w??''}</span></div>`).join('')}</div>` : `<pre>${esc((x.sig||[]).join('\n'))}</pre>`;
+  const pubRows=x.pub.map(p=>`<tr><td>${esc(p.snap)}</td><td class="r mono" style="color:var(--pub)">${p.score.toFixed(5)}</td><td class="r mono">${fmt(p.ic)}</td><td class="r mono">${fmt(p.ir,3)}</td><td class="r mono">${fmt(p.to)}</td></tr>`).join('');
+  const diff=(x.diff||[]).map(s=>`<span class="${s[0]==='+'?'a':'d'}">${esc(s)}</span>`).join('\n');
+  el.innerHTML=`<div class="id">#${x.n}</div><div class="nm">${esc(x.name)}</div>
+    <div>${isLeak(x)?'<span class="flag leak">含未来信息</span>':''}${x.leak.filter(s=>s.includes('待确认')).map(s=>`<span class="flag pub">${esc(s)}</span>`).join('')}${x.pub.length?'<span class="flag pub">上过公榜</span>':''}</div>
+    <dl class="kv" style="margin-top:8px"><dt>时代</dt><dd>${esc(x.era)}</dd>${x.stage?`<dt>阶段</dt><dd>${esc(x.stage)}</dd>`:''}<dt>文件</dt><dd class="mono" style="font-size:11.5px">因子代码/${esc(x.file)}</dd>
+    <dt>父代</dt><dd>${pa?`<a class="lk" data-n="${pa.n}">#${pa.n}</a> ${esc(pa.name)} <span class="muted">（相似度 ${x.sim}）</span>`:'—'}</dd>
+    <dt>子代</dt><dd>${x.kids.length? x.kids.map(c=>`<a class="lk" data-n="${c}">#${c}</a>`).join(' ') : '—'} <span class="muted">（后代共 ${x.sub-1}）</span></dd></dl>
+    <h3>本地成绩</h3>${l?`<table class="mtab"><tr><th>IC</th><th>IC_IR</th><th>多空</th><th>压力</th><th>换手</th><th>104相关</th></tr><tr class="mono"><td>${fmt(l.ic)}</td><td>${fmt(l.ir,3)}</td><td>${fmt(l.ls,1)}</td><td>${fmt(l.st,3)}</td><td>${fmt(l.to)}</td><td>${fmt(l.c104,3)}</td></tr>
+      ${pa&&pa.loc?`<tr class="mono" style="font-size:11.5px"><td>${dlt(pa.loc.ic,l.ic,4)}</td><td>${dlt(pa.loc.ir,l.ir,3)}</td><td>${dlt(pa.loc.ls,l.ls,1)}</td><td>${dlt(pa.loc.st,l.st,3)}</td><td>${dlt(pa.loc.to,l.to,4,true)}</td><td>${dlt(pa.loc.c104,l.c104,3,true)}</td></tr>`:''}</table><div class="muted" style="font-size:11.5px">第二行是相对父代的变化</div>`:'<div class="muted">评测机里没有 2023–2024 全区间的记录</div>'}
+    ${x.pub.length?`<h3>公榜</h3><table class="mtab"><tr><th>快照</th><th class="r">分数</th><th class="r">IC</th><th class="r">IR</th><th class="r">换手</th></tr>${pubRows}</table>`:''}
+    <h3>本步改动</h3><div>${x.ch.length? x.ch.map(chipHTML).join('') : `<span class="muted">${pa?`合成配方未变；代码有 ${x.dn} 行不同（见下方差异）`:'无父代'}</span>`}</div>
+    <h3>最终合成${x.neu!=null?` · 中性化 ${x.neu}×（${esc(x.neuset)}）`:''}</h3>${comps}
+    ${x.fields.length?`<h3>用到的数据</h3><div>${x.fields.map(f=>`<span class="chip">${esc(f)}</span>`).join('')}</div>`:''}
+    ${pa&&x.diff.length?`<details><summary>与父代的代码差异（${x.dn} 行，显示前 ${x.diff.length} 行）</summary><pre>${diff}</pre></details>`:''}
+    <details><summary>定义的特征（${x.defs.length}）</summary><div style="margin-top:6px">${x.defs.map(d=>`<span class="chip" title="${esc(D.gloss[d]?.desc||D.gloss[d]?.code||'')}">${esc(d)}</span>`).join('')}</div></details>`;
+}
+document.getElementById('detail').addEventListener('click',e=>{ const a=e.target.closest('[data-n]'); if(a) select(+a.dataset.n); });
+
+function renderAll(){ if(view==='ov') drawPlot(); if(view==='ln') renderLineage(); if(view==='tb') renderTable(); if(view==='cp') renderComps(); if(view==='er') renderEras(); }
+const h=(location.hash||'').match(/^#f(\d+)$/);
+bindF(); renderDetail();
+select(h && byN.has(+h[1]) ? +h[1] : (bIR? bIR.n : N[0].n), false);
+try{ const v=localStorage.getItem('fg_view'); if(v && v!=='ov'){ document.querySelector(`#tabs button[data-v="${v}"]`)?.click(); } }catch(e){}
+})();
+</script>

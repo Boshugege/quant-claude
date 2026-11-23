@@ -1,0 +1,108 @@
+12:00:38 训练设备 device=mps arch=e04 win_groups=shape,book rss=0.3GB peak=0.3GB
+12:00:43 分片完成 start=2020-01-01 samples=125760 elapsed=4.6 rss=4.5GB peak=4.6GB
+12:00:50 分片完成 start=2020-02-01 samples=157737 elapsed=6.3 rss=6.9GB peak=7.1GB
+12:00:58 分片完成 start=2020-03-01 samples=175504 elapsed=7.8 rss=9.3GB peak=9.5GB
+12:01:05 分片完成 start=2020-04-01 samples=167432 elapsed=7.7 rss=9.8GB peak=10.2GB
+12:01:12 分片完成 start=2020-05-01 samples=143482 elapsed=6.9 rss=10.8GB peak=11.1GB
+12:01:20 分片完成 start=2020-06-01 samples=159103 elapsed=7.3 rss=11.1GB peak=11.6GB
+12:01:28 分片完成 start=2020-07-01 samples=183564 elapsed=7.9 rss=12.4GB peak=12.7GB
+12:01:36 分片完成 start=2020-08-01 samples=167460 elapsed=7.7 rss=12.4GB peak=13.3GB
+12:01:44 分片完成 start=2020-09-01 samples=175424 elapsed=8.3 rss=12.9GB peak=13.3GB
+12:01:50 分片完成 start=2020-10-01 samples=127680 elapsed=6.1 rss=13.1GB peak=13.9GB
+12:01:58 分片完成 start=2020-11-01 samples=167792 elapsed=8.0 rss=13.5GB peak=14.1GB
+12:02:06 分片完成 start=2020-12-01 samples=183424 elapsed=8.2 rss=13.8GB peak=15.0GB
+12:02:14 分片完成 start=2021-01-01 samples=159211 elapsed=7.6 rss=14.7GB peak=15.1GB
+12:02:20 分片完成 start=2021-02-01 samples=119577 elapsed=5.7 rss=15.1GB peak=15.7GB
+12:02:28 分片完成 start=2021-03-01 samples=183073 elapsed=8.3 rss=15.9GB peak=16.3GB
+12:02:36 分片完成 start=2021-04-01 samples=167211 elapsed=7.8 rss=16.2GB peak=16.7GB
+12:02:43 分片完成 start=2021-05-01 samples=143359 elapsed=6.9 rss=16.7GB peak=17.1GB
+12:02:51 分片完成 start=2021-06-01 samples=166878 elapsed=8.0 rss=16.9GB peak=17.5GB
+12:03:00 分片完成 start=2021-07-01 samples=174996 elapsed=8.3 rss=17.7GB peak=18.1GB
+12:03:08 分片完成 start=2021-08-01 samples=174980 elapsed=8.0 rss=17.9GB peak=18.6GB
+12:03:15 分片完成 start=2021-09-01 samples=159576 elapsed=7.4 rss=18.7GB peak=19.1GB
+12:03:22 分片完成 start=2021-10-01 samples=127816 elapsed=6.5 rss=18.9GB peak=19.7GB
+12:03:30 分片完成 start=2021-11-01 samples=175656 elapsed=8.3 rss=19.6GB peak=20.1GB
+12:03:39 分片完成 start=2021-12-01 samples=183792 elapsed=8.7 rss=19.6GB peak=21.0GB
+12:03:46 分片完成 start=2022-01-01 samples=151616 elapsed=7.4 rss=20.7GB peak=21.2GB
+12:03:52 分片完成 start=2022-02-01 samples=127768 elapsed=6.2 rss=21.1GB peak=21.6GB
+12:04:01 分片完成 start=2022-03-01 samples=183808 elapsed=8.5 rss=21.7GB peak=22.4GB
+12:04:08 分片完成 start=2022-04-01 samples=151440 elapsed=7.3 rss=22.1GB peak=22.7GB
+12:04:16 分片完成 start=2022-05-01 samples=151560 elapsed=7.0 rss=22.6GB peak=23.2GB
+12:04:24 分片完成 start=2022-06-01 samples=167664 elapsed=8.0 rss=22.8GB peak=23.6GB
+12:04:32 分片完成 start=2022-07-01 samples=167648 elapsed=8.0 rss=23.1GB peak=23.8GB
+12:04:40 分片完成 start=2022-08-01 samples=183784 elapsed=8.0 rss=23.7GB peak=24.3GB
+12:04:48 分片完成 start=2022-09-01 samples=167720 elapsed=7.7 rss=24.1GB peak=24.8GB
+12:04:54 分片完成 start=2022-10-01 samples=127704 elapsed=6.1 rss=24.6GB peak=25.2GB
+12:05:02 分片完成 start=2022-11-01 samples=175720 elapsed=8.1 rss=25.0GB peak=25.7GB
+12:05:10 分片完成 start=2022-12-01 samples=175648 elapsed=8.4 rss=24.9GB peak=26.2GB
+12:05:42 train 集构建完成 samples=5802567 rss=27.1GB peak=29.5GB
+12:06:04 训练剔除特征 mode=proxy_ind cov=0.9793 pind_cov=0.8344 rss=25.4GB peak=29.5GB
+12:06:23 读取数据集缓存 e2e/cache/54419ef1561d86a8 (train 2023-01-01~2023-12-31)
+12:06:23 [val] 平台口径：官方风格暴露覆盖率 0.979
+12:06:23 训练样本 samples=5078333 models=1 skip_0930=True day_batch=0 turn_w=0.0 icir_w=0.0 aux_w=0.5 aux_n=2 n_params=175268 rss=22.1GB peak=34.9GB
+12:07:12 训练进度 member=0 epoch=1/3 pct=10% loss=2.772452 samples_per_s=10461 eta_s=437 rss=23.2GB peak=34.9GB
+12:08:00 训练进度 member=0 epoch=1/3 pct=20% loss=2.732039 samples_per_s=10582 eta_s=384 rss=23.2GB peak=34.9GB
+12:08:47 训练进度 member=0 epoch=1/3 pct=30% loss=2.718359 samples_per_s=10609 eta_s=335 rss=23.5GB peak=34.9GB
+12:09:34 训练进度 member=0 epoch=1/3 pct=40% loss=2.724469 samples_per_s=10629 eta_s=287 rss=23.7GB peak=34.9GB
+12:10:22 训练进度 member=0 epoch=1/3 pct=50% loss=2.715568 samples_per_s=10635 eta_s=239 rss=23.9GB peak=34.9GB
+12:11:10 训练进度 member=0 epoch=1/3 pct=60% loss=2.717133 samples_per_s=10638 eta_s=191 rss=24.1GB peak=34.9GB
+12:11:57 训练进度 member=0 epoch=1/3 pct=70% loss=2.70002 samples_per_s=10647 eta_s=144 rss=24.2GB peak=34.9GB
+12:12:44 训练进度 member=0 epoch=1/3 pct=80% loss=2.730843 samples_per_s=10654 eta_s=96 rss=24.3GB peak=34.9GB
+12:13:31 训练进度 member=0 epoch=1/3 pct=90% loss=2.707237 samples_per_s=10663 eta_s=48 rss=24.3GB peak=34.9GB
+12:14:19 训练进度 member=0 epoch=1/3 pct=100% loss=2.692833 samples_per_s=10669 eta_s=1 rss=24.4GB peak=34.9GB
+12:14:20 epoch 完成 member=0 epoch=1/3 loss=2.721087 elapsed=476.1 rss=24.4GB peak=34.9GB
+12:14:49 [val] member 0 epoch 1 平台口径(输出中性化1+09:30置零+风格剔除): ic=0.0921 icir=1.851 ls=54.28 stress=1.747 turn=0.565 | 原始: ic=0.0970 icir=0.974 | pred_std=0.289 nan=0 eval=29s rss=34.9GB
+12:15:36 训练进度 member=0 epoch=2/3 pct=10% loss=2.695875 samples_per_s=10751 eta_s=425 rss=28.7GB peak=34.9GB
+12:16:24 训练进度 member=0 epoch=2/3 pct=20% loss=2.697229 samples_per_s=10736 eta_s=378 rss=28.8GB peak=34.9GB
+12:17:11 训练进度 member=0 epoch=2/3 pct=30% loss=2.70188 samples_per_s=10733 eta_s=331 rss=28.8GB peak=34.9GB
+12:17:58 训练进度 member=0 epoch=2/3 pct=40% loss=2.693517 samples_per_s=10727 eta_s=284 rss=28.9GB peak=34.9GB
+12:18:45 训练进度 member=0 epoch=2/3 pct=50% loss=2.687952 samples_per_s=10727 eta_s=237 rss=29.0GB peak=34.9GB
+12:19:33 训练进度 member=0 epoch=2/3 pct=60% loss=2.676638 samples_per_s=10728 eta_s=190 rss=29.0GB peak=34.9GB
+12:20:20 训练进度 member=0 epoch=2/3 pct=70% loss=2.690446 samples_per_s=10730 eta_s=143 rss=29.0GB peak=34.9GB
+12:21:07 训练进度 member=0 epoch=2/3 pct=80% loss=2.692407 samples_per_s=10730 eta_s=95 rss=29.0GB peak=34.9GB
+12:21:54 训练进度 member=0 epoch=2/3 pct=90% loss=2.688561 samples_per_s=10731 eta_s=48 rss=29.0GB peak=34.9GB
+12:22:41 训练进度 member=0 epoch=2/3 pct=100% loss=2.674892 samples_per_s=10733 eta_s=1 rss=29.1GB peak=34.9GB
+12:22:43 epoch 完成 member=0 epoch=2/3 loss=2.690038 elapsed=473.3 rss=29.1GB peak=34.9GB
+12:23:12 [val] member 0 epoch 2 平台口径(输出中性化1+09:30置零+风格剔除): ic=0.0954 icir=1.966 ls=56.93 stress=1.839 turn=0.538 | 原始: ic=0.1025 icir=1.076 | pred_std=0.289 nan=0 eval=29s rss=34.9GB
+12:23:59 训练进度 member=0 epoch=3/3 pct=10% loss=2.674763 samples_per_s=10739 eta_s=425 rss=29.1GB peak=34.9GB
+12:24:46 训练进度 member=0 epoch=3/3 pct=20% loss=2.67541 samples_per_s=10749 eta_s=378 rss=29.1GB peak=34.9GB
+12:25:33 训练进度 member=0 epoch=3/3 pct=30% loss=2.681716 samples_per_s=10754 eta_s=331 rss=29.1GB peak=34.9GB
+12:26:20 训练进度 member=0 epoch=3/3 pct=40% loss=2.662524 samples_per_s=10756 eta_s=283 rss=29.1GB peak=34.9GB
+12:27:07 训练进度 member=0 epoch=3/3 pct=50% loss=2.671473 samples_per_s=10748 eta_s=237 rss=29.1GB peak=34.9GB
+12:27:54 训练进度 member=0 epoch=3/3 pct=60% loss=2.677301 samples_per_s=10743 eta_s=190 rss=29.1GB peak=34.9GB
+12:28:42 训练进度 member=0 epoch=3/3 pct=70% loss=2.670716 samples_per_s=10742 eta_s=142 rss=29.2GB peak=34.9GB
+12:29:29 训练进度 member=0 epoch=3/3 pct=80% loss=2.67331 samples_per_s=10744 eta_s=95 rss=29.2GB peak=34.9GB
+12:30:16 训练进度 member=0 epoch=3/3 pct=90% loss=2.670025 samples_per_s=10744 eta_s=48 rss=29.2GB peak=34.9GB
+12:31:03 训练进度 member=0 epoch=3/3 pct=100% loss=2.668912 samples_per_s=10743 eta_s=1 rss=29.2GB peak=34.9GB
+12:31:04 epoch 完成 member=0 epoch=3/3 loss=2.67277 elapsed=472.8 rss=29.2GB peak=34.9GB
+12:31:33 [val] member 0 epoch 3 平台口径(输出中性化1+09:30置零+风格剔除): ic=0.0955 icir=1.997 ls=56.27 stress=1.869 turn=0.541 | 原始: ic=0.1036 icir=1.109 | pred_std=0.289 nan=0 eval=29s rss=34.9GB
+12:31:34 模型已保存 path=e2e/runs/S20d_cos_ema995/transformer_model.json bytes=3817086 rss=29.2GB peak=34.9GB
+12:31:36 json=e2e/runs/S20d_cos_ema995/transformer_model.json bytes=3,817,086 (3.64 MiB) <50MB=True models=1 reload_maxdiff=0.00e+00
+12:31:43 分片完成 start=2023-01-01 samples=127872 elapsed=6.1 rss=17.8GB peak=34.9GB
+12:31:52 分片完成 start=2023-02-01 samples=159840 elapsed=6.8 rss=19.2GB peak=34.9GB
+12:32:02 分片完成 start=2023-03-01 samples=183816 elapsed=8.0 rss=20.5GB peak=34.9GB
+12:32:12 分片完成 start=2023-04-01 samples=151848 elapsed=7.2 rss=20.9GB peak=34.9GB
+12:32:22 分片完成 start=2023-05-01 samples=159840 elapsed=7.4 rss=21.3GB peak=34.9GB
+12:32:33 分片完成 start=2023-06-01 samples=159840 elapsed=7.5 rss=21.3GB peak=34.9GB
+12:32:43 分片完成 start=2023-07-01 samples=167832 elapsed=7.5 rss=21.2GB peak=34.9GB
+12:32:54 分片完成 start=2023-08-01 samples=183816 elapsed=8.2 rss=21.3GB peak=34.9GB
+12:33:04 分片完成 start=2023-09-01 samples=159840 elapsed=7.2 rss=21.3GB peak=34.9GB
+12:33:13 分片完成 start=2023-10-01 samples=135864 elapsed=6.5 rss=21.2GB peak=34.9GB
+12:33:23 分片完成 start=2023-11-01 samples=175824 elapsed=7.8 rss=21.0GB peak=34.9GB
+12:33:34 分片完成 start=2023-12-01 samples=167952 elapsed=7.9 rss=19.6GB peak=34.9GB
+12:33:57 predict_range rows=1,934,184 matched=1,933,128 maxdiff=2.21e-01
+12:34:16 analysis（原始输出）
+      ic_mean   ic_ir  ls_sharpe  stress  turnover     cov    s930   s1000   s1030   s1100   s1130   s1330   s1400   s1430  corr_F90
+name                                                                                                                                
+E2E    0.0920  1.8003    51.1435  1.6170    0.5695  1.0000  0.0522  0.0955  0.0929  0.0984  0.0955  0.0919  0.0848  0.1244    0.7648
+F90    0.0815  1.4696    49.4291  1.3219    0.6289  0.9977  0.0401  0.0872  0.0845  0.0893  0.0889  0.0852  0.0802  0.0964       NaN
+12:34:29 analysis（输出中性化 neut1.0）
+      ic_mean   ic_ir  ls_sharpe  stress  turnover  cov    s930   s1000   s1030   s1100   s1130   s1330   s1400   s1430
+name                                                                                                                   
+E2E    0.0898  1.8203    50.2929  1.6357    0.5734  1.0  0.0502  0.0927  0.0907  0.0958  0.0945  0.0908  0.0848  0.1195
+12:34:35 analysis（输出中性化 neut1.5）
+      ic_mean   ic_ir  ls_sharpe  stress  turnover  cov    s930   s1000  s1030   s1100   s1130   s1330   s1400   s1430
+name                                                                                                                  
+E2E    0.0873  1.8039    47.9796  1.6246    0.5714  1.0  0.0484  0.0897  0.088  0.0928  0.0921  0.0887  0.0832  0.1151
+12:34:35 风格暴露（与四个特征的平均截面秩相关）: {"raw": {"c_size": 0.018, "c_ivol": 0.095, "c_illiq": -0.005, "c_lowp": 0.185}, "neut1.0": {"c_size": 0.005, "c_ivol": 0.012, "c_illiq": 0.001, "c_lowp": 0.018}, "neut1.5": {"c_size": -0.004, "c_ivol": -0.034, "c_illiq": 0.004, "c_lowp": -0.07}}
+12:34:35 done 2037s

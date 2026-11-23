@@ -1,0 +1,67 @@
+14:51:11 训练设备 device=mps rss=0.3GB
+14:51:21 分片完成 start=2020-01-01 samples=109790 elapsed=9.3 rss=3.0GB
+14:51:36 分片完成 start=2020-02-01 samples=139750 elapsed=14.3 rss=6.3GB
+14:52:07 分片完成 start=2020-03-01 samples=153258 elapsed=31.1 rss=6.6GB
+14:52:25 分片完成 start=2020-04-01 samples=146209 elapsed=18.2 rss=7.7GB
+14:52:40 分片完成 start=2020-05-01 samples=125288 elapsed=15.2 rss=8.4GB
+14:52:55 分片完成 start=2020-06-01 samples=138234 elapsed=14.6 rss=9.0GB
+14:53:10 分片完成 start=2020-07-01 samples=144256 elapsed=15.3 rss=9.8GB
+14:53:24 分片完成 start=2020-08-01 samples=131357 elapsed=14.0 rss=9.9GB
+14:53:38 分片完成 start=2020-09-01 samples=136892 elapsed=14.2 rss=9.9GB
+14:53:49 分片完成 start=2020-10-01 samples=99673 elapsed=10.8 rss=10.0GB
+14:54:05 分片完成 start=2020-11-01 samples=130802 elapsed=16.2 rss=10.1GB
+14:54:22 分片完成 start=2020-12-01 samples=142324 elapsed=17.4 rss=10.5GB
+14:54:36 分片完成 start=2021-01-01 samples=110793 elapsed=13.7 rss=10.9GB
+14:54:46 分片完成 start=2021-02-01 samples=83269 elapsed=10.1 rss=10.9GB
+14:55:02 分片完成 start=2021-03-01 samples=127215 elapsed=15.2 rss=10.9GB
+14:55:15 分片完成 start=2021-04-01 samples=116059 elapsed=13.7 rss=10.9GB
+14:55:27 分片完成 start=2021-05-01 samples=99550 elapsed=11.2 rss=10.9GB
+14:55:39 分片完成 start=2021-06-01 samples=115289 elapsed=12.5 rss=10.9GB
+14:55:51 分片完成 start=2021-07-01 samples=109486 elapsed=11.9 rss=11.1GB
+14:56:03 分片完成 start=2021-08-01 samples=109386 elapsed=12.0 rss=11.2GB
+14:56:14 分片完成 start=2021-09-01 samples=99722 elapsed=10.9 rss=11.3GB
+14:56:23 分片完成 start=2021-10-01 samples=79800 elapsed=8.9 rss=11.5GB
+14:56:35 分片完成 start=2021-11-01 samples=109501 elapsed=12.5 rss=11.7GB
+14:56:59 分片完成 start=2021-12-01 samples=114114 elapsed=23.7 rss=11.7GB
+14:57:12 分片完成 start=2022-01-01 samples=85197 elapsed=12.9 rss=11.7GB
+14:57:21 分片完成 start=2022-02-01 samples=71764 elapsed=9.0 rss=11.7GB
+14:57:34 分片完成 start=2022-03-01 samples=103040 elapsed=13.4 rss=11.7GB
+14:57:45 分片完成 start=2022-04-01 samples=84791 elapsed=10.7 rss=11.9GB
+14:57:55 分片完成 start=2022-05-01 samples=84875 elapsed=9.6 rss=11.9GB
+14:58:05 分片完成 start=2022-06-01 samples=93513 elapsed=10.5 rss=11.9GB
+14:58:15 分片完成 start=2022-07-01 samples=84875 elapsed=9.6 rss=12.0GB
+14:58:25 分片完成 start=2022-08-01 samples=93030 elapsed=10.4 rss=12.4GB
+14:58:35 分片完成 start=2022-09-01 samples=84868 elapsed=9.5 rss=12.5GB
+14:58:42 分片完成 start=2022-10-01 samples=64617 elapsed=7.4 rss=12.7GB
+14:58:53 分片完成 start=2022-11-01 samples=88970 elapsed=11.0 rss=12.7GB
+14:59:05 分片完成 start=2022-12-01 samples=88466 elapsed=12.2 rss=13.1GB
+14:59:27 train 集构建完成 samples=3900023 rss=24.4GB
+14:59:28 可训练参数量 n_params=71937 samples=3900023 rss=24.4GB
+15:01:15 epoch 完成 epoch=1 loss=0.9103 elapsed=106.7 rss=24.4GB
+15:01:27 分片完成 start=2023-01-01 samples=111825 elapsed=10.3 rss=24.4GB
+15:01:40 分片完成 start=2023-02-01 samples=139853 elapsed=13.7 rss=24.4GB
+15:01:58 分片完成 start=2023-03-01 samples=160804 elapsed=17.4 rss=24.4GB
+15:02:12 分片完成 start=2023-04-01 samples=132860 elapsed=14.1 rss=24.4GB
+15:02:27 分片完成 start=2023-05-01 samples=139664 elapsed=14.8 rss=24.4GB
+15:02:42 分片完成 start=2023-06-01 samples=138880 elapsed=14.8 rss=24.4GB
+15:02:55 分片完成 start=2023-07-01 samples=132083 elapsed=13.7 rss=24.4GB
+15:03:10 分片完成 start=2023-08-01 samples=144543 elapsed=15.0 rss=24.4GB
+15:03:24 分片完成 start=2023-09-01 samples=125685 elapsed=13.4 rss=24.4GB
+15:03:35 分片完成 start=2023-10-01 samples=106862 elapsed=11.3 rss=24.4GB
+15:03:50 分片完成 start=2023-11-01 samples=138257 elapsed=14.6 rss=24.4GB
+15:04:03 分片完成 start=2023-12-01 samples=121779 elapsed=13.1 rss=24.4GB
+15:04:07 train 集构建完成 samples=1593095 rss=24.4GB
+15:04:17 [val] epoch 1: ic=0.0664 icir=0.598 ls=15.41 turn=0.653 pred_std=0.0423 nan=0 eval=10s mps_mem=0.00GB rss=24.4GB
+15:05:52 epoch 完成 epoch=2 loss=0.90944 elapsed=94.9 rss=24.4GB
+15:06:03 [val] epoch 2: ic=0.0635 icir=0.593 ls=15.82 turn=0.686 pred_std=0.0451 nan=0 eval=11s mps_mem=0.00GB rss=24.4GB
+15:07:38 epoch 完成 epoch=3 loss=0.90928 elapsed=95.4 rss=24.4GB
+15:07:49 [val] epoch 3: ic=0.0449 icir=0.401 ls=14.67 turn=0.651 pred_std=0.0438 nan=0 eval=11s mps_mem=0.00GB rss=24.4GB
+15:09:24 epoch 完成 epoch=4 loss=0.909138 elapsed=94.9 rss=24.4GB
+15:09:35 [val] epoch 4: ic=0.0476 icir=0.444 ls=15.40 turn=0.665 pred_std=0.0342 nan=0 eval=11s mps_mem=0.00GB rss=24.4GB
+15:11:10 epoch 完成 epoch=5 loss=0.90913 elapsed=95.2 rss=24.4GB
+15:11:21 [val] epoch 5: ic=0.0587 icir=0.543 ls=15.02 turn=0.640 pred_std=0.0518 nan=0 eval=11s mps_mem=0.00GB rss=24.4GB
+15:11:21 模型已保存 path=e2e/runs/f01_2020-22_val23/transformer_model.json bytes=1550385 rss=24.4GB
+15:11:22 json=e2e/runs/f01_2020-22_val23/transformer_model.json bytes=1,550,385 (1.48 MiB) <50MB=True reload_maxdiff=2.38e-07
+15:11:26 分片完成 start=2023-01-01 samples=31968 elapsed=2.9 rss=24.4GB
+15:13:04 predict_range rows=31,968 matched=27,972 maxdiff=0.00e+00
+15:13:04 done 1313s

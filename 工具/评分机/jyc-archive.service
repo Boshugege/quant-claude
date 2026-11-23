@@ -1,0 +1,6 @@
+[Unit]
+Description=JYC 评分机：已结束任务目录归档到 HDD
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash %h/jyc_scorer/build/archive_jobs.sh 12

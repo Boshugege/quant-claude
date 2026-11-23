@@ -1,0 +1,18 @@
+# JYC 评分机镜像：代码与依赖打包，数据（data/ store/ jobs/ logs/）全部挂载，不进镜像。
+# 构建：podman build -t localhost/jyc-scorer:<版本>-<git短哈希> -f Containerfile .
+FROM docker.io/library/python:3.11-slim
+ENV PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1 PIP_DISABLE_PIP_VERSION_CHECK=1 HOME=/tmp \
+    JYC_DATA=/app/data JYC_STORE=/app/store JYC_JOBS=/app/jobs JYC_RAW_1M=/raw1m
+WORKDIR /app
+COPY requirements.lock.txt /app/
+RUN grep -v '^torch' requirements.lock.txt > /tmp/req.txt \
+ && pip install -r /tmp/req.txt \
+ && pip install --index-url https://download.pytorch.org/whl/cpu torch==2.14.1 \
+ && rm -rf /root/.cache /tmp/req.txt
+COPY *.py jyc-scorer.service README.md refs_manifest.json /app/
+COPY platform_sim /app/platform_sim
+COPY static /app/static
+COPY samples /app/samples
+RUN mkdir -p /app/data /app/store /app/jobs /app/logs && chmod -R a+rX /app
+EXPOSE 46220
+CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "46220", "--workers", "1"]

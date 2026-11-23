@@ -1,0 +1,1 @@
+--run S13_C1_fuse_patch_aux10 --arch e04 --norm rel2 --train-neutral proxy_ind --zero-0930 --out-neutral 1.0 --skip-0930-loss --win-groups shape,book --patch-len 42 --fuse --aux-w 1.0 --aux-n 2 --epochs 3 --n-models 1 --train 2020-01-01 2022-12-31 --val 2023-01-01 2023-12-31

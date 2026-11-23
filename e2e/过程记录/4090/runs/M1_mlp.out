@@ -1,0 +1,73 @@
+2026-10-26 10:46:25 [info     ] 分片完成                           elapsed=18.9 samples=125760 start=2020-01-01
+2026-10-26 10:46:50 [info     ] 分片完成                           elapsed=24.0 samples=157737 start=2020-02-01
+2026-10-26 10:47:19 [info     ] 分片完成                           elapsed=28.1 samples=175504 start=2020-03-01
+2026-10-26 10:47:48 [info     ] 分片完成                           elapsed=27.5 samples=167432 start=2020-04-01
+2026-10-26 10:48:14 [info     ] 分片完成                           elapsed=24.6 samples=143482 start=2020-05-01
+2026-10-26 10:48:41 [info     ] 分片完成                           elapsed=26.6 samples=159103 start=2020-06-01
+2026-10-26 10:49:12 [info     ] 分片完成                           elapsed=29.5 samples=183564 start=2020-07-01
+2026-10-26 10:49:42 [info     ] 分片完成                           elapsed=29.2 samples=167460 start=2020-08-01
+2026-10-26 10:50:17 [info     ] 分片完成                           elapsed=33.5 samples=175424 start=2020-09-01
+2026-10-26 10:50:42 [info     ] 分片完成                           elapsed=23.7 samples=127680 start=2020-10-01
+2026-10-26 10:51:16 [info     ] 分片完成                           elapsed=33.2 samples=167792 start=2020-11-01
+2026-10-26 10:51:51 [info     ] 分片完成                           elapsed=34.2 samples=183424 start=2020-12-01
+2026-10-26 10:52:22 [info     ] 分片完成                           elapsed=28.9 samples=159211 start=2021-01-01
+2026-10-26 10:52:44 [info     ] 分片完成                           elapsed=21.7 samples=119577 start=2021-02-01
+2026-10-26 10:53:17 [info     ] 分片完成                           elapsed=31.6 samples=183073 start=2021-03-01
+2026-10-26 10:53:48 [info     ] 分片完成                           elapsed=30.3 samples=167211 start=2021-04-01
+2026-10-26 10:54:15 [info     ] 分片完成                           elapsed=25.9 samples=143359 start=2021-05-01
+2026-10-26 10:54:46 [info     ] 分片完成                           elapsed=29.9 samples=166878 start=2021-06-01
+2026-10-26 10:55:18 [info     ] 分片完成                           elapsed=30.8 samples=174996 start=2021-07-01
+2026-10-26 10:55:48 [info     ] 分片完成                           elapsed=29.3 samples=174980 start=2021-08-01
+2026-10-26 10:56:17 [info     ] 分片完成                           elapsed=27.4 samples=159576 start=2021-09-01
+2026-10-26 10:56:40 [info     ] 分片完成                           elapsed=22.0 samples=127816 start=2021-10-01
+2026-10-26 10:57:10 [info     ] 分片完成                           elapsed=29.3 samples=175656 start=2021-11-01
+2026-10-26 10:57:42 [info     ] 分片完成                           elapsed=31.2 samples=183792 start=2021-12-01
+2026-10-26 10:58:10 [info     ] 分片完成                           elapsed=26.1 samples=151616 start=2022-01-01
+2026-10-26 10:58:32 [info     ] 分片完成                           elapsed=21.0 samples=127768 start=2022-02-01
+2026-10-26 10:59:05 [info     ] 分片完成                           elapsed=32.0 samples=183808 start=2022-03-01
+2026-10-26 10:59:38 [info     ] 分片完成                           elapsed=31.5 samples=151440 start=2022-04-01
+2026-10-26 11:00:10 [info     ] 分片完成                           elapsed=30.7 samples=151560 start=2022-05-01
+2026-10-26 11:00:42 [info     ] 分片完成                           elapsed=31.1 samples=167664 start=2022-06-01
+2026-10-26 11:01:12 [info     ] 分片完成                           elapsed=28.7 samples=167648 start=2022-07-01
+2026-10-26 11:01:44 [info     ] 分片完成                           elapsed=30.8 samples=183784 start=2022-08-01
+2026-10-26 11:02:14 [info     ] 分片完成                           elapsed=29.3 samples=167720 start=2022-09-01
+2026-10-26 11:02:38 [info     ] 分片完成                           elapsed=22.9 samples=127704 start=2022-10-01
+2026-10-26 11:03:10 [info     ] 分片完成                           elapsed=30.6 samples=175720 start=2022-11-01
+2026-10-26 11:03:42 [info     ] 分片完成                           elapsed=31.0 samples=175648 start=2022-12-01
+2026-10-26 11:07:26 [info     ] train 集构建完成                    samples=5802567
+2026-10-26 11:25:40 [info     ] 训练剔除特征                         cov=0.9793 mode=proxy_ind pind_cov=0.8344
+11:26:44 训练集 (5078333, 1055) 构建 2438s 设备 cuda
+2026-10-26 11:31:27 [info     ] 分片完成                           elapsed=21.1 samples=127872 start=2023-01-01
+2026-10-26 11:31:52 [info     ] 分片完成                           elapsed=24.7 samples=159840 start=2023-02-01
+2026-10-26 11:32:23 [info     ] 分片完成                           elapsed=29.7 samples=183816 start=2023-03-01
+2026-10-26 11:32:50 [info     ] 分片完成                           elapsed=25.7 samples=151848 start=2023-04-01
+2026-10-26 11:33:21 [info     ] 分片完成                           elapsed=29.9 samples=159840 start=2023-05-01
+2026-10-26 11:33:49 [info     ] 分片完成                           elapsed=26.8 samples=159840 start=2023-06-01
+2026-10-26 11:34:19 [info     ] 分片完成                           elapsed=29.6 samples=167832 start=2023-07-01
+2026-10-26 11:34:55 [info     ] 分片完成                           elapsed=34.1 samples=183816 start=2023-08-01
+2026-10-26 11:35:23 [info     ] 分片完成                           elapsed=26.9 samples=159840 start=2023-09-01
+2026-10-26 11:35:47 [info     ] 分片完成                           elapsed=23.5 samples=135864 start=2023-10-01
+2026-10-26 11:36:18 [info     ] 分片完成                           elapsed=30.1 samples=175824 start=2023-11-01
+2026-10-26 11:36:51 [info     ] 分片完成                           elapsed=31.2 samples=167952 start=2023-12-01
+2026-10-26 11:38:14 [info     ] val 集构建完成                      samples=1934184
+11:41:18 验证集 (1934184, 1055)
+11:41:30 MLP 第 1 轮  训练 MSE 1.0254  验证 IC 0.0935  3324s
+11:41:34 MLP 第 2 轮  训练 MSE 1.0225  验证 IC 0.0942  3327s
+11:41:37 MLP 第 3 轮  训练 MSE 1.0211  验证 IC 0.0978  3330s
+11:41:40 MLP 第 4 轮  训练 MSE 1.0196  验证 IC 0.0992  3333s
+11:41:43 MLP 第 5 轮  训练 MSE 1.0183  验证 IC 0.1003  3336s
+11:41:46 MLP 第 6 轮  训练 MSE 1.0171  验证 IC 0.0999  3339s
+2026-10-26 11:42:16 [info     ] 分片完成                           elapsed=29.3 samples=176000 start=2024-01-01
+2026-10-26 11:42:40 [info     ] 分片完成                           elapsed=23.1 samples=120000 start=2024-02-01
+2026-10-26 11:43:09 [info     ] 分片完成                           elapsed=27.4 samples=168000 start=2024-03-01
+2026-10-26 11:43:37 [info     ] 分片完成                           elapsed=27.0 samples=160000 start=2024-04-01
+2026-10-26 11:44:06 [info     ] 分片完成                           elapsed=28.3 samples=160000 start=2024-05-01
+2026-10-26 11:44:34 [info     ] 分片完成                           elapsed=26.3 samples=152000 start=2024-06-01
+2026-10-26 11:45:06 [info     ] 分片完成                           elapsed=31.1 samples=184000 start=2024-07-01
+2026-10-26 11:45:39 [info     ] 分片完成                           elapsed=31.7 samples=176000 start=2024-08-01
+2026-10-26 11:46:15 [info     ] 分片完成                           elapsed=35.3 samples=152000 start=2024-09-01
+2026-10-26 11:46:49 [info     ] 分片完成                           elapsed=32.2 samples=144000 start=2024-10-01
+2026-10-26 11:47:27 [info     ] 分片完成                           elapsed=37.3 samples=168000 start=2024-11-01
+2026-10-26 11:48:05 [info     ] 分片完成                           elapsed=36.7 samples=176000 start=2024-12-01
+2026-10-26 11:49:24 [info     ] val 集构建完成                      samples=1936000
+11:52:37 完成 3991s

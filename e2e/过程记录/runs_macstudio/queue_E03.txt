@@ -1,0 +1,2 @@
+--run B1_rev_pool_lneut --fields base --coarse 0 --summary --summary-set rev --summary-pool --label-neutral 1.0 --out-neutral 1.5 --norm rel2
+--run F03_2020-24_rev_pool_lneut_2x3 --train 2020-01-01 2024-12-31 --val 2024-10-01 2024-12-31 --fields base --coarse 0 --summary --summary-set rev --summary-pool --label-neutral 1.0 --out-neutral 1.5 --norm rel2 --epochs 3 --n-models 2 --no-analyze

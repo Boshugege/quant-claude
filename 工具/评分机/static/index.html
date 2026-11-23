@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JYC 评分机</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--fg:#1d2129;--mut:#6b7280;--line:#e5e7eb;--acc:#2563eb;--ok:#16a34a;--warn:#d97706;--bad:#dc2626;--code:#f3f4f6}
+@media (prefers-color-scheme:dark){:root{--bg:#111318;--card:#1a1d24;--fg:#e5e7eb;--mut:#9ca3af;--line:#2d313a;--acc:#60a5fa;--ok:#4ade80;--warn:#fbbf24;--bad:#f87171;--code:#23262e}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.6 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+header{display:flex;align-items:center;gap:16px;padding:12px 20px;background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;flex-wrap:wrap}
+header h1{font-size:17px;margin:0}nav{display:flex;gap:4px;flex-wrap:wrap}nav button{border:0;background:none;color:var(--mut);padding:6px 12px;border-radius:6px;cursor:pointer;font-size:14px}
+nav button.on{background:var(--acc);color:#fff}#status{margin-left:auto;font-size:12px;color:var(--mut)}
+main{max-width:1180px;margin:0 auto;padding:18px 16px}.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:14px}
+h2{font-size:16px;margin:0 0 10px}h3{font-size:14px;margin:14px 0 6px}.mut{color:var(--mut)}.small{font-size:12px}
+label{display:block;font-size:13px;color:var(--mut);margin:8px 0 3px}input,select{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px 8px}
+.row{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end}.row>div{min-width:130px}
+button.pri{background:var(--acc);color:#fff;border:0;border-radius:6px;padding:8px 18px;font-size:14px;cursor:pointer}button.pri:disabled{opacity:.5}
+button.sec{background:none;border:1px solid var(--line);color:var(--fg);border-radius:6px;padding:4px 10px;cursor:pointer;font-size:12px}
+#drop{border:2px dashed var(--line);border-radius:10px;padding:26px;text-align:center;cursor:pointer;color:var(--mut)}#drop.hover{border-color:var(--acc);color:var(--acc)}
+.chips span{display:inline-block;background:var(--code);border-radius:12px;padding:2px 10px;margin:3px 4px 0 0;font-size:12px}
+table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:5px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}th:first-child,td:first-child{text-align:left}
+th{color:var(--mut);font-weight:500}.tw{overflow-x:auto}tr.hl td{background:color-mix(in srgb,var(--acc) 12%,transparent)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}.kpi{border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.kpi .v{font-size:22px;font-weight:600}.kpi .n{font-size:12px;color:var(--mut)}.bar{height:5px;background:var(--line);border-radius:3px;margin-top:6px}.bar i{display:block;height:100%;background:var(--acc);border-radius:3px}
+.badge{display:inline-block;padding:1px 8px;border-radius:10px;font-size:12px}.b-done{background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ok)}
+.b-failed{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}.b-run{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+.warn{border-left:3px solid var(--warn);padding:6px 10px;background:color-mix(in srgb,var(--warn) 8%,transparent);margin:6px 0;border-radius:4px}
+.err{border-left:3px solid var(--bad);padding:6px 10px;background:color-mix(in srgb,var(--bad) 8%,transparent);border-radius:4px;white-space:pre-wrap}
+pre,code{font-family:ui-monospace,Menlo,monospace;font-size:12px}pre{background:var(--code);padding:10px 12px;border-radius:6px;overflow-x:auto;white-space:pre}
+code{background:var(--code);padding:1px 4px;border-radius:3px}#log{max-height:340px;overflow:auto;white-space:pre-wrap}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:820px){.grid2{grid-template-columns:1fr}}
+.chart{position:relative;height:260px}a{color:var(--acc)}.hide{display:none}.ok{color:var(--ok)}.bad{color:var(--bad)}
+</style>
+</head>
+<body>
+<header>
+  <h1>JYC 评分机</h1>
+  <nav id="nav">
+    <button data-v="submit" class="on">提交评分</button><button data-v="jobs">任务</button><button data-v="board">赋分表</button><button data-v="compare">对比</button>
+    <button data-v="refs">参照池</button><button data-v="docs">说明</button><button data-v="api">API</button>
+  </nav>
+  <span id="status">连接中…</span>
+</header>
+<main>
+
+<!-- 提交 -->
+<section id="v-submit">
+  <div class="card">
+    <h2>提交评分</h2>
+    <div id="drop">把文件拖到这里，或点击选择<br><span class="small">可以直接上传平台提交用的 .ipynb / .py、端到端三件套或 zip、因子值 parquet / csv、研究脚本、SQL</span></div>
+    <input type="file" id="file" multiple class="hide">
+    <div class="chips" id="chips"></div>
+    <div class="row" style="margin-top:8px">
+      <div><label>提交类型</label><select id="kind"><option value="auto">自动识别</option></select></div>
+      <div id="fidbox" class="hide"><label>factor_lib 编号</label><input id="fid" size="6" placeholder="104"></div>
+      <div><label>开始月份</label><input id="start" type="month" value="2024-01" min="2020-01" max="2024-12"></div>
+      <div><label>结束月份</label><input id="end" type="month" value="2024-12" min="2020-01" max="2024-12"></div>
+      <div><label>标签</label><select id="label"><option value="y_off">本地官方标签（全区间）</option><option value="official">平台导出的官方标签片段</option></select></div>
+      <div><label>main 调用分块</label><select id="chunk"><option value="">默认（平台按季度，e2e 按月）</option><option value="quarter">按季度</option><option value="none">整段一次（同平台，内存翻倍）</option><option value="month">按月</option></select></div>
+      <div><label>名称（可选）</label><input id="name" size="18"></div>
+      <div><label>配对比较基线</label><input id="baseline" size="16" placeholder="ref:104" title="已完成的任务号，或 ref:编号（参照池里的平台代码因子）；none 不比较"></div>
+      <div><label>优先级</label><select id="priority"><option value="normal">普通</option><option value="high">高（排到普通任务前）</option></select></div>
+      <div><button class="pri" id="go">开始评分</button></div>
+    </div>
+    <p class="small mut" id="kindhint"></p>
+  </div>
+  <div class="card small mut">
+    <b>各类提交需要多久</b>（2024 全年，远端 24 线程）：因子值文件约 10 秒；已登记因子 / 研究脚本约 1–3 分钟；平台 .ipynb 约 3–10 分钟（DuckDB 在 NVMe 上执行原 SQL）；端到端推理按 CPU 速度约每月数分钟。任务在后台运行，可以关掉页面，稍后在“任务”里查看。
+  </div>
+</section>
+
+<!-- 任务 -->
+<section id="v-jobs" class="hide">
+  <div class="card"><h2>任务 <button class="sec" onclick="loadJobs()">刷新</button></h2>
+  <div class="row" style="margin-bottom:8px;gap:6px;flex-wrap:wrap">
+    <button class="sec" onclick="batch('cancel',{ids:selIds()})">取消所选</button>
+    <button class="sec" onclick="batch('delete',{ids:selIds(),force:true})">删除所选</button>
+    <button class="sec" onclick="batch('cancel',{all_queued:true})">取消全部排队</button>
+    <input id="prefix" size="14" placeholder="名称前缀，如 16"><button class="sec" onclick="batch('cancel',{name_prefix:$('#prefix').value})">按前缀取消</button>
+    <button class="sec" onclick="batch('delete',{name_prefix:$('#prefix').value,force:true})">按前缀删除</button>
+    <span class="small mut" id="batchmsg"></span></div>
+  <div class="row" style="margin-bottom:8px;gap:6px;flex-wrap:wrap">
+    <input id="jq" size="16" placeholder="搜索任务号或名称" onkeydown="if(event.key==='Enter'){JP=0;loadJobs()}">
+    <select id="jst" onchange="JP=0;loadJobs()"><option value="">全部状态</option><option value="queued,producing,scoring">排队或运行中</option><option value="done">完成</option><option value="failed">失败</option></select>
+    <button class="sec" onclick="JP=0;loadJobs()">搜索</button></div>
+  <div class="tw"><table id="jobtab"></table></div><div class="row small" style="gap:8px;margin-top:6px"><button class="sec" onclick="jobPage(-1)">上一页</button><span id="jpinfo"></span><button class="sec" onclick="jobPage(1)">下一页</button></div></div>
+  <div id="detail"></div>
+</section>
+
+<!-- 赋分表 -->
+<section id="v-board" class="hide">
+  <div class="card"><h2>赋分表</h2>
+  <p class="small mut">按平台的赋分规则排名：五项指标各自在本表全部因子中的百分位，等权平均（换手越低越好）。总体 = 参照池（有公榜分的平台代码因子）+ 区间覆盖赋分窗口的全部已完成任务。同名任务只保留最新一次。总体只有我们自己的因子，头部比公榜更拥挤，分差会被放大；它用来衡量进步、找短板，不是公榜分的估计。<b>公榜估计</b>另列：取指标最接近的几个同快照锚点（参照池里同一时刻抄下公榜分的因子），加上指标差 × 边际价值（换手、IC 均值全额，IC_IR、压力减半，多空夏普不计）。本地换手、IC 均值几乎 1:1 搬到公榜，IC_IR、压力只能粗排；头部之间差距小于下面的“头部误差”时应视为持平；标“外推”的因子指标落在锚点范围之外（例如换手远低于所有锚点），估计只能当方向参考。判断两个相近因子谁更好，请看任务里的配对比较。</p>
+  <div class="row" style="gap:8px;flex-wrap:wrap;margin-bottom:8px">
+    <div><label>窗口开始</label><input id="bstart" type="month" value="2023-01" min="2020-01" max="2024-12"></div>
+    <div><label>窗口结束</label><input id="bend" type="month" value="2024-12" min="2020-01" max="2024-12"></div>
+    <div><label>筛选名称</label><input id="bfilter" size="12" placeholder="如 11" onkeydown="if(event.key==='Enter'){BP=0;loadBoard()}"></div>
+    <div><label>排序</label><select id="bsort" onchange="BP=0;loadBoard()"><option value="score">赋分</option><option value="pub_est">公榜估计</option></select></div>
+    <div><label><input type="checkbox" id="brefs" checked> 含参照池</label></div>
+    <div><button class="pri" onclick="BP=0;loadBoard()">刷新</button></div></div>
+  <div id="bleaders" class="small"></div>
+  <div class="tw"><table id="boardtab"></table></div><div class="row small" style="gap:8px;margin-top:6px"><button class="sec" onclick="boardPage(-1)">上一页</button><span id="bpinfo"></span><button class="sec" onclick="boardPage(1)">下一页</button></div></div>
+</section>
+
+<!-- 对比 -->
+<section id="v-compare" class="hide">
+  <div class="card"><h2>对比已完成的任务</h2><p class="small mut">勾选任务后点“对比”（翻页后勾选仍保留）。同一区间、同一标签的结果才可比。</p>
+  <div class="row" style="margin-bottom:8px;gap:6px"><input id="cq" size="16" placeholder="搜索任务号或名称" onkeydown="if(event.key==='Enter'){CP=0;loadCmp()}"><button class="sec" onclick="CP=0;loadCmp()">搜索</button></div>
+  <div class="tw"><table id="cmpsel"></table></div><div class="row small" style="gap:8px;margin-top:6px"><button class="sec" onclick="cmpPage(-1)">上一页</button><span id="cpinfo"></span><button class="sec" onclick="cmpPage(1)">下一页</button></div><p><button class="pri" onclick="doCompare()">对比</button></p><div class="tw" id="cmpout"></div></div>
+</section>
+
+<!-- 参照池 -->
+<section id="v-refs" class="hide">
+  <div class="card"><h2>参照池</h2><p class="small mut">有公榜分数的因子，用<b>实际提交到平台的代码</b>在评分机上按平台方式运行后评分（2026-10-11 起；此前用 factor_lib 的 30 分钟面板复刻，头部校准失效）。估计公榜分只用“校准”列打勾的同一时间快照拟合。任务结果里的“百分位”“估计公榜分”都相对这个池子计算；比较相近的候选请看配对比较。</p><div class="tw"><table id="reftab"></table></div></div>
+</section>
+
+<!-- 说明 -->
+<section id="v-docs" class="hide"><div class="card" id="docs">
+<h2>这台评分机做什么</h2>
+<p>按比赛平台 <code>jyc_eval</code> 的同一流程，给一个因子算出五项原始指标和完整诊断。口径已用平台导出的数据逐项核实（见仓库 <code>e2e/reports/12</code>、<code>本地评分系统说明.md</code>）。</p>
+<h3>评分口径（与平台一致）</h3>
+<ul>
+<li><b>标签</b>：截面之后 30 分钟窗口 (t, t+30] 的收盘价 ÷ 同窗口 VWAP − 1；11:30 对应 13:00–13:30，14:30 对应 14:30–15:00。默认用本地由 1 分钟数据重建的标签（与官方截面秩相关约 0.97）；选“官方标签片段”时只评估平台导出过的区间（2021-06、2024-01-02~03-01）。</li>
+<li><b>因子处理</b>：每个截面 inf / 缺失补 0 → 标准化 → 对当日 10 个官方风格和 32 个申万一级行业哑变量（含截距）回归取残差；没有官方暴露的股票不参与评估。</li>
+<li><b>IC</b>：残差与标签的截面 Spearman 秩相关；<b>IC_IR</b> = 均值 ÷ 标准差。<b>多空夏普</b>：前 10% 减后 10% 的等权标签收益，按 √(242×8) 年化。</li>
+<li><b>压力稳定性</b>：按截面标签离散度中位数分高低两组，取较弱一组的 IC_IR。<b>换手</b>：多空两腿在同一交易日内相邻截面的成分替换比例，跨日不计。</li>
+</ul>
+<h3>能提交什么</h3>
+<table>
+<tr><th>类型</th><th style="text-align:left">上传什么</th><th style="text-align:left">怎么运行</th></tr>
+<tr><td>传统因子提交</td><td style="text-align:left">平台上传用的 <code>.ipynb</code> 或 <code>.py</code>（定义 <code>main(datasources, start_date, end_date)</code>）</td><td style="text-align:left">在模拟平台上原样运行：<code>import dai</code> 指向本地 DuckDB 0.9.2（与平台同版本），SQL 不做任何改写；自测单元（含 <code>jyc_eval</code>）自动跳过</td></tr>
+<tr><td>端到端提交</td><td style="text-align:left"><code>Transformer_modelsave_train.py</code> + <code>Transformer_modelsave_predict.ipynb</code> + <code>transformer_model.json</code>，或三者的 zip</td><td style="text-align:left">运行推理 notebook 的 <code>main</code>（CPU torch），不训练</td></tr>
+<tr><td>因子值文件</td><td style="text-align:left">parquet / csv，三列 <code>date, instrument, factor</code></td><td style="text-align:left">代码可以是真实代码（6 位数字加交易所后缀）或伪代码（<code>ID</code> 加 4 位数字）；09:25 视为 09:30</td></tr>
+<tr><td>研究脚本</td><td style="text-align:left">.py，定义 <code>factor(panel)</code>，返回与 panel 等长的数组</td><td style="text-align:left">panel 是 <code>localeval.build_panel</code> 的结果（30 分钟 bar 加 factor_lib 中间量），按年分块计算，每块预热 6 个月</td></tr>
+<tr><td>已登记因子</td><td style="text-align:left">不上传，填 factor_lib 编号</td><td style="text-align:left">同研究脚本</td></tr>
+<tr><td>SQL</td><td style="text-align:left">.sql，一条 DuckDB 查询，返回三列</td><td style="text-align:left">可直接引用平台表名，例如 <code>cpt_jyc_2026_stock_bar1m</code></td></tr>
+</table>
+<h3>模拟平台的数据表</h3>
+<ul>
+<li><code>cpt_jyc_2026_stock_bar1m</code>：1 分钟行情，单位元，OHLC 缺失为 NULL，含 <code>pre_close</code>（前一交易日收盘按复权因子换算）、<code>adjust_factor</code>、<code>instrument_id</code>、<code>instrument</code>（能映射的用真实代码，其余为 ID 伪代码）。<b>本地只有 3 档盘口，4–5 档为 NULL</b>，用到 4–5 档的代码会得到提示。</li>
+<li><code>all_instruments</code>、<code>cpt_jyc_2026_instruments</code>（股票池：当日有行情的股票 × 8 个截面）、<code>cpt_jyc_2026_vwap</code>（本地重建的标签）、<code>cpt_jyc_2026_exposure</code>（官方风格暴露）。</li>
+<li><code>filters={"date": [开始, 结束]}</code> 与平台相同；只给日期的结束日包含当天全天。没有 5 / 15 / 30 分钟表。</li>
+</ul>
+<h3>平台规则检查</h3>
+<p>平台型提交会检查：是否恰好三列 <code>date, instrument, factor</code>；时间是否都在 8 个截面（09:30 … 14:30）；有无重复键、inf；每个截面相对股票池的缺失率是否超过 40%（平台超过会静默出错）。内存超过 30 GB 或运行超过 3 小时的任务会被终止（与平台一致）。</p>
+<h3>结果怎么读</h3>
+<ul>
+<li><b>五项指标</b>是平台口径的原始值；“不剔除风格”一列只作对照，差距大说明因子的收益有很多来自风格或行业。</li>
+<li><b>参照池百分位</b>：在 factor_lib 中有公榜分数的因子里排第几（同区间同口径）。<b>估计公榜分</b>由参照池的“本地综合分 → 公榜分”线性拟合得到，只是粗略近似：平台分数是全体提交中的排名，会随别人提交而变。</li>
+<li><b>分截面</b>里某个截面“常数 / 全 0”很多，通常是 SQL 在那个截面取不到数据（例如 1 分钟数据没有 09:30:00 这根 bar，按窗口终点取末价会得到 0）。</li>
+<li>本地与平台的已知差异：标签是本地重建的（约 0.97）；只有 3 档盘口；股票池是“当日有行情的股票”，与平台的中证 1000 历史成分可能略有出入。</li>
+</ul>
+</div></section>
+
+<!-- API -->
+<section id="v-api" class="hide"><div class="card" id="apidoc">
+<h2>API</h2>
+<p>服务只监听远端的 127.0.0.1。本机先建隧道：</p><pre>ssh -N -L 46220:127.0.0.1:46220 personal</pre>
+<p>之后用 <code>http://127.0.0.1:46220</code> 访问。自动生成的交互文档在 <a href="/docs" target="_blank">/docs</a>。</p>
+<h3>提交任务 <code>POST /api/jobs</code></h3>
+<p>multipart 表单字段：</p>
+<table>
+<tr><th>字段</th><th style="text-align:left">说明</th></tr>
+<tr><td><code>files</code></td><td style="text-align:left">一个或多个文件（端到端提交可传三个文件或一个 zip）。可重复。</td></tr>
+<tr><td><code>kind</code></td><td style="text-align:left"><code>auto</code>（默认）/ <code>platform</code> / <code>e2e</code> / <code>values</code> / <code>factor_py</code> / <code>fid</code> / <code>sql</code></td></tr>
+<tr><td><code>fid</code></td><td style="text-align:left">kind=fid 时的 factor_lib 编号</td></tr>
+<tr><td><code>start</code> / <code>end</code></td><td style="text-align:left">月份 <code>YYYY-MM</code>，含两端，范围 2020-01 ~ 2024-12；默认 2024-01 ~ 2024-12</td></tr>
+<tr><td><code>label</code></td><td style="text-align:left"><code>y_off</code>（默认，本地重建的官方标签）/ <code>official</code>（平台导出的片段）</td></tr>
+<tr><td><code>chunk</code></td><td style="text-align:left">平台 / 端到端提交调用 main 的分块：<code>quarter</code>（platform 默认，吞吐最高）/ <code>none</code>（整个区间一次调用，与平台相同，内存约翻倍，适合最终确认）/ <code>month</code>（e2e 默认）</td></tr>
+<tr><td><code>name</code></td><td style="text-align:left">任务名称（可选）</td></tr>
+<tr><td><code>baseline</code></td><td style="text-align:left">配对比较的基线：已完成的任务号，或 <code>ref:编号</code>（参照池里的平台代码因子）；默认 <code>ref:104</code>，<code>none</code> 不比较</td></tr>
+<tr><td><code>priority</code></td><td style="text-align:left"><code>normal</code>（默认）/ <code>high</code>：排到所有普通任务之前</td></tr>
+<tr><td><code>?wait=true</code></td><td style="text-align:left">查询参数：等任务完成后直接返回完整结果（同 <code>GET /api/jobs/{id}</code>）</td></tr>
+</table>
+<pre>curl -F files=@104_同伴残差阶梯过度中性.ipynb -F start=2024-01 -F end=2024-12 \
+     'http://127.0.0.1:46220/api/jobs?wait=true' | python3 -m json.tool
+
+curl -F files=@E05.zip -F start=2024-01 -F end=2024-03 http://127.0.0.1:46220/api/jobs
+curl -F kind=fid -F fid=104 -F start=2023-01 -F end=2024-12 http://127.0.0.1:46220/api/jobs
+curl -F files=@factor.parquet http://127.0.0.1:46220/api/jobs</pre>
+<p>返回 <code>{"job_id": "...", "kind": "...", "status": "queued", "detail_url": "/api/jobs/..."}</code>。</p>
+<h3>查询</h3>
+<table>
+<tr><th>接口</th><th style="text-align:left">说明</th></tr>
+<tr><td><code>GET /api/jobs/{id}</code></td><td style="text-align:left">状态（queued / producing / scoring / done / failed）；完成后含 <code>result</code></td></tr>
+<tr><td><code>GET /api/jobs/{id}/log?offset=0</code></td><td style="text-align:left">运行日志增量，响应头 <code>X-Log-Size</code> 是下一次的 offset</td></tr>
+<tr><td><code>GET /api/jobs/{id}/files/{name}</code></td><td style="text-align:left">下载 <code>result.json</code>、<code>report.md</code>、<code>log.txt</code>、<code>factor_raw.parquet</code>（提交代码的原始输出）、<code>dai_queries.json</code></td></tr>
+<tr><td><code>GET /api/jobs</code></td><td style="text-align:left">任务列表（含五项指标摘要），按创建时间倒序分页：<code>limit</code>（默认 100，最多 1000）、<code>offset</code>、<code>status</code>（逗号分隔，如 <code>queued,producing,scoring</code>）、<code>q</code>（匹配任务号或名称）、<code>kind</code>；总数在响应头 <code>X-Total-Count</code></td></tr>
+<tr><td><code>POST /api/jobs/{id}/cancel</code></td><td style="text-align:left">取消排队中或运行中的任务</td></tr>
+<tr><td><code>DELETE /api/jobs/{id}?force=true</code></td><td style="text-align:left">删除任务及其文件；<code>force=true</code> 时先取消运行中的任务</td></tr>
+<tr><td><code>POST /api/batch/cancel</code>、<code>POST /api/batch/delete</code></td><td style="text-align:left">批量取消 / 删除。JSON：<code>{"ids": [...], "name_prefix": "16", "all_queued": true, "force": true}</code>，三种选择方式可组合</td></tr>
+<tr><td><code>GET /api/leaderboard?start=2023-01&end=2024-12</code></td><td style="text-align:left">赋分表：按平台赋分规则（五项百分位等权）给参照池和全部已完成任务排名；含各项第一、帕累托前沿、每个因子的短板、公榜估计 <code>pub_est</code>/<code>pub_rank</code>/<code>pub_anchors</code> 和估计误差 <code>pub_calibration</code>。参数 <code>dedupe</code>（同名只留最新，默认 true）、<code>include_refs</code>、<code>sort</code>（<code>score</code> 赋分 / <code>pub_est</code> 公榜估计）、<code>q</code>（按名称筛选）、<code>offset</code>、<code>limit</code>；<code>n</code> 是总数，<code>n_match</code> 是筛选后条数。结果按任务变化缓存</td></tr>
+<tr><td><code>GET /api/health</code>、<code>GET /api/meta</code></td><td style="text-align:left">服务状态（内存、CPU、运行中任务）；提交类型、区间、参照池</td></tr>
+</table>
+<h3><code>result</code> 字段</h3>
+<table>
+<tr><th>字段</th><th style="text-align:left">内容</th></tr>
+<tr><td><code>metrics</code></td><td style="text-align:left">五项原始指标 <code>ic_mean, ic_ir, ls_sharpe, stress, turnover</code> 与有效截面数 <code>n_xsec</code>（平台口径）</td></tr>
+<tr><td><code>no_neutralize</code></td><td style="text-align:left">不剔除风格时的五项（对照）</td></tr>
+<tr><td><code>detail</code></td><td style="text-align:left">分截面 IC / IC_IR / 正 IC 比例；压力高低两组 IC_IR；两腿换手；每截面多空收益均值与标准差；IC 分位数</td></tr>
+<tr><td><code>by_year</code> / <code>by_half</code></td><td style="text-align:left">分年、分半年的五项指标</td></tr>
+<tr><td><code>daily</code></td><td style="text-align:left">逐日 IC（当日 8 个截面平均）、20 日均线、累计 IC、多空收益</td></tr>
+<tr><td><code>reference_pool</code></td><td style="text-align:left">参照池百分位、击败比例、本地综合分、估计公榜分、校准秩相关、公榜分最高的参照因子</td></tr>
+<tr><td><code>correlations</code></td><td style="text-align:left">与 90、104、105、107 号（平台代码版）的截面秩相关</td></tr>
+<tr><td><code>paired</code></td><td style="text-align:left">与基线的配对比较：共同截面上五项指标的差、20 日分块自助法标准误、z 值、日度 IC 相关；<code>composite</code> 是按评分规则（五项百分位等权、换手越低越好，以参照池为总体）合成的综合百分位差及其标准误。<b>判断候选是否真的更好看 composite</b></td></tr>
+<tr><td><code>platform_checks</code></td><td style="text-align:left">平台规则检查：三列、8 个截面、重复键、inf、逐截面缺失率（相对股票池）、是否通过</td></tr>
+<tr><td><code>coverage</code></td><td style="text-align:left">评估行数、因子有效覆盖、有官方暴露的比例、逐截面覆盖 / 截面标准差 / 常数或全 0 截面数</td></tr>
+<tr><td><code>mapping</code></td><td style="text-align:left">真实代码 / 伪代码行数，映射不上的代码</td></tr>
+<tr><td><code>warnings</code></td><td style="text-align:left">需要注意的问题（例如用了 4–5 档、09:30 全 0、覆盖率低）</td></tr>
+<tr><td><code>meta</code></td><td style="text-align:left">版本、区间、标签、因子计算与评分耗时、子进程内存峰值</td></tr>
+</table>
+<h3>Python 示例</h3>
+<pre>import requests
+r = requests.post("http://127.0.0.1:46220/api/jobs", params={"wait": "true"},
+                  files=[("files", open("my_factor.ipynb", "rb"))], data={"start": "2023-01", "end": "2024-12"})
+res = r.json()["result"]
+print(res["metrics"], res["reference_pool"]["estimated_public_score"])</pre>
+</div></section>
+</main>
+
+<script>
+const $=s=>document.querySelector(s), api=(p,o)=>fetch(p,o).then(async r=>{if(!r.ok){let t=await r.text();try{t=JSON.parse(t).detail}catch(e){};throw new Error(t)}return r.headers.get('content-type')?.includes('json')?r.json():r.text()});
+const f=(v,n=4)=>v==null||Number.isNaN(v)?'—':(typeof v==='number'?v.toFixed(n):v);
+const CN={ic_mean:'IC 均值',ic_ir:'IC_IR',ls_sharpe:'多空夏普',stress:'压力稳定性',turnover:'换手率'}, DIG={ic_mean:4,ic_ir:3,ls_sharpe:2,stress:3,turnover:3};
+let META={}, FILES=[], charts=[], logTimer=null, curJob=null;
+document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>show(b.dataset.v));
+function show(v){document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
+  document.querySelectorAll('main>section').forEach(s=>s.classList.toggle('hide',s.id!=='v-'+v));
+  if(v==='jobs')loadJobs(); if(v==='board')loadBoard(); if(v==='compare')loadCmp(); if(v==='refs')loadRefs(); location.hash=v}
+async function health(){try{const h=await api('/api/health');$('#status').textContent=`${h.version} · 核心${h.core_loaded?'已载入':'未构建'} · 参照池 ${h.ref_pool_size} · 运行 ${h.running.length} / 排队 ${h.queued.length} · 可用内存 ${h.memory_gb.available} GB · CPU ${h.cpu_percent}%`}catch(e){$('#status').textContent='无法连接服务'}}
+async function init(){META=await api('/api/meta');for(const[k,v]of Object.entries(META.kinds)){const o=document.createElement('option');o.value=k;o.textContent=v.split('（')[0];$('#kind').append(o)}
+  health();setInterval(health,5000);if(location.hash)show(location.hash.slice(1))}
+const drop=$('#drop');drop.onclick=()=>$('#file').click();$('#file').onchange=e=>addFiles(e.target.files);
+['dragenter','dragover'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.add('hover')}));
+['dragleave','drop'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.remove('hover')}));
+drop.addEventListener('drop',e=>addFiles(e.dataTransfer.files));
+function addFiles(fl){for(const x of fl)FILES.push(x);renderChips()}
+function renderChips(){$('#chips').innerHTML=FILES.map((x,i)=>`<span>${x.name} · ${(x.size/1e6).toFixed(1)} MB <a href="#" onclick="FILES.splice(${i},1);renderChips();return false">×</a></span>`).join('');hint()}
+$('#kind').onchange=hint;function hint(){const k=$('#kind').value;$('#fidbox').classList.toggle('hide',k!=='fid');
+  let g=k;if(k==='auto'){const n=FILES.map(x=>x.name.toLowerCase());g=n.some(x=>x.endsWith('.zip')||x==='transformer_model.json')?'e2e':n.some(x=>/\.(parquet|pq|csv)$/.test(x))?'values':n.some(x=>x.endsWith('.sql'))?'sql':n.some(x=>x.endsWith('.ipynb'))?'platform':n.some(x=>x.endsWith('.py'))?'platform 或 factor_py（看文件里是 main 还是 factor）':''}
+  $('#kindhint').textContent=g?('将按“'+(META.kinds[g]||g)+'”处理'):''}
+$('#go').onclick=async()=>{const fd=new FormData();FILES.forEach(x=>fd.append('files',x));
+  for(const k of['kind','start','end','label','chunk','name','fid','baseline','priority'])if($('#'+k).value)fd.append(k,$('#'+k).value);
+  $('#go').disabled=true;try{const r=await api('/api/jobs',{method:'POST',body:fd});FILES=[];renderChips();show('jobs');openJob(r.job_id)}catch(e){alert('提交失败：'+e.message)}finally{$('#go').disabled=false}};
+function badge(s){const c=s==='done'?'b-done':s==='failed'?'b-failed':'b-run';const t={queued:'排队',producing:'计算因子',scoring:'评分',done:'完成',failed:'失败'}[s]||s;return`<span class="badge ${c}">${t}</span>`}
+function selIds(){return[...document.querySelectorAll('#jobtab input.sel:checked')].map(x=>x.value)}
+async function batch(op,body){const n=(body.ids&&body.ids.length)||body.all_queued||body.name_prefix;if(!n){$('#batchmsg').textContent='先勾选任务或填写前缀';return}
+  if(op==='delete'&&!confirm('删除后任务文件不可恢复（运行中的会先取消），确定？'))return;
+  const r=await api('/api/batch/'+op,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+  $('#batchmsg').textContent=op==='cancel'?`已取消 ${r.cancelled.length} 个`:`已删除 ${r.deleted.length} 个${Object.keys(r.errors).length?`，${Object.keys(r.errors).length} 个失败`:''}`;loadJobs()}
+function zfmt(p){if(!p||p.composite_diff==null)return'—';const z=p.composite_z,zz=p.z||{};const tip=Object.entries(zz).map(([k,v])=>`${CN[k]} z=${f(v,1)}`).join('，');
+  return`<span title="${tip}" style="color:${z>=2?'var(--ok)':z<=-2?'var(--bad)':'inherit'}">${p.composite_diff>=0?'+':''}${f(p.composite_diff,3)}（z ${f(z,1)}）</span>`}
+const PAGE=50;let JP=0,BP=0,CP=0,JT=0,BT=0,CT=0;
+function pinfo(id,p,t){$(id).textContent=t?`第 ${p+1} / ${Math.max(1,Math.ceil(t/PAGE))} 页 · 共 ${t} 条`:'没有匹配的记录'}
+function jobPage(d){const n=JP+d;if(n<0||n*PAGE>=JT)return;JP=n;loadJobs()}
+function boardPage(d){const n=BP+d;if(n<0||n*PAGE>=BT)return;BP=n;loadBoard()}
+function cmpPage(d){const n=CP+d;if(n<0||n*PAGE>=CT)return;CP=n;loadCmp()}
+async function pageJobs(params){const r=await fetch('/api/jobs?'+new URLSearchParams(params));if(!r.ok)throw new Error(await r.text());return[await r.json(),+r.headers.get('X-Total-Count')||0]}
+async function loadJobs(){const P={limit:PAGE,offset:JP*PAGE};if($('#jq').value.trim())P.q=$('#jq').value.trim();if($('#jst').value)P.status=$('#jst').value;
+  const[js,t]=await pageJobs(P);JT=t;pinfo('#jpinfo',JP,t);$('#jobtab').innerHTML='<tr><th><input type="checkbox" onclick="document.querySelectorAll(\'#jobtab input.sel\').forEach(x=>x.checked=this.checked)"></th><th>任务</th><th>名称</th><th>类型</th><th>区间</th><th>状态</th><th>IC</th><th>IC_IR</th><th>压力</th><th>换手</th><th title="五项指标按评分规则换算百分位后等权平均，与基线之差及 z 值（|z|≥2 显著）；悬停看分项 z">对基线综合百分位</th><th>创建</th></tr>'+
+  js.map(j=>`<tr style="cursor:pointer" onclick="openJob('${j.id}')"><td onclick="event.stopPropagation()"><input type="checkbox" class="sel" value="${j.id}"></td><td>${j.id}${j.priority==='high'?' <span class="small" style="color:var(--warn)">高</span>':''}</td><td>${j.name||''}</td><td>${j.kind}</td><td>${j.start}~${j.end}</td><td>${badge(j.status)}${j.platform_fail?' <span class="badge b-failed">平台会报错</span>':''}${j.data_violation?' <span class="badge b-failed">数据违规</span>':''}${j.warnings?` <span class="small" style="color:var(--warn)">⚠${j.warnings}</span>`:''}</td>
+  <td>${f(j.metrics?.ic_mean)}</td><td>${f(j.metrics?.ic_ir,3)}</td><td>${f(j.metrics?.stress,3)}</td><td>${f(j.metrics?.turnover,3)}</td><td>${zfmt(j.paired)}</td><td class="small">${j.created}</td></tr>`).join('')}
+async function openJob(id){curJob=id;clearInterval(logTimer);charts.forEach(c=>c.destroy());charts=[];
+  const j=await api('/api/jobs/'+id);const D=$('#detail');
+  if(j.status!=='done'){D.innerHTML=`<div class="card"><h2>${j.name} ${badge(j.status)}</h2><p class="small mut">${j.kind} · ${j.start}~${j.end} · 创建 ${j.created}${j.peak_rss_gb?` · 内存 ${j.peak_rss_gb} GB`:''}</p>
+   ${j.error?`<div class="err">${j.error}</div>`:''}${['queued','producing','scoring'].includes(j.status)?`<button class="sec" onclick="cancelJob('${id}')">取消</button>`:`<button class="sec" onclick="deleteJob('${id}')">删除</button>`}
+   <h3>运行日志</h3><pre id="log"></pre><p><a href="/api/jobs/${id}/files/log.txt">下载日志</a></p></div>`;let off=0;
+   const tick=async()=>{const r=await fetch(`/api/jobs/${id}/log?offset=${off}`);const t=await r.text();off=+r.headers.get('X-Log-Size')||off;if(t){const L=$('#log');if(!L)return;L.textContent+=t;L.scrollTop=1e9}
+     const s=await api('/api/jobs/'+id);if(s.status!==j.status){clearInterval(logTimer);loadJobs();if(curJob===id)openJob(id)}};
+   tick();if(!['done','failed'].includes(j.status))logTimer=setInterval(tick,2000);return}
+  renderResult(D,j)}
+async function cancelJob(id){await api(`/api/jobs/${id}/cancel`,{method:'POST'});openJob(id);loadJobs()}
+async function deleteJob(id){if(!confirm('删除任务 '+id+' 及其文件？'))return;await api(`/api/jobs/${id}?force=true`,{method:'DELETE'});$('#detail').innerHTML='';loadJobs()}
+function renderResult(D,j){const r=j.result,m=r.metrics,rp=r.reference_pool,d=r.detail||{};
+  let h=`<div class="card"><h2>${r.meta.name} ${badge('done')}</h2><p class="small mut">${r.meta.kind} · ${r.meta.start} ~ ${r.meta.end} · ${r.meta.label_note} · 因子计算 ${f(r.meta.produce_seconds,1)} s，评分 ${f(r.meta.score_seconds,2)} s${r.meta.produce_peak_gb?` · 内存峰值 ${r.meta.produce_peak_gb} GB`:''}</p>
+  ${r.data_violation?`<div class="err"><b>✗ 数据违规：不进赋分表，不要提交</b><br>${r.data_violation.join('<br>')}</div>`:''}
+  ${r.platform_error?`<div class="err"><b>✗ 平台会报错、不给分</b>（以下指标仅供诊断，不进赋分表）<br>${r.platform_error.join('<br>')}</div>`:''}
+  ${(r.warnings||[]).filter(w=>!w.startsWith('平台会报错')).map(w=>`<div class="warn">⚠ ${w}</div>`).join('')}
+  <div class="kpis">${Object.keys(CN).map(k=>`<div class="kpi"><div class="n">${CN[k]}${k==='turnover'?'（越低越好）':''}</div><div class="v">${f(m[k],DIG[k])}</div>
+   <div class="n">不剔除风格 ${f(r.no_neutralize[k],DIG[k])}${rp?` · 参照池百分位 ${f(rp.percentile[k],2)}`:''}</div>${rp?`<div class="bar"><i style="width:${(rp.percentile[k]*100).toFixed(0)}%"></i></div>`:''}</div>`).join('')}
+   ${rp?`<div class="kpi"><div class="n">估计公榜分（粗略，头部误差 ±${f(rp.calibration?.loo_mae_top,3)}）</div><div class="v">${f(rp.estimated_public_score,3)}</div><div class="n">本地综合百分位 ${f(rp.local_composite,2)} · 校准秩相关 ${f(rp.calibration_rank_corr,2)}</div></div>`:''}</div>
+  <p class="small mut">有效截面 ${m.n_xsec} · 每截面股票中位 ${f(d.stocks_per_section_median,0)} · 下载：<a href="/api/jobs/${j.id}/files/result.json">result.json</a> · <a href="/api/jobs/${j.id}/files/report.md">report.md</a> · <a href="/api/jobs/${j.id}/files/log.txt">日志</a>${r.meta.kind!=='fid'&&r.meta.kind!=='factor_py'?` · <a href="/api/jobs/${j.id}/files/factor_raw.parquet">原始输出</a>`:''} · <a href="#" onclick="deleteJob('${j.id}');return false">删除任务</a></p></div>
+  ${r.paired&&!r.paired.error?`<div class="card"><h2>配对比较：${r.paired.baseline_name}</h2><p><b>${r.paired.verdict}</b></p><p class="small mut">候选 ${r.paired.n_sections_candidate??r.paired.n_common_sections} 个截面、基线 ${r.paired.n_sections_baseline??r.paired.n_common_sections} 个（${r.paired.n_days} 个交易日），日度 IC 相关 ${f(r.paired.daily_ic_corr,3)}。${r.paired.note}</p>
+   <div class="tw"><table><tr><th>指标</th><th>候选</th><th>基线</th><th>差</th><th>标准误</th><th>z</th><th>百分位差</th></tr>
+   ${(()=>{const c=r.paired.composite;return c?`<tr class="hl"><td><b>综合百分位（五项等权）</b></td><td>${f(c.candidate,3)}</td><td>${f(c.baseline,3)}</td><td><b>${c.diff>=0?'+':''}${f(c.diff,3)}</b></td><td>${f(c.se,3)}</td><td style="color:${c.z>=2?'var(--ok)':c.z<=-2?'var(--bad)':'inherit'}">${f(c.z,2)}</td><td></td></tr>`:''})()}
+   ${Object.keys(CN).map(k=>{const x=r.paired.diff[k],g=k==='turnover'?-x.z:x.z,pd=r.paired.composite?.pct_diff?.[k];return`<tr><td>${CN[k]}</td><td>${f(x.candidate,DIG[k])}</td><td>${f(x.baseline,DIG[k])}</td><td>${f(x.diff,DIG[k]+1)}</td><td>${f(x.se,DIG[k]+1)}</td><td style="color:${g>=2?'var(--ok)':g<=-2?'var(--bad)':'inherit'}">${f(x.z,2)}</td><td>${pd==null?'—':(pd>=0?'+':'')+f(pd,3)}</td></tr>`}).join('')}</table></div>
+   ${r.paired.composite?`<p class="small mut">${r.paired.composite.note}</p>`:''}</div>`:''}
+  <div class="grid2"><div class="card"><h2>累计 IC 与 20 日均线</h2><div class="chart"><canvas id="c1"></canvas></div></div><div class="card"><h2>分截面 IC</h2><div class="chart"><canvas id="c2"></canvas></div></div></div>
+  <div class="grid2"><div class="card"><h2>分截面</h2><div class="tw"><table><tr><th>截面</th><th>IC</th><th>IC_IR</th><th>正 IC</th><th>因子覆盖</th><th>常数/全0</th></tr>
+   ${Object.entries(d.by_slot||{}).map(([s,x])=>{const c=r.coverage.by_slot[s]||{};return`<tr><td>${s}</td><td>${f(x.ic_mean)}</td><td>${f(x.ic_ir,3)}</td><td>${f(x.ic_positive_ratio,2)}</td><td>${f(c.coverage,3)}</td><td class="${c.constant_or_all_zero_sections>0?'bad':''}">${c.constant_or_all_zero_sections??'—'}/${c.sections??'—'}</td></tr>`}).join('')}</table></div>
+   <p class="small mut">压力：高离散组 IC_IR ${f(d.stress_high_dispersion_ic_ir,3)}，低离散组 ${f(d.stress_low_dispersion_ic_ir,3)}；换手：多头 ${f(d.turnover_long,3)}，空头 ${f(d.turnover_short,3)}；正 IC 比例 ${f(d.ic_positive_ratio,3)}</p></div>
+  <div class="card"><h2>分年 / 半年</h2><div class="tw"><table><tr><th>区间</th><th>IC</th><th>IC_IR</th><th>多空夏普</th><th>压力</th><th>换手</th></tr>
+   ${Object.entries({...r.by_year,...r.by_half}).map(([p,x])=>`<tr><td>${p}</td><td>${f(x.ic_mean)}</td><td>${f(x.ic_ir,3)}</td><td>${f(x.ls_sharpe,2)}</td><td>${f(x.stress,3)}</td><td>${f(x.turnover,3)}</td></tr>`).join('')}</table></div></div></div>`;
+  if(rp)h+=`<div class="card"><h2>与参照池对比</h2><p class="small mut">${rp.note}</p><div class="tw"><table><tr><th>因子</th><th>公榜分</th><th>IC</th><th>IC_IR</th><th>多空夏普</th><th>压力</th><th>换手</th><th>本地综合</th></tr>
+   <tr class="hl"><td>本任务</td><td>≈${f(rp.estimated_public_score,3)}</td>${Object.keys(CN).map(k=>`<td>${f(m[k],DIG[k])}</td>`).join('')}<td>${f(rp.local_composite,2)}</td></tr>
+   ${rp.top_refs.map(x=>`<tr><td>${x.fid} ${x.name}</td><td>${f(x.public_score,5)}</td>${Object.keys(CN).map(k=>`<td>${f(x[k],DIG[k])}</td>`).join('')}<td>${f(x.local_composite,2)}</td></tr>`).join('')}</table></div>
+   ${r.correlations?`<p class="small">与参照因子的截面秩相关：${Object.entries(r.correlations).map(([k,v])=>`${k} ${v.name}：<b>${f(v.rank_corr_mean,3)}</b>`).join('；')}</p>`:''}</div>`;
+  const pc=r.platform_checks||{};h+=`<div class="card"><h2>平台规则检查 ${pc.pass===undefined?'':pc.pass?'<span class="ok">✓ 通过</span>':'<span class="bad">✗ 未通过</span>'}</h2><div class="tw"><table>
+   ${Object.entries(pc).filter(([k])=>k!=='pass').map(([k,v])=>`<tr><td>${k}</td><td style="text-align:left;white-space:normal"><code>${JSON.stringify(v)}</code></td></tr>`).join('')}
+   <tr><td>代码映射</td><td style="text-align:left"><code>${JSON.stringify(r.mapping)}</code></td></tr>
+   <tr><td>覆盖</td><td style="text-align:left">区间评估行 ${r.coverage.eval_rows_in_range.toLocaleString()}，因子有效 ${r.coverage.factor_finite_rows_in_range.toLocaleString()}（${f(r.coverage.finite_coverage,3)}），有官方暴露 ${f(r.coverage.official_exposure_row_coverage,3)}</td></tr></table></div></div>`;
+  D.innerHTML=h;const css=getComputedStyle(document.documentElement),acc=css.getPropertyValue('--acc'),mut=css.getPropertyValue('--mut');
+  charts.push(new Chart($('#c1'),{type:'line',data:{labels:r.daily.map(x=>x.day),datasets:[{label:'累计 IC',data:r.daily.map(x=>x.cum_ic),borderColor:acc,pointRadius:0,yAxisID:'y'},{label:'IC 20 日均线',data:r.daily.map(x=>x.ic_ma20),borderColor:mut,pointRadius:0,borderWidth:1,yAxisID:'y1'}]},options:{maintainAspectRatio:false,scales:{x:{ticks:{maxTicksLimit:8}},y1:{position:'right',grid:{display:false}}}}}));
+  const bs=Object.entries(d.by_slot||{});charts.push(new Chart($('#c2'),{type:'bar',data:{labels:bs.map(x=>x[0]),datasets:[{label:'IC 均值',data:bs.map(x=>x[1].ic_mean),backgroundColor:acc}]},options:{maintainAspectRatio:false,plugins:{legend:{display:false}}}}))}
+async function loadCmp(){const P={limit:PAGE,offset:CP*PAGE,status:'done'};if($('#cq').value.trim())P.q=$('#cq').value.trim();const[js,t]=await pageJobs(P);CT=t;pinfo('#cpinfo',CP,t);$('#cmpsel').innerHTML='<tr><th></th><th>任务</th><th>名称</th><th>区间</th><th>标签</th></tr>'+js.map(j=>`<tr><td><input type="checkbox" value="${j.id}" ${CMPSEL.has(j.id)?'checked':''} onchange="this.checked?CMPSEL.add(this.value):CMPSEL.delete(this.value)"></td><td>${j.id}</td><td>${j.name}</td><td>${j.start}~${j.end}</td><td>${j.label}</td></tr>`).join('')}
+const CMPSEL=new Set();
+async function doCompare(){const ids=[...CMPSEL];if(!ids.length)return;const rs=await Promise.all(ids.map(i=>api('/api/jobs/'+i)));
+  const rows=[...Object.keys(CN).map(k=>[CN[k],r=>f(r.metrics[k],DIG[k])]),['估计公榜分',r=>f(r.reference_pool?.estimated_public_score,3)],['参照池综合百分位',r=>f(r.reference_pool?.local_composite,2)],['不剔除风格 IC_IR',r=>f(r.no_neutralize.ic_ir,3)],['有效截面',r=>r.metrics.n_xsec],['区间',r=>r.meta.start+'~'+r.meta.end]];
+  $('#cmpout').innerHTML='<table><tr><th>指标</th>'+rs.map(j=>`<th>${j.name}</th>`).join('')+'</tr>'+rows.map(([n,fn])=>`<tr><td>${n}</td>${rs.map(j=>`<td>${fn(j.result)}</td>`).join('')}</tr>`).join('')+'</table>'}
+async function loadRefs(){const m=await api('/api/meta');$('#reftab').innerHTML='<tr><th>编号</th><th>因子</th><th>公榜分</th><th>快照</th><th>校准</th><th>IC_IR（全区间）</th><th>来源任务</th></tr>'+m.ref_pool.sort((a,b)=>(b.public_score||0)-(a.public_score||0)).map(x=>`<tr><td>${x.fid}</td><td style="text-align:left">${x.name}</td><td>${f(x.public_score,5)}</td><td>${x.snapshot||'—'}</td><td>${x.calib?'✓':''}</td><td>${f(x.ic_ir,3)}</td><td class="small">${x.job||'—'}</td></tr>`).join('')}
+async function loadBoard(){const flt=$('#bfilter').value.trim();const q=new URLSearchParams({start:$('#bstart').value,end:$('#bend').value,include_refs:$('#brefs').checked,sort:$('#bsort').value,offset:BP*PAGE,limit:PAGE});if(flt)q.set('q',flt);
+  const b=await api('/api/leaderboard?'+q);BT=b.n_match||0;pinfo('#bpinfo',BP,BT);
+  const pc=b.pub_calibration;
+  $('#bleaders').innerHTML=(b.n?`共 ${b.n} 个因子 · 各项第一：`+Object.entries(b.leaders).map(([k,v])=>`${CN[k]} <b>${v}</b>`).join('；'):'还没有覆盖该窗口的因子')+
+   (pc?`<br>公榜估计：${pc.n} 个锚点（快照 ${pc.snapshot.join('、')}），留一法误差 ${f(pc.loo_mae,3)}，<b>头部误差 ${f(pc.loo_mae_head,3)}</b>，头部秩相关 ${f(pc.loo_rank_corr_head,2)}`:'<br>公榜估计：参照池里同快照的锚点不足');
+  const cell=(p,v,d)=>`<td style="background:color-mix(in srgb,var(--acc) ${Math.round(p*35)}%,transparent)" title="百分位 ${f(p,3)}">${f(v,d)}</td>`;
+  $('#boardtab').innerHTML='<tr><th>名次</th><th>因子</th><th>来源</th><th>赋分</th>'+Object.keys(CN).map(k=>`<th>${CN[k]}</th>`).join('')+'<th>短板</th><th title="没有其他因子五项同时不差且至少一项更好">前沿</th><th title="锚定同快照公榜分的估计；括号内是估计名次">公榜估计</th><th>公榜</th><th>创建</th></tr>'+
+   b.rows.map(r=>`<tr${r.source==='参照池'?' style="opacity:.8"':''} ${r.source!=='参照池'?`style="cursor:pointer" onclick="show('jobs');openJob('${r.key}')"`:''}><td>${r.rank}</td><td style="text-align:left">${r.name}</td><td class="small">${r.source}</td><td><b>${f(r.score,3)}</b></td>`+
+   Object.keys(CN).map(k=>cell(r['pct_'+k],r[k],DIG[k])).join('')+`<td class="small">${CN[r.weakest]}</td><td>${r.pareto?'★':''}</td><td title="锚点：${(r.pub_anchors||[]).join('、')}">${r.pub_est==null?'—':f(r.pub_est,3)+(r.pub_extrap?' <span class="small" title="指标落在锚点覆盖范围之外，线性外推，只能当方向参考">外推</span>':'')+` <span class="small mut">(${r.pub_rank})</span>`}</td><td>${f(r.public_score,5)}</td><td class="small">${r.created||''}</td></tr>`).join('')}
+init();
+</script>
+</body>
+</html>

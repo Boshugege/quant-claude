@@ -1,0 +1,1002 @@
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1457: RuntimeWarning: Mean of empty slice
+  zr = (r_d - np.nanmean(r_d, 0, keepdims=True)) / (np.nanstd(r_d, 0, keepdims=True) + 1e-12)
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1533: RuntimeWarning: Mean of empty slice
+  np.log1p(a_d / (np.nanmean(a_d, 1, keepdims=True) + 1e-9)), gather(r_d, idd)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1626: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(g_a, 1)),                          # 20 日均成交额
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1649: RuntimeWarning: Mean of empty slice
+  sz = np.log(np.nanmean(gather(amt_d, idd), 1))
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 20:56:41 [info     ] 分片完成                           elapsed=7.0 samples=125760 start=2020-01-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1457: RuntimeWarning: Mean of empty slice
+  zr = (r_d - np.nanmean(r_d, 0, keepdims=True)) / (np.nanstd(r_d, 0, keepdims=True) + 1e-12)
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 20:56:52 [info     ] 分片完成                           elapsed=8.9 samples=157737 start=2020-02-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1457: RuntimeWarning: Mean of empty slice
+  zr = (r_d - np.nanmean(r_d, 0, keepdims=True)) / (np.nanstd(r_d, 0, keepdims=True) + 1e-12)
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 20:57:05 [info     ] 分片完成                           elapsed=10.8 samples=175504 start=2020-03-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1457: RuntimeWarning: Mean of empty slice
+  zr = (r_d - np.nanmean(r_d, 0, keepdims=True)) / (np.nanstd(r_d, 0, keepdims=True) + 1e-12)
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 20:57:19 [info     ] 分片完成                           elapsed=10.4 samples=167432 start=2020-04-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1457: RuntimeWarning: Mean of empty slice
+  zr = (r_d - np.nanmean(r_d, 0, keepdims=True)) / (np.nanstd(r_d, 0, keepdims=True) + 1e-12)
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 20:57:31 [info     ] 分片完成                           elapsed=9.3 samples=143482 start=2020-05-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 20:57:43 [info     ] 分片完成                           elapsed=10.2 samples=159103 start=2020-06-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 20:57:57 [info     ] 分片完成                           elapsed=11.4 samples=183564 start=2020-07-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 20:58:11 [info     ] 分片完成                           elapsed=10.9 samples=167460 start=2020-08-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 20:58:25 [info     ] 分片完成                           elapsed=11.3 samples=175424 start=2020-09-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 20:58:37 [info     ] 分片完成                           elapsed=8.6 samples=127680 start=2020-10-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 20:58:50 [info     ] 分片完成                           elapsed=10.9 samples=167792 start=2020-11-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 20:59:04 [info     ] 分片完成                           elapsed=11.8 samples=183424 start=2020-12-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 20:59:18 [info     ] 分片完成                           elapsed=10.7 samples=159211 start=2021-01-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 20:59:29 [info     ] 分片完成                           elapsed=8.1 samples=119577 start=2021-02-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 20:59:43 [info     ] 分片完成                           elapsed=12.3 samples=183073 start=2021-03-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 20:59:58 [info     ] 分片完成                           elapsed=11.3 samples=167211 start=2021-04-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:00:10 [info     ] 分片完成                           elapsed=9.7 samples=143359 start=2021-05-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:00:24 [info     ] 分片完成                           elapsed=11.3 samples=166878 start=2021-06-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:00:39 [info     ] 分片完成                           elapsed=11.8 samples=174996 start=2021-07-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:00:53 [info     ] 分片完成                           elapsed=11.7 samples=174980 start=2021-08-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:01:07 [info     ] 分片完成                           elapsed=10.8 samples=159576 start=2021-09-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:01:19 [info     ] 分片完成                           elapsed=8.8 samples=127816 start=2021-10-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:01:33 [info     ] 分片完成                           elapsed=11.8 samples=175656 start=2021-11-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:01:48 [info     ] 分片完成                           elapsed=12.1 samples=183792 start=2021-12-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:02:01 [info     ] 分片完成                           elapsed=10.3 samples=151616 start=2022-01-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:02:12 [info     ] 分片完成                           elapsed=8.5 samples=127768 start=2022-02-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:02:27 [info     ] 分片完成                           elapsed=12.3 samples=183808 start=2022-03-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:02:40 [info     ] 分片完成                           elapsed=10.1 samples=151440 start=2022-04-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:02:53 [info     ] 分片完成                           elapsed=10.2 samples=151560 start=2022-05-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:03:07 [info     ] 分片完成                           elapsed=11.2 samples=167664 start=2022-06-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:03:21 [info     ] 分片完成                           elapsed=11.2 samples=167648 start=2022-07-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:03:36 [info     ] 分片完成                           elapsed=12.3 samples=183784 start=2022-08-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:03:51 [info     ] 分片完成                           elapsed=11.5 samples=167720 start=2022-09-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:04:03 [info     ] 分片完成                           elapsed=9.1 samples=127704 start=2022-10-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:04:17 [info     ] 分片完成                           elapsed=11.7 samples=175720 start=2022-11-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:04:32 [info     ] 分片完成                           elapsed=11.9 samples=175648 start=2022-12-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:04:44 [info     ] 分片完成                           elapsed=9.1 samples=127800 start=2023-01-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:04:57 [info     ] 分片完成                           elapsed=10.3 samples=159832 start=2023-02-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:05:12 [info     ] 分片完成                           elapsed=12.3 samples=183776 start=2023-03-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:05:25 [info     ] 分片完成                           elapsed=10.2 samples=151840 start=2023-04-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:05:39 [info     ] 分片完成                           elapsed=10.7 samples=159616 start=2023-05-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:05:52 [info     ] 分片完成                           elapsed=10.8 samples=159520 start=2023-06-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:06:06 [info     ] 分片完成                           elapsed=11.4 samples=167784 start=2023-07-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:06:22 [info     ] 分片完成                           elapsed=12.5 samples=183776 start=2023-08-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:06:36 [info     ] 分片完成                           elapsed=10.8 samples=159800 start=2023-09-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:06:48 [info     ] 分片完成                           elapsed=8.9 samples=135856 start=2023-10-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:07:02 [info     ] 分片完成                           elapsed=11.7 samples=175784 start=2023-11-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:07:16 [info     ] 分片完成                           elapsed=11.4 samples=167744 start=2023-12-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:07:31 [info     ] 分片完成                           elapsed=11.6 samples=175808 start=2024-01-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:07:42 [info     ] 分片完成                           elapsed=8.1 samples=119984 start=2024-02-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:07:55 [info     ] 分片完成                           elapsed=11.3 samples=167888 start=2024-03-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:08:09 [info     ] 分片完成                           elapsed=10.8 samples=159912 start=2024-04-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:08:22 [info     ] 分片完成                           elapsed=10.6 samples=159800 start=2024-05-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:08:35 [info     ] 分片完成                           elapsed=10.2 samples=151832 start=2024-06-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:08:50 [info     ] 分片完成                           elapsed=12.2 samples=183728 start=2024-07-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:09:05 [info     ] 分片完成                           elapsed=11.8 samples=175752 start=2024-08-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:09:19 [info     ] 分片完成                           elapsed=10.1 samples=151603 start=2024-09-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:09:31 [info     ] 分片完成                           elapsed=9.7 samples=143864 start=2024-10-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:09:45 [info     ] 分片完成                           elapsed=11.2 samples=167824 start=2024-11-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1522: RuntimeWarning: Mean of empty slice
+  Xi += [gather(us_w, iw), gather(bd_w, iw), t_i - np.nanmean(t_i, 1, keepdims=True)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1536: RuntimeWarning: Mean of empty slice
+  Xd += [gather(us_d, idd), gather(bd_d, idd), t_d - np.nanmean(t_d, 1, keepdims=True)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1628: RuntimeWarning: Mean of empty slice
+  np.log(np.nanmean(np.abs(g_r) / np.where(g_a > 0, g_a, np.nan), 1)),   # 20 日非流动性
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:1690: RuntimeWarning: Mean of empty slice
+  m = np.where(np.isfinite(r_w), np.nanmean(r_w, 0, keepdims=True) * np.ones_like(r_w), np.nan)
+2026-10-25 21:10:00 [info     ] 分片完成                           elapsed=12.1 samples=175768 start=2024-12-01
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2492: RuntimeWarning: Mean of empty slice
+  out += [f[:, -k, :] for k in last] + [np.nanmean(f[:, -5:, :], 1), np.nanmean(f[:, -15:, :], 1), np.nanmean(f, 1), np.nanstd(f, 1)]
+/opt/homebrew/Caskroom/miniforge/base/envs/quant-e2e/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2494: RuntimeWarning: Mean of empty slice
+  out += [i[:, -k, :] for k in ((1, 2, 3, 4, 5, 6, 7, 8) if rich else (1, 2, 3, 4))] + [np.nanmean(i, 1)]
+/Users/user/Desktop/work/quant/e2e/submission/Transformer_modelsave_train.py:2496: RuntimeWarning: Mean of empty slice
+  out += [d[:, -k, :] for k in ((1, 2, 3, 4, 5) if rich else (1, 2))] + [np.nanmean(d, 1)]
+2026-10-25 21:10:42 [info     ] 训练剔除特征                         cov=0.9834 mode=proxy_ind pind_cov=0.8737
+2026-10-25 21:15:49 [info     ] 树模型成员训练                        bags=1 depth=8 device=mps features=1055 samples=8461813 trees=800
+2026-10-25 21:27:11 [info     ] 树模型成员进度                        bag=0 mse=0.9971 trees=100
+2026-10-25 21:38:23 [info     ] 树模型成员进度                        bag=0 mse=0.993 trees=200
+2026-10-25 21:49:32 [info     ] 树模型成员进度                        bag=0 mse=0.9898 trees=300
+2026-10-25 22:00:34 [info     ] 树模型成员进度                        bag=0 mse=0.987 trees=400
+2026-10-25 22:11:36 [info     ] 树模型成员进度                        bag=0 mse=0.9845 trees=500
+2026-10-25 22:22:36 [info     ] 树模型成员进度                        bag=0 mse=0.9823 trees=600
+2026-10-25 22:33:35 [info     ] 树模型成员进度                        bag=0 mse=0.9801 trees=700
+2026-10-25 22:44:31 [info     ] 树模型成员进度                        bag=0 mse=0.978 trees=800
+树模型成员训练完成 6477s
+写出 e2e/runs/F30-33G8_2020-24_E17b_gbdt_win12 23156679 bytes

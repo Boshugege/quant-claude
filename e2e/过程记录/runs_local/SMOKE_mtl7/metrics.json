@@ -1,0 +1,24 @@
+{
+  "history": [
+    {
+      "member": 0,
+      "epoch": 1,
+      "sections": 0,
+      "ic": NaN,
+      "icir": NaN,
+      "ls_sharpe": NaN,
+      "stress": NaN,
+      "turnover": NaN,
+      "raw_sections": 0,
+      "raw_ic": NaN,
+      "raw_icir": NaN,
+      "raw_ls_sharpe": NaN,
+      "raw_stress": NaN,
+      "raw_turnover": NaN
+    }
+  ],
+  "json_bytes": 4429434,
+  "reload_maxdiff": 0.0,
+  "max_rss_gb": 5.11107072,
+  "total_sec": 14.933016777038574
+}

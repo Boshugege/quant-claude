@@ -1,0 +1,1 @@
+--run F06_2020-24_experts_peer_barra_yoff_on1.0_2x3 --arch e04 --use-style --out-neutral 1.0 --train 2020-01-01 2024-12-31 --val 2024-10-01 2024-12-31 --epochs 3 --n-models 2 --secs-per-batch 4 --no-analyze

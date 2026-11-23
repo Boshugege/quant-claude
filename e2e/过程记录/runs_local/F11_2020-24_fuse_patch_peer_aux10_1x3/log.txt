@@ -1,0 +1,7 @@
+20:45:57 训练设备 device=mps arch=e04 win_groups=shape,book,peer rss=0.3GB peak=0.3GB
+20:46:08 分片完成 start=2020-01-01 samples=125760 elapsed=9.9 rss=7.1GB peak=10.2GB
+20:46:21 分片完成 start=2020-02-01 samples=157737 elapsed=13.2 rss=9.9GB peak=15.6GB
+20:46:37 分片完成 start=2020-03-01 samples=175504 elapsed=15.8 rss=11.2GB peak=18.0GB
+20:46:52 分片完成 start=2020-04-01 samples=167432 elapsed=14.8 rss=12.5GB peak=19.0GB
+20:47:05 分片完成 start=2020-05-01 samples=143482 elapsed=13.2 rss=14.1GB peak=19.2GB
+20:47:20 分片完成 start=2020-06-01 samples=159103 elapsed=14.9 rss=14.6GB peak=20.9GB

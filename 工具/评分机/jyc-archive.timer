@@ -1,0 +1,9 @@
+[Unit]
+Description=JYC 评分机任务归档（每 6 小时）
+
+[Timer]
+OnCalendar=*-*-* 00/6:30:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

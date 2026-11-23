@@ -1,0 +1,1 @@
+配置 seed=7 trees=300 depth=2 sub=0.08 lr=0.06 slot=True heads_only=False fit=2020-01-01..2022-12-31 ewma=0.00 extra=['L_5', 'VSH20', 'PACE20', 'DOW10', 'CLS20', 'CLOSEPOS20'] drop=['N_dir', 'Y_sd5', 'X_n5d']

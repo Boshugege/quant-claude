@@ -1,0 +1,10 @@
+14:20:26 device mps args {'run': 'smoke', 'train': ['2020-02', '2020-02'], 'val': ['2020-03', '2020-03'], 'max_inst': 50, 'max_days': 5, 'norm': 'raw', 'target': 'raw', 'epochs': 1, 'batch': 512, 'lr': 0.001, 'seed': 42, 'd_model': 64, 'nlayers': 2, 'dim_ff': 128, 'nhead': 4}
+14:20:27 build train ['2020-02', '2020-02']
+14:20:32   202002: samples=2,000 label_cov=0.8750 nan_frac=0.0006 4.4s rss=3.8GB
+14:20:32 build val ['2020-03', '2020-03']
+14:20:37   202003: samples=2,000 label_cov=0.8750 nan_frac=0.0000 5.0s rss=5.2GB
+14:20:37 train X(1750, 64, 10) val X(2000, 64, 10) y_std=0.00751 build=10s rss=5.2GB
+14:20:37 params 71937
+14:20:42 epoch 1: loss=0.120456 val_ic=nan icir=nan ls=nan turn=nan pred_std=0.12 nan=0 3.9s mps_mem=0.00GB rss=5.2GB
+14:20:42 json=e2e/runs/smoke/transformer_model.json bytes=1,571,472 (1.50 MiB) <50MB=True reload_maxdiff=2.68e-07
+14:20:42 done 15s

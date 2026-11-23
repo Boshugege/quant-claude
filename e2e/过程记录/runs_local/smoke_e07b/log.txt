@@ -1,0 +1,26 @@
+14:48:26 训练设备 device=mps arch=e04 rss=0.3GB peak=0.3GB
+14:48:30 分片完成 start=2020-06-01 samples=30208 elapsed=3.6 rss=3.4GB peak=3.5GB
+14:48:32 分片完成 start=2020-07-01 samples=33096 elapsed=2.4 rss=4.5GB peak=4.7GB
+14:48:33 train 集构建完成 samples=63304 rss=4.8GB peak=5.0GB
+14:48:34 训练剔除特征 mode=proxy_ind cov=0.9874 pind_cov=0.9671 rss=4.9GB peak=5.0GB
+14:48:36 分片完成 start=2020-08-01 samples=33076 elapsed=2.4 rss=5.3GB peak=5.8GB
+14:48:36 train 集构建完成 samples=33076 rss=5.3GB peak=5.8GB
+14:48:36 [val] 官方风格暴露不可用，只报原始口径：AttributeError("module 'Transformer_modelsave_train' has no attribute 'STYLE_COLS'")
+14:48:36 训练样本 samples=63304 models=1 n_params=148899 rss=5.4GB peak=5.8GB
+14:48:39 训练进度 member=0 epoch=1/1 pct=9% loss=2.693117 samples_per_s=2801 eta_s=20 rss=5.8GB peak=6.0GB
+14:48:40 训练进度 member=0 epoch=1/1 pct=19% loss=2.547908 samples_per_s=4114 eta_s=12 rss=5.8GB peak=6.0GB
+14:48:41 训练进度 member=0 epoch=1/1 pct=28% loss=2.479556 samples_per_s=4540 eta_s=10 rss=5.9GB peak=6.1GB
+14:48:42 训练进度 member=0 epoch=1/1 pct=37% loss=2.599888 samples_per_s=4933 eta_s=8 rss=6.0GB peak=6.2GB
+14:48:42 训练进度 member=0 epoch=1/1 pct=47% loss=2.580572 samples_per_s=5306 eta_s=6 rss=6.0GB peak=6.2GB
+14:48:43 训练进度 member=0 epoch=1/1 pct=56% loss=2.530786 samples_per_s=5544 eta_s=5 rss=6.1GB peak=6.3GB
+14:48:44 训练进度 member=0 epoch=1/1 pct=65% loss=2.527653 samples_per_s=5819 eta_s=3 rss=6.1GB peak=6.3GB
+14:48:45 训练进度 member=0 epoch=1/1 pct=74% loss=2.548968 samples_per_s=5992 eta_s=2 rss=6.1GB peak=6.3GB
+14:48:46 训练进度 member=0 epoch=1/1 pct=84% loss=2.554499 samples_per_s=6131 eta_s=1 rss=6.2GB peak=6.3GB
+14:48:46 训练进度 member=0 epoch=1/1 pct=93% loss=2.492476 samples_per_s=6250 eta_s=0 rss=6.2GB peak=6.4GB
+14:48:47 epoch 完成 member=0 epoch=1/1 loss=2.554523 elapsed=10.0 rss=6.2GB peak=6.4GB
+14:48:48 [val] member 0 epoch 1 原始口径: ic=0.0922 icir=0.703 ls=19.39 stress=0.539 turn=0.504 | 原始: ic=0.0922 icir=0.703 | pred_std=0.212 nan=0 eval=1s rss=6.4GB
+14:48:48 模型已保存 path=e2e/runs/smoke_e07b/transformer_model.json bytes=3244497 rss=6.2GB peak=6.4GB
+14:48:51 json=e2e/runs/smoke_e07b/transformer_model.json bytes=3,244,497 (3.09 MiB) <50MB=True models=1 reload_maxdiff=1.70e-03
+14:48:52 分片完成 start=2020-08-01 samples=33272 elapsed=1.1 rss=6.6GB peak=6.8GB
+14:48:53 predict_range rows=33,272 matched=33,076 maxdiff=4.98e-01
+14:48:54 done 27s

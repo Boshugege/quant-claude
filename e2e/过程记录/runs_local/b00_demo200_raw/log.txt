@@ -1,0 +1,27 @@
+14:20:58 device mps args {'run': 'b00_demo200_raw', 'train': ['2020-01', '2020-12'], 'val': ['2021-01', '2021-03'], 'max_inst': 200, 'max_days': 0, 'norm': 'raw', 'target': 'raw', 'epochs': 5, 'batch': 512, 'lr': 0.001, 'seed': 42, 'd_model': 64, 'nlayers': 2, 'dim_ff': 128, 'nhead': 4}
+14:21:00 build train ['2020-01', '2020-12']
+14:21:03   202001: samples=25,200 label_cov=0.8728 nan_frac=0.0007 3.6s rss=2.7GB
+14:21:10   202002: samples=32,000 label_cov=0.8743 nan_frac=0.0006 6.6s rss=5.1GB
+14:21:18   202003: samples=35,200 label_cov=0.8742 nan_frac=0.0006 7.6s rss=6.6GB
+14:21:25   202004: samples=33,600 label_cov=0.8719 nan_frac=0.0021 7.8s rss=6.6GB
+14:21:32   202005: samples=28,800 label_cov=0.8734 nan_frac=0.0014 6.9s rss=6.7GB
+14:21:39   202006: samples=31,808 label_cov=0.8721 nan_frac=0.0020 7.0s rss=6.7GB
+14:21:47   202007: samples=32,568 label_cov=0.8744 nan_frac=0.0006 7.8s rss=7.7GB
+14:21:55   202008: samples=29,728 label_cov=0.8697 nan_frac=0.0021 7.5s rss=7.7GB
+14:22:02   202009: samples=30,976 label_cov=0.8723 nan_frac=0.0020 7.7s rss=7.7GB
+14:22:09   202010: samples=22,528 label_cov=0.8728 nan_frac=0.0020 6.4s rss=7.7GB
+14:22:16   202011: samples=29,568 label_cov=0.8750 nan_frac=0.0008 6.8s rss=7.7GB
+14:22:24   202012: samples=32,208 label_cov=0.8726 nan_frac=0.0019 8.0s rss=8.0GB
+14:22:24 build val ['2021-01', '2021-03']
+14:22:31   202101: samples=24,640 label_cov=0.8716 nan_frac=0.0021 7.3s rss=8.4GB
+14:22:37   202102: samples=18,480 label_cov=0.8720 nan_frac=0.0019 5.6s rss=8.4GB
+14:22:43   202103: samples=28,336 label_cov=0.8723 nan_frac=0.0018 6.8s rss=8.4GB
+14:22:46 train X(317924, 64, 10) val X(71456, 64, 10) y_std=0.00723 build=106s rss=10.6GB
+14:22:46 params 71937
+14:22:57 epoch 1: loss=0.00138262 val_ic=-0.0131 icir=-0.099 ls=1.48 turn=0.210 pred_std=0.00253 nan=0 10.3s mps_mem=0.00GB rss=10.6GB
+14:23:06 epoch 2: loss=9.52714e-05 val_ic=-0.0242 icir=-0.138 ls=0.53 turn=0.123 pred_std=0.00292 nan=0 9.5s mps_mem=0.01GB rss=10.6GB
+14:23:16 epoch 3: loss=6.95469e-05 val_ic=-0.0110 icir=-0.100 ls=1.43 turn=0.157 pred_std=0.00118 nan=0 9.5s mps_mem=0.00GB rss=10.6GB
+14:23:25 epoch 4: loss=6.04622e-05 val_ic=-0.0014 icir=-0.014 ls=4.30 turn=0.281 pred_std=0.000541 nan=0 9.6s mps_mem=0.01GB rss=10.6GB
+14:23:35 epoch 5: loss=5.76531e-05 val_ic=-0.0203 icir=-0.114 ls=0.39 turn=0.088 pred_std=0.00136 nan=0 9.5s mps_mem=0.00GB rss=10.6GB
+14:23:37 json=e2e/runs/b00_demo200_raw/transformer_model.json bytes=1,569,348 (1.50 MiB) <50MB=True reload_maxdiff=8.20e-08
+14:23:37 done 157s

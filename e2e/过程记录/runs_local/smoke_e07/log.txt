@@ -1,0 +1,4 @@
+14:48:04 训练设备 device=mps arch=e04 rss=0.3GB peak=0.3GB
+14:48:08 分片完成 start=2020-06-01 samples=30208 elapsed=3.5 rss=3.4GB peak=3.5GB
+14:48:10 分片完成 start=2020-07-01 samples=33096 elapsed=2.4 rss=4.5GB peak=4.7GB
+14:48:11 train 集构建完成 samples=63304 rss=4.9GB peak=5.0GB

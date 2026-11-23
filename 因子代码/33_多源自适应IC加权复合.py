@@ -1,0 +1,242 @@
+def main(datasources, start_date, end_date):
+    """
+    多源自适应 IC 加权复合因子。
+
+    经济含义：一次 SQL 扫描同时计算四类相互独立的信息源：
+      book : 盘口三维共识（逐档量 / 逐档笔数 / 价距密度，同 29 号）
+      ofi  : 多层逐档订单流不平衡（同 30 号）
+      flow : 主动成交净买入强度（同 31 号）
+      rev  : 30 分钟 VWAP 偏离反转（同 32 号）
+    每个截面在股票池内转为居中排名后，用“历史已实现截面 Rank IC 的指数加权均值”作为权重线性合成。
+
+    防未来函数：在截面 t 预测的已实现收益 = 下一个 30 分钟段的成交 VWAP / t 时刻价格 - 1，
+    它在下一个截面时刻就已经完全实现。截面 t 合成时只使用 t 之前（不含 t）截面的 IC，
+    即 IC 序列整体向后错一位再做指数加权，没有任何未来信息进入因子值。
+    预热期（历史 IC 不足）时向先验权重收缩：先验只给 book（已被公榜验证为正向）正权重，
+    其余三类的方向与大小完全由数据自己学习，因此不需要人为猜测 ofi/flow/rev 的符号。
+
+    可能有效的理由：四类信号来源不同（存量挂单 / 挂撤单流量 / 成交方向 / 价格偏离），
+    相关性低，按各自可靠程度加权比任何单一信号更稳；权重随市场状态缓慢自适应。
+
+    评测时平台会注入 datasources、start_date 和 end_date。
+    返回且仅返回 ['date', 'instrument', 'factor'] 三列。
+    """
+    import numpy as np
+    import pandas as pd
+    import dai
+
+    # ---------- 可调参数 ----------
+    # 已实现收益口径："close" = 下一段 VWAP / 本段末价格 - 1；"vwap" = 下一段 VWAP / 本段 VWAP - 1
+    TARGET_MODE = "close"
+    IC_HALFLIFE = 96          # IC 指数加权半衰期（截面个数，8 个/天，约 12 个交易日）
+    PRIOR_STRENGTH = 24       # 先验相当于多少个截面的观测（约 3 个交易日）
+    MIN_STOCKS = 30           # 计算单个截面 IC 的最少股票数
+    PRIOR = {"c_book": 0.08, "c_ofi": 0.0, "c_flow": 0.0, "c_rev": 0.0}
+
+    bar1m = datasources["bar1m"]
+    levels = range(1, 6)
+
+    raw_cols = ",\n            ".join(
+        [f"CAST(COALESCE(bid_price{i}, 0) AS DOUBLE) AS bp{i}" for i in levels]
+        + [f"CAST(COALESCE(ask_price{i}, 0) AS DOUBLE) AS ap{i}" for i in levels]
+        + [f"CAST(COALESCE(bid_volume{i}, 0) AS DOUBLE) AS bv{i}" for i in levels]
+        + [f"CAST(COALESCE(ask_volume{i}, 0) AS DOUBLE) AS av{i}" for i in levels]
+        + [f"CAST(COALESCE(bid_num_orders{i}, 0) AS DOUBLE) AS bn{i}" for i in levels]
+        + [f"CAST(COALESCE(ask_num_orders{i}, 0) AS DOUBLE) AS an{i}" for i in levels]
+    )
+    lag_cols = ",\n            ".join(
+        f"LAG({c}{i}) OVER w AS p{c}{i}" for c in ("bp", "ap", "bv", "av") for i in levels
+    )
+    vol_terms = " + ".join(f"(bv{i} - av{i}) / (bv{i} + av{i} + 1e-8)" for i in levels)
+    cnt_terms = " + ".join(f"(bn{i} - an{i}) / (bn{i} + an{i} + 1e-8)" for i in levels)
+    valid = {i: f"(bp{i} > 0 AND ap{i} > 0 AND bp{i} < mid AND ap{i} > mid)" for i in levels}
+    dens_terms = " + ".join(
+        f"CASE WHEN {valid[i]} THEN (bv{i} * (ap{i} - mid) - av{i} * (mid - bp{i}))"
+        f" / (bv{i} * (ap{i} - mid) + av{i} * (mid - bp{i}) + 1e-8) ELSE 0 END"
+        for i in levels
+    )
+    valid_count = " + ".join(f"CASE WHEN {valid[i]} THEN 1 ELSE 0 END" for i in levels)
+    ofi_cols = ",\n            ".join(
+        f"""CASE WHEN ok AND prev_ok THEN
+                (CASE WHEN bp{i} > pbp{i} THEN bv{i} WHEN bp{i} = pbp{i} THEN bv{i} - pbv{i} ELSE -pbv{i} END)
+              - (CASE WHEN ap{i} < pap{i} THEN av{i} WHEN ap{i} = pap{i} THEN av{i} - pav{i} ELSE -pav{i} END)
+            END AS ofi{i},
+            CASE WHEN ok AND prev_ok THEN bv{i} + av{i} END AS dep{i}"""
+        for i in levels
+    )
+    ofi_win = ",\n            ".join(f"SUM(ofi{i}) / (AVG(dep{i}) + 1.0) AS o{i}" for i in levels)
+
+    sql = f"""
+    WITH raw AS (
+        SELECT
+            instrument_id,
+            CAST(CAST(date AS TIMESTAMP) AS DATE) AS trading_day,
+            hour(date) * 10000 + minute(date) * 100 + second(date) AS hms,
+            CAST(COALESCE(close, 0) AS DOUBLE) AS px_close,
+            CAST(COALESCE(volume, 0) AS DOUBLE) AS vol,
+            CAST(COALESCE(amount, 0) AS DOUBLE) AS amt,
+            {raw_cols}
+        FROM {bar1m}
+    ),
+    lagged AS (
+        SELECT
+            *,
+            {lag_cols}
+        FROM raw
+        WINDOW w AS (PARTITION BY instrument_id, trading_day ORDER BY hms)
+    ),
+    seg AS (
+        SELECT
+            *,
+            (bp1 + ap1) / 2.0 AS mid,
+            (bp1 > 0 AND ap1 > bp1) AS ok,
+            COALESCE(pbp1 > 0 AND pap1 > pbp1, FALSE) AS prev_ok,
+            CASE
+                WHEN hms > 90000  AND hms <= 93000  THEN 93000
+                WHEN hms > 93000  AND hms <= 100000 THEN 100000
+                WHEN hms > 100000 AND hms <= 103000 THEN 103000
+                WHEN hms > 103000 AND hms <= 110000 THEN 110000
+                WHEN hms > 110000 AND hms <= 113000 THEN 113000
+                WHEN hms > 130000 AND hms <= 133000 THEN 133000
+                WHEN hms > 133000 AND hms <= 140000 THEN 140000
+                WHEN hms > 140000 AND hms <= 143000 THEN 143000
+                WHEN hms > 143000 AND hms <= 150000 THEN 150000
+                ELSE -1
+            END AS time_segment
+        FROM lagged
+    ),
+    snap AS (
+        SELECT
+            trading_day, time_segment, instrument_id, hms, vol, amt,
+            CASE WHEN ok THEN mid WHEN px_close > 0 THEN px_close END AS px,
+            CASE WHEN ok THEN ({vol_terms}) / 5.0 END AS s_vol,
+            CASE WHEN ok THEN ({cnt_terms}) / 5.0 END AS s_cnt,
+            CASE WHEN ok THEN ({dens_terms}) / NULLIF({valid_count}, 0) END AS s_dens,
+            CASE WHEN prev_ok AND vol > 0 AND amt > 0
+                 THEN GREATEST(-1.0, LEAST(1.0,
+                      (amt / vol - (pap1 + pbp1) / 2.0) / ((pap1 - pbp1) / 2.0)))
+            END AS side,
+            {ofi_cols}
+        FROM seg
+        WHERE time_segment > 0
+    ),
+    win AS (
+        SELECT
+            trading_day, time_segment, instrument_id,
+            AVG(s_vol) AS f_vol,
+            AVG(s_cnt) AS f_cnt,
+            AVG(s_dens) AS f_dens,
+            SUM(side * vol) / NULLIF(SUM(CASE WHEN side IS NOT NULL THEN vol END), 0) AS flow,
+            SUM(amt) / NULLIF(SUM(vol), 0) AS vwap,
+            arg_max(px, CASE WHEN px IS NOT NULL THEN hms END) AS last_px,
+            {ofi_win}
+        FROM snap
+        GROUP BY trading_day, time_segment, instrument_id
+    )
+    SELECT w.*, i.instrument
+    FROM win w
+    LEFT JOIN all_instruments i USING (instrument_id)
+    """
+
+    df = dai.query(sql, filters={"date": [start_date, end_date]}, compression=True).df()
+    df = df.drop(columns=["instrument_id"], errors="ignore")
+    df["instrument"] = df["instrument"].astype(str)
+    df["time_segment"] = df["time_segment"].astype(int)
+    df["trading_day"] = pd.to_datetime(df["trading_day"])
+    num_cols = ["f_vol", "f_cnt", "f_dens", "flow", "vwap", "last_px"] + [f"o{i}" for i in levels]
+    df[num_cols] = df[num_cols].astype("float64").replace([np.inf, -np.inf], np.nan)
+
+    # ---------- 各分量的原始值 ----------
+    ofi = df[[f"o{i}" for i in levels]]
+    df["ofi"] = (ofi / (1.0 + ofi.abs())).mean(axis=1, skipna=True)
+    px_ok = (df["vwap"] > 0) & (df["last_px"] > 0)
+    df["rev"] = np.where(px_ok, np.log(df["vwap"].where(px_ok, 1.0) / df["last_px"].where(px_ok, 1.0)), np.nan)
+
+    # ---------- 已实现收益（只用于计算历史 IC） ----------
+    next_seg = {93000: 100000, 100000: 103000, 103000: 110000, 110000: 113000,
+                113000: 133000, 133000: 140000, 140000: 143000, 143000: 150000}
+    df = df.sort_values(["instrument", "trading_day", "time_segment"]).reset_index(drop=True)
+    grp = df.groupby(["instrument", "trading_day"], sort=False)
+    nseg = grp["time_segment"].shift(-1)
+    nvwap = grp["vwap"].shift(-1)
+    base = df["last_px"] if TARGET_MODE == "close" else df["vwap"]
+    ok_fwd = (nseg == df["time_segment"].map(next_seg)) & (base > 0) & (nvwap > 0)
+    df["fwd"] = np.where(ok_fwd, nvwap / base.where(ok_fwd, 1.0) - 1.0, np.nan)
+    df = df[df["time_segment"] != 150000].copy()
+
+    seg = df["time_segment"]
+    df["date"] = (
+        df["trading_day"]
+        + pd.to_timedelta(seg // 10000, unit="h")
+        + pd.to_timedelta(seg // 100 % 100, unit="m")
+    )
+
+    instruments_table = datasources.get("instruments", "cpt_jyc_2026_instruments")
+    stk_pool = dai.query(
+        f"SELECT date, instrument FROM {instruments_table}",
+        filters={"date": [start_date, end_date]},
+        compression=True,
+    ).df()
+    stk_pool["date"] = pd.to_datetime(stk_pool["date"])
+    stk_pool["instrument"] = stk_pool["instrument"].astype(str)
+
+    keep = ["date", "instrument", "f_vol", "f_cnt", "f_dens", "ofi", "flow", "rev", "fwd"]
+    res = pd.merge(df[keep], stk_pool, how="inner", on=["date", "instrument"])
+    res = res.drop_duplicates(["date", "instrument"]).sort_values(["date", "instrument"]).reset_index(drop=True)
+
+    # ---------- 截面居中排名 ----------
+    by_date = res.groupby("date")
+    raw_ranks = by_date[["f_vol", "f_cnt", "f_dens", "ofi", "flow", "rev"]].rank(pct=True) - 0.5
+    res["book_raw"] = raw_ranks[["f_vol", "f_cnt", "f_dens"]].mean(axis=1, skipna=True)
+    res["c_book"] = res.groupby("date")["book_raw"].rank(pct=True) - 0.5
+    res["c_ofi"] = raw_ranks["ofi"]
+    res["c_flow"] = raw_ranks["flow"]
+    res["c_rev"] = raw_ranks["rev"]
+    res["y"] = by_date["fwd"].rank(pct=True) - 0.5
+    comps = ["c_book", "c_ofi", "c_flow", "c_rev"]
+
+    # ---------- 每个截面的 Rank IC ----------
+    dates = pd.Index(np.sort(res["date"].unique()))
+    ic = pd.DataFrame(index=dates, columns=comps, dtype="float64")
+    for c in comps:
+        m = res[c].notna() & res["y"].notna()
+        t = pd.DataFrame({"date": res["date"][m], "x": res[c][m], "y": res["y"][m]})
+        t["x"] = t["x"] - t.groupby("date")["x"].transform("mean")
+        t["y"] = t["y"] - t.groupby("date")["y"].transform("mean")
+        t["xy"] = t["x"] * t["y"]
+        t["xx"] = t["x"] * t["x"]
+        t["yy"] = t["y"] * t["y"]
+        s = t.groupby("date").agg(xy=("xy", "sum"), xx=("xx", "sum"), yy=("yy", "sum"), n=("xy", "size"))
+        val = s["xy"] / np.sqrt(s["xx"] * s["yy"])
+        val[(s["n"] < MIN_STOCKS) | ~np.isfinite(val)] = np.nan
+        ic[c] = val.reindex(dates)
+
+    # ---------- 只用过去 IC：整体后移一个截面，再指数加权，并向先验收缩 ----------
+    hist = ic.shift(1)
+    ewm = hist.ewm(halflife=IC_HALFLIFE, ignore_na=True).mean().ffill()
+    n_obs = hist.notna().cumsum()
+    shrink = n_obs / (n_obs + PRIOR_STRENGTH)
+    weights = pd.DataFrame(index=dates, columns=comps, dtype="float64")
+    for c in comps:
+        weights[c] = shrink[c] * ewm[c].fillna(0.0) + (1.0 - shrink[c]) * PRIOR[c]
+
+    w = weights.reindex(res["date"]).to_numpy()
+    x = res[comps].to_numpy(dtype="float64")
+    all_nan = np.isnan(x).all(axis=1)
+    res["factor"] = np.where(all_nan, np.nan, np.nansum(np.nan_to_num(x) * w, axis=1))
+    res["factor"] = res["factor"].replace([np.inf, -np.inf], np.nan)
+
+    return res[["date", "instrument", "factor"]].sort_values(["date", "instrument"]).reset_index(drop=True)
+
+
+if __name__ == "__main__":
+    from bigmodule import M
+    import structlog
+
+    logger = structlog.get_logger()
+    datasources = {"bar1m": "cpt_jyc_2026_stock_bar1m"}
+    start_date = "2020-01-01 00:00:00"
+    end_date = "2020-03-01 23:59:59"
+    logger.info(f"计算因子，区间：{start_date} ~ {end_date}")
+    factor_data = main(datasources, start_date, end_date)
+    result = M.jyc_eval._latest(factor_data=factor_data, show=True)

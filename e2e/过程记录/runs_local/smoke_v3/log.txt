@@ -1,0 +1,18 @@
+15:52:19 训练设备 device=mps rss=0.3GB
+15:52:26 分片完成 start=2020-02-01 samples=4165 elapsed=5.7 rss=4.1GB
+15:52:26 train 集构建完成 samples=4165 rss=4.1GB
+15:52:34 分片完成 start=2020-03-01 samples=4172 elapsed=5.7 rss=6.8GB
+15:52:34 train 集构建完成 samples=4172 rss=6.8GB
+15:52:34 训练样本 samples=4165 models=2 n_params=77441 rss=6.8GB
+15:52:38 epoch 完成 member=0 epoch=1 loss=0.978664 elapsed=2.9 rss=7.0GB
+15:52:38 [val] member 0 epoch 1: ic=0.0837 icir=0.698 ls=28.70 turn=0.322 pred_std=0.0997 nan=0 eval=1s rss=7.0GB
+15:52:39 epoch 完成 member=1 epoch=1 loss=1.066443 elapsed=0.8 rss=7.0GB
+15:52:39 [val] member 1 epoch 1: ic=0.0272 icir=0.194 ls=-7.34 turn=0.525 pred_std=0.103 nan=0 eval=0s rss=7.0GB
+15:52:39 模型已保存 path=e2e/runs/smoke_v3/transformer_model.json bytes=3388663 rss=7.0GB
+15:52:41 json=e2e/runs/smoke_v3/transformer_model.json bytes=3,388,663 (3.23 MiB) <50MB=True models=2 reload_maxdiff=1.79e-07
+15:52:46 分片完成 start=2020-03-01 samples=4800 elapsed=4.4 rss=9.2GB
+15:52:46 predict_range rows=4,800 matched=4,172 maxdiff=0.00e+00
+15:52:49 分片完成 start=2020-02-23 samples=4768 elapsed=2.2 rss=9.2GB
+15:52:54 分片完成 start=2020-03-01 samples=4800 elapsed=4.4 rss=9.2GB
+15:52:54 predict_range ema=0.5 rows=4,800 (inference path with warm-up)
+15:52:54 done 35s

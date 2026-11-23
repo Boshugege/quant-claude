@@ -1,0 +1,21 @@
+18:18:49 训练设备 device=mps rss=0.3GB peak=0.3GB
+18:18:52 分片完成 start=2020-02-01 samples=4165 elapsed=1.8 rss=2.6GB peak=2.8GB
+18:18:52 train 集构建完成 samples=4165 rss=2.6GB peak=2.8GB
+18:18:55 分片完成 start=2020-03-01 samples=4172 elapsed=0.9 rss=3.6GB peak=3.9GB
+18:18:55 train 集构建完成 samples=4172 rss=3.6GB peak=3.9GB
+18:18:55 训练样本 samples=4165 models=1 n_params=75521 rss=3.6GB peak=3.9GB
+18:18:56 训练进度 member=0 epoch=1/1 pct=11% loss=1.525293 samples_per_s=2160 eta_s=1 rss=3.8GB peak=3.9GB
+18:18:56 训练进度 member=0 epoch=1/1 pct=22% loss=0.881454 samples_per_s=3265 eta_s=1 rss=3.8GB peak=3.9GB
+18:18:56 训练进度 member=0 epoch=1/1 pct=33% loss=0.761549 samples_per_s=3981 eta_s=0 rss=3.8GB peak=3.9GB
+18:18:56 训练进度 member=0 epoch=1/1 pct=44% loss=0.92942 samples_per_s=4472 eta_s=0 rss=3.8GB peak=3.9GB
+18:18:56 训练进度 member=0 epoch=1/1 pct=56% loss=1.034907 samples_per_s=4830 eta_s=0 rss=3.8GB peak=3.9GB
+18:18:56 训练进度 member=0 epoch=1/1 pct=67% loss=0.834097 samples_per_s=5102 eta_s=0 rss=3.8GB peak=3.9GB
+18:18:56 训练进度 member=0 epoch=1/1 pct=78% loss=1.214622 samples_per_s=5318 eta_s=0 rss=3.8GB peak=3.9GB
+18:18:56 训练进度 member=0 epoch=1/1 pct=89% loss=1.006197 samples_per_s=5489 eta_s=0 rss=3.8GB peak=3.9GB
+18:18:56 epoch 完成 member=0 epoch=1/1 loss=0.985537 elapsed=0.8 rss=3.8GB peak=3.9GB
+18:18:56 [val] member 0 epoch 1: ic=0.0788 icir=0.615 ls=11.98 turn=0.380 pred_std=0.0787 nan=0 eval=0s rss=3.9GB
+18:18:56 模型已保存 path=e2e/runs/smoke_v4/transformer_model.json bytes=1653506 rss=3.9GB peak=3.9GB
+18:18:57 json=e2e/runs/smoke_v4/transformer_model.json bytes=1,653,506 (1.58 MiB) <50MB=True models=1 reload_maxdiff=2.38e-07
+18:18:58 分片完成 start=2020-03-01 samples=4800 elapsed=0.9 rss=5.3GB peak=6.0GB
+18:18:58 predict_range rows=4,800 matched=4,172 maxdiff=0.00e+00
+18:18:58 done 9s

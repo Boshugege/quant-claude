@@ -1,0 +1,46 @@
+{
+  "run": "f02_2020-23_val24",
+  "train": [
+    "2020-01-01",
+    "2023-12-31 23:59:59"
+  ],
+  "val": [
+    "2024-01-01",
+    "2024-12-31 23:59:59"
+  ],
+  "max_inst": 0,
+  "max_days": 0,
+  "norm": "rel",
+  "target": "cs_z",
+  "epochs": 5,
+  "batch": 512,
+  "lr": 0.001,
+  "seed": 42,
+  "d_model": 64,
+  "nlayers": 2,
+  "dim_ff": 128,
+  "nhead": 4,
+  "model_cfg": {
+    "n_feat": 10,
+    "d_model": 64,
+    "nhead": 4,
+    "nlayers": 2,
+    "dim_ff": 128,
+    "seq_len": 64
+  },
+  "torch": "2.14.1",
+  "device": "mps",
+  "label": "local y_v2v1 = VWAP(t+30,t+60]/VWAP(t,t+30]-1 (platform: vwap_return)",
+  "features": [
+    "open",
+    "high",
+    "low",
+    "close",
+    "volume",
+    "amount",
+    "bid_price1",
+    "ask_price1",
+    "bid_volume1",
+    "ask_volume1"
+  ]
+}

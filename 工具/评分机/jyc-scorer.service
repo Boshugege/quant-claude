@@ -1,0 +1,12 @@
+[Unit]
+Description=JYC 本地评分机（只监听 127.0.0.1:46220）
+After=network.target
+
+[Service]
+WorkingDirectory=%h/jyc_scorer
+ExecStart=%h/jyc_scorer/.venv/bin/uvicorn server:app --host 127.0.0.1 --port 46220 --workers 1
+Restart=on-failure
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=default.target

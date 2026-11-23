@@ -1,0 +1,2 @@
+--run S22a_tod_fuse --arch e04 --norm rel2 --train 2020-01-01 2022-12-31 --val 2023-01-01 2023-12-31 --epochs 3 --n-models 1 --train-neutral proxy_ind --zero-0930 --out-neutral 1.0 --skip-0930-loss --aux-w 0.5 --aux-n 2 --fuse --weight-ema 0.995 --win-groups shape,book,tod --tod-route fuse
+--run S22b_tod_film --arch e04 --norm rel2 --train 2020-01-01 2022-12-31 --val 2023-01-01 2023-12-31 --epochs 3 --n-models 1 --train-neutral proxy_ind --zero-0930 --out-neutral 1.0 --skip-0930-loss --aux-w 0.5 --aux-n 2 --fuse --weight-ema 0.995 --win-groups shape,book,tod --tod-route film

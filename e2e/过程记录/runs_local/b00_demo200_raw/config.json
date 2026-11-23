@@ -1,0 +1,46 @@
+{
+  "run": "b00_demo200_raw",
+  "train": [
+    "2020-01",
+    "2020-12"
+  ],
+  "val": [
+    "2021-01",
+    "2021-03"
+  ],
+  "max_inst": 200,
+  "max_days": 0,
+  "norm": "raw",
+  "target": "raw",
+  "epochs": 5,
+  "batch": 512,
+  "lr": 0.001,
+  "seed": 42,
+  "d_model": 64,
+  "nlayers": 2,
+  "dim_ff": 128,
+  "nhead": 4,
+  "model_cfg": {
+    "n_feat": 10,
+    "d_model": 64,
+    "nhead": 4,
+    "nlayers": 2,
+    "dim_ff": 128,
+    "seq_len": 64
+  },
+  "device": "mps",
+  "torch": "2.1.0",
+  "label": "y_v2v1 = VWAP(t+30,t+60]/VWAP(t,t+30]-1, same day, 30m-window cleaned",
+  "features": [
+    "open",
+    "high",
+    "low",
+    "close",
+    "volume",
+    "amount",
+    "bid_price1",
+    "ask_price1",
+    "bid_volume1",
+    "ask_volume1"
+  ]
+}

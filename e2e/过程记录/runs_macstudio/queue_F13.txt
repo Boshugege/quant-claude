@@ -1,0 +1,1 @@
+--run F13_2020-24_fuse_aux05_seed43 --arch e04 --norm rel2 --train-neutral proxy_ind --zero-0930 --out-neutral 1.0 --skip-0930-loss --win-groups shape,book --fuse --aux-w 0.5 --aux-n 2 --epochs 3 --n-models 1 --seed 43 --train 2020-01-01 2024-12-31 --val 2024-10-01 2024-12-31 --secs-per-batch 4 --no-analyze

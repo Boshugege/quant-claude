@@ -1,0 +1,2 @@
+--run A3_full_c0 --fields full --coarse 0
+--run A5_base_c0_sum --fields base --coarse 0 --summary

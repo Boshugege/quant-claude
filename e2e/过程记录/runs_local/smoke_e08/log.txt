@@ -1,0 +1,26 @@
+16:40:33 训练设备 device=mps arch=e04 rss=0.3GB peak=0.3GB
+16:40:37 分片完成 start=2020-06-01 samples=30208 elapsed=3.5 rss=3.8GB peak=3.8GB
+16:40:40 分片完成 start=2020-07-01 samples=33096 elapsed=2.7 rss=4.7GB peak=5.0GB
+16:40:41 train 集构建完成 samples=63304 rss=5.0GB peak=5.1GB
+16:40:41 训练剔除特征 mode=proxy_ind cov=0.9874 pind_cov=0.9671 rss=5.0GB peak=5.2GB
+16:40:45 分片完成 start=2020-08-01 samples=33076 elapsed=2.6 rss=5.6GB peak=5.9GB
+16:40:45 train 集构建完成 samples=33076 rss=5.7GB peak=5.9GB
+16:40:45 [val] 平台口径：官方风格暴露覆盖率 0.975
+16:40:45 训练样本 samples=55391 models=1 skip_0930=True day_batch=1 turn_w=0.2 icir_w=0.5 n_params=160803 rss=5.7GB peak=5.9GB
+16:40:47 训练进度 member=0 epoch=1/1 pct=9% loss=2.867743 samples_per_s=3187 eta_s=15 rss=6.0GB peak=6.2GB
+16:40:48 训练进度 member=0 epoch=1/1 pct=19% loss=2.693997 samples_per_s=4271 eta_s=10 rss=6.1GB peak=6.2GB
+16:40:49 训练进度 member=0 epoch=1/1 pct=28% loss=2.686348 samples_per_s=4835 eta_s=8 rss=6.1GB peak=6.3GB
+16:40:50 训练进度 member=0 epoch=1/1 pct=37% loss=2.654869 samples_per_s=5420 eta_s=6 rss=6.1GB peak=6.3GB
+16:40:50 训练进度 member=0 epoch=1/1 pct=47% loss=2.726963 samples_per_s=5861 eta_s=5 rss=6.1GB peak=6.3GB
+16:40:51 训练进度 member=0 epoch=1/1 pct=56% loss=2.711055 samples_per_s=5954 eta_s=4 rss=6.2GB peak=6.3GB
+16:40:52 训练进度 member=0 epoch=1/1 pct=65% loss=2.662572 samples_per_s=6227 eta_s=3 rss=6.2GB peak=6.3GB
+16:40:52 训练进度 member=0 epoch=1/1 pct=74% loss=2.731983 samples_per_s=6452 eta_s=2 rss=6.2GB peak=6.3GB
+16:40:53 训练进度 member=0 epoch=1/1 pct=84% loss=2.731406 samples_per_s=6633 eta_s=1 rss=6.2GB peak=6.3GB
+16:40:53 训练进度 member=0 epoch=1/1 pct=93% loss=2.670513 samples_per_s=6778 eta_s=0 rss=6.2GB peak=6.3GB
+16:40:54 epoch 完成 member=0 epoch=1/1 loss=2.711454 elapsed=8.1 rss=6.2GB peak=6.3GB
+16:40:55 [val] member 0 epoch 1 平台口径(输出中性化1+09:30置零+风格剔除): ic=0.0837 icir=0.785 ls=23.88 stress=0.641 turn=0.388 | 原始: ic=0.0570 icir=0.420 | pred_std=0.223 nan=0 eval=1s rss=6.3GB
+16:40:55 模型已保存 path=e2e/runs/smoke_e08/transformer_model.json bytes=3509208 rss=6.2GB peak=6.3GB
+16:40:58 json=e2e/runs/smoke_e08/transformer_model.json bytes=3,509,208 (3.35 MiB) <50MB=True models=1 reload_maxdiff=0.00e+00
+16:41:00 分片完成 start=2020-08-01 samples=33272 elapsed=1.3 rss=6.5GB peak=6.7GB
+16:41:02 predict_range rows=33,272 matched=33,076 maxdiff=1.37e-02
+16:41:02 done 29s

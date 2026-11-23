@@ -1,0 +1,43 @@
+10:00:03 训练设备 device=mps arch=e04 win_groups=shape,book,tod rss=0.3GB peak=0.3GB
+10:00:08 分片完成 start=2022-01-01 samples=30384 elapsed=4.4 rss=4.0GB peak=4.0GB
+10:00:08 train 集构建完成 samples=30384 rss=4.1GB peak=4.2GB
+10:00:08 多任务辅助目标 w=0.5 cover=[0.875, 0.875] rss=4.1GB peak=4.2GB
+10:00:10 训练剔除特征 mode=proxy_ind cov=0.9645 pind_cov=0.9252 rss=4.1GB peak=4.2GB
+10:00:12 分片完成 start=2022-02-01 samples=11192 elapsed=1.8 rss=4.6GB peak=4.8GB
+10:00:12 train 集构建完成 samples=11192 rss=4.6GB peak=4.8GB
+10:00:12 已写入数据集缓存 e2e/cache/ff078d09eabbf101
+10:00:12 [val] 平台口径：官方风格暴露覆盖率 0.985
+10:00:12 训练样本 samples=26586 models=1 skip_0930=True day_batch=0 turn_w=0.0 icir_w=0.0 aux_w=0.5 aux_n=2 n_params=201830 rss=4.7GB peak=4.8GB
+10:00:14 训练进度 member=0 epoch=1/2 pct=8% loss=3.796378 samples_per_s=1401 eta_s=18 rss=5.0GB peak=5.2GB
+10:00:14 训练进度 member=0 epoch=1/2 pct=16% loss=3.725148 samples_per_s=2386 eta_s=10 rss=5.0GB peak=5.2GB
+10:00:15 训练进度 member=0 epoch=1/2 pct=24% loss=3.515842 samples_per_s=2863 eta_s=7 rss=5.1GB peak=5.2GB
+10:00:15 训练进度 member=0 epoch=1/2 pct=32% loss=3.371401 samples_per_s=3278 eta_s=5 rss=5.1GB peak=5.2GB
+10:00:15 训练进度 member=0 epoch=1/2 pct=39% loss=3.404217 samples_per_s=3640 eta_s=4 rss=5.1GB peak=5.2GB
+10:00:16 训练进度 member=0 epoch=1/2 pct=47% loss=3.335034 samples_per_s=3634 eta_s=3 rss=5.1GB peak=5.3GB
+10:00:16 训练进度 member=0 epoch=1/2 pct=55% loss=3.462661 samples_per_s=3896 eta_s=2 rss=5.1GB peak=5.3GB
+10:00:16 训练进度 member=0 epoch=1/2 pct=63% loss=3.317335 samples_per_s=4148 eta_s=2 rss=5.1GB peak=5.3GB
+10:00:17 训练进度 member=0 epoch=1/2 pct=71% loss=3.403208 samples_per_s=4389 eta_s=1 rss=5.1GB peak=5.3GB
+10:00:17 训练进度 member=0 epoch=1/2 pct=79% loss=3.228755 samples_per_s=4556 eta_s=1 rss=5.1GB peak=5.3GB
+10:00:17 训练进度 member=0 epoch=1/2 pct=87% loss=3.393481 samples_per_s=4732 eta_s=0 rss=5.1GB peak=5.3GB
+10:00:18 训练进度 member=0 epoch=1/2 pct=95% loss=3.21991 samples_per_s=4870 eta_s=0 rss=5.1GB peak=5.3GB
+10:00:18 epoch 完成 member=0 epoch=1/2 loss=3.414846 elapsed=5.4 rss=5.1GB peak=5.3GB
+10:00:18 [val] member 0 epoch 1 平台口径(输出中性化1+09:30置零+风格剔除): ic=0.0222 icir=0.334 ls=-2.70 stress=0.028 turn=0.406 | 原始: ic=0.0296 icir=0.366 | pred_std=0.289 nan=0 eval=0s rss=5.3GB
+10:00:19 训练进度 member=0 epoch=2/2 pct=8% loss=3.327405 samples_per_s=7213 eta_s=3 rss=5.1GB peak=5.3GB
+10:00:19 训练进度 member=0 epoch=2/2 pct=16% loss=3.25308 samples_per_s=7010 eta_s=3 rss=5.1GB peak=5.3GB
+10:00:19 训练进度 member=0 epoch=2/2 pct=24% loss=3.1418 samples_per_s=6957 eta_s=2 rss=5.1GB peak=5.3GB
+10:00:19 训练进度 member=0 epoch=2/2 pct=32% loss=3.01941 samples_per_s=6937 eta_s=2 rss=5.1GB peak=5.3GB
+10:00:20 训练进度 member=0 epoch=2/2 pct=39% loss=3.192669 samples_per_s=6913 eta_s=2 rss=5.1GB peak=5.3GB
+10:00:20 训练进度 member=0 epoch=2/2 pct=47% loss=2.989634 samples_per_s=6912 eta_s=2 rss=5.1GB peak=5.3GB
+10:00:20 训练进度 member=0 epoch=2/2 pct=55% loss=3.008146 samples_per_s=6950 eta_s=1 rss=5.1GB peak=5.3GB
+10:00:21 训练进度 member=0 epoch=2/2 pct=63% loss=3.181419 samples_per_s=6999 eta_s=1 rss=5.1GB peak=5.3GB
+10:00:21 训练进度 member=0 epoch=2/2 pct=71% loss=3.160695 samples_per_s=6901 eta_s=1 rss=5.1GB peak=5.3GB
+10:00:21 训练进度 member=0 epoch=2/2 pct=79% loss=3.022934 samples_per_s=6886 eta_s=0 rss=5.1GB peak=5.3GB
+10:00:22 训练进度 member=0 epoch=2/2 pct=87% loss=3.08939 samples_per_s=6889 eta_s=0 rss=5.1GB peak=5.3GB
+10:00:22 训练进度 member=0 epoch=2/2 pct=95% loss=3.12991 samples_per_s=6890 eta_s=0 rss=5.1GB peak=5.3GB
+10:00:22 epoch 完成 member=0 epoch=2/2 loss=3.124913 elapsed=3.9 rss=5.1GB peak=5.3GB
+10:00:22 [val] member 0 epoch 2 平台口径(输出中性化1+09:30置零+风格剔除): ic=0.0190 icir=0.218 ls=3.64 stress=0.178 turn=0.281 | 原始: ic=0.0399 icir=0.332 | pred_std=0.289 nan=0 eval=0s rss=5.3GB
+10:00:23 模型已保存 path=e2e/runs/T_leg_smoke/transformer_model.json bytes=4413024 rss=5.1GB peak=5.3GB
+10:00:24 json=e2e/runs/T_leg_smoke/transformer_model.json bytes=4,413,024 (4.21 MiB) <50MB=True models=1 reload_maxdiff=0.00e+00
+10:00:25 分片完成 start=2022-02-01 samples=11200 elapsed=0.8 rss=5.3GB peak=5.4GB
+10:00:26 predict_range rows=11,200 matched=11,192 maxdiff=1.84e-02
+10:00:26 done 22s

@@ -1,0 +1,6 @@
+--run A1_base_c0 --fields base --coarse 0
+--run A2_base_c45 --fields base --coarse 45
+--run A3_full_c0 --fields full --coarse 0
+--run A4_full_c45 --fields full --coarse 45
+--run A5_base_c0_sum --fields base --coarse 0 --summary
+--run A6_full_c0_sum --fields full --coarse 0 --summary

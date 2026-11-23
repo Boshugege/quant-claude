@@ -1,0 +1,175 @@
+% 决赛展示 PPT 公共样式（Beamer，16:9，XeLaTeX）——商业路演稿标准
+% 用法：
+%   \documentclass[aspectratio=169,10pt,t]{beamer}   % t：内容顶端对齐，结论条压到页底
+%   \input{../_style/slides_preamble.tex}
+%   \title{…} \subtitle{…} \author{fx战队} \date{2026 年 11 月}
+%   \TrackName{因子赛道}
+%
+% 页面结构：结论标题（浅显） + 主体（图 / 示意图 / 表 / 要点块） + 底部结论条 \takeaway{…}
+% 组件：\ChapterFrame、\keynum、\point、panel 环境、\takeaway、\hl
+
+\usepackage[fontset=none,scheme=plain]{ctex}
+% 字体：微软雅黑（取自本机 Office 安装包，不复制进仓库），大号数字用 DIN
+\def\yhpath{/Applications/Microsoft PowerPoint.app/Contents/Resources/DFonts/}
+\setCJKmainfont{msyh.ttc}[Path=\yhpath,BoldFont=msyhbd.ttc]
+\setCJKsansfont{msyh.ttc}[Path=\yhpath,BoldFont=msyhbd.ttc]
+\setCJKmonofont{msyh.ttc}[Path=\yhpath]
+\newCJKfontfamily\titlecjk{msyhbd.ttc}[Path=\yhpath]
+\setsansfont{msyh.ttc}[Path=\yhpath,BoldFont=msyhbd.ttc]
+\setmainfont{msyh.ttc}[Path=\yhpath,BoldFont=msyhbd.ttc]
+\newfontfamily\titlelatin{msyhbd.ttc}[Path=\yhpath]
+\newfontfamily\numfont{DIN Alternate}
+\usefonttheme{professionalfonts}
+
+\usepackage{newunicodechar}
+\newunicodechar{→}{\ensuremath{\rightarrow}}
+\newunicodechar{↑}{\ensuremath{\uparrow}}
+\newunicodechar{↓}{\ensuremath{\downarrow}}
+\newunicodechar{≈}{\ensuremath{\approx}}
+\newunicodechar{≤}{\ensuremath{\leq}}
+\newunicodechar{≥}{\ensuremath{\geq}}
+\newunicodechar{−}{\ensuremath{-}}
+\newunicodechar{×}{\ensuremath{\times}}
+\newunicodechar{÷}{\ensuremath{\div}}
+\newunicodechar{±}{\ensuremath{\pm}}
+\newunicodechar{β}{\ensuremath{\beta}}
+\newunicodechar{λ}{\ensuremath{\lambda}}
+
+% 配色：深蓝主色、橙色强调、浅蓝底色
+\definecolor{snavy}{HTML}{0F2E5A}
+\definecolor{sblue}{HTML}{2F6DB5}
+\definecolor{stint}{HTML}{E8EFF8}
+\definecolor{sorange}{HTML}{E8772E}
+\definecolor{sgrey}{HTML}{5E6672}
+\definecolor{sline}{HTML}{C9D3E0}
+\definecolor{sink}{HTML}{1E2329}
+
+\setbeamercolor{normal text}{fg=sink,bg=white}
+\setbeamercolor{structure}{fg=snavy}
+\setbeamercolor{frametitle}{fg=snavy}
+\setbeamercolor{alerted text}{fg=sorange}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}{\textcolor{sblue}{\rule[0.25ex]{0.42em}{0.42em}}}
+\setlength{\leftmargini}{1.1em}
+\linespread{1.18}
+\setbeamersize{text margin left=1.0cm, text margin right=1.0cm}
+% 内容顶端对齐，结论条用 \vfill 压到页底
+\makeatletter\beamer@centeredfalse\makeatother
+
+\providecommand{\trackname}{}
+\gdef\chaplabel{}
+\newcommand{\TrackName}[1]{\renewcommand{\trackname}{#1}}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,decorations.pathreplacing,shapes.geometric}
+
+% 顶部深蓝细带 + 标题左侧橙色色块 + 右上章节标签
+\setbeamertemplate{frametitle}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[snavy] (current page.north west) rectangle ([yshift=-0.12cm]current page.north east);
+  \end{tikzpicture}%
+  \vspace*{0.36cm}%
+  \begin{minipage}[c]{0.80\textwidth}%
+    {\color{sorange}\rule[-0.05cm]{0.13cm}{0.52cm}}\hspace{0.22cm}%
+    {\titlelatin\titlecjk\color{snavy}\fontsize{16pt}{20pt}\selectfont\insertframetitle}%
+  \end{minipage}\hfill
+  \ifx\chaplabel\empty\else
+  \begin{tikzpicture}[baseline=-0.6ex]
+    \node[fill=snavy,text=white,rounded corners=1.5pt,inner xsep=6pt,inner ysep=3pt,font=\footnotesize]{\chaplabel};
+  \end{tikzpicture}\fi\par
+  \vspace{0.25cm}}
+
+% 页脚：只有页码
+\setbeamertemplate{footline}{\hfill{\numfont\color{sgrey}\small\insertframenumber}\hspace*{0.6cm}\vspace*{0.3cm}}
+
+\usepackage{appendixnumberbeamer}
+
+% ---------- 组件 ----------
+\newcommand{\hl}[1]{\textcolor{sorange}{\bfseries #1}}
+% 大号关键数字：\keynum{0.290}{换手率（原 0.518）}
+\newcommand{\keynum}[2]{%
+  \begin{minipage}[t]{\linewidth}\raggedright
+    {\numfont\color{sorange}\fontsize{26pt}{28pt}\selectfont #1}\par\vspace{0.06cm}
+    {\color{sink}\small #2}\par
+  \end{minipage}}
+% 编号要点：\point{1}{加粗短句}{一两句解释}
+\newcommand{\point}[3]{%
+  \begin{tikzpicture}[baseline=(n.base)]
+    \node[circle,fill=snavy,text=white,inner sep=1.6pt,minimum size=0.48cm,font=\numfont\small](n){#1};
+  \end{tikzpicture}\hspace{0.18cm}%
+  \begin{minipage}[t]{\dimexpr\linewidth-0.75cm\relax}
+    {\bfseries\color{snavy}#2}\par\vspace{0.03cm}{\small\color{sink}#3}
+  \end{minipage}\par\vspace{0.16cm}}
+% 浅蓝底面板：\begin{panel}{标题} … \end{panel}
+\newenvironment{panel}[1]{%
+  \par\noindent\begin{tikzpicture}\node[fill=stint,rounded corners=2pt,inner sep=8pt,text width=\dimexpr\linewidth-16pt\relax,align=flush left]\bgroup
+  {\bfseries\color{snavy}#1}\par\vspace{0.12cm}\small}
+  {\egroup;\end{tikzpicture}\par}
+% 底部结论条：一句话说明这一页证明了什么（固定在页底，正文不要压到这一区域）
+\newcommand{\takeaway}[1]{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[fill=snavy,text=white,inner xsep=10pt,inner ysep=6pt,anchor=south,
+          text width=\dimexpr\paperwidth-2cm-20pt\relax,align=flush left,font=\small]
+      at ([yshift=0.75cm]current page.south) {#1};
+  \end{tikzpicture}}
+
+% 表格
+\usepackage{booktabs,tabularx,array,colortbl}
+\renewcommand{\arraystretch}{1.32}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcommand{\headrow}{\rowcolor{snavy}}
+\newcommand{\thc}[1]{\textcolor{white}{\bfseries #1}}
+\newcommand{\ourrow}{\rowcolor{stint}}
+
+% 图形
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18,tick label style={font=\numfont\small},label style={font=\small},/pgf/number format/assume math mode=true}
+\tikzset{
+  node/.style  = {draw=snavy, line width=0.8pt, fill=white, rounded corners=2pt, align=flush center,
+                  inner xsep=7pt, inner ysep=5pt, font=\small},
+  fillnode/.style = {fill=snavy, text=white, rounded corners=2pt, align=flush center,
+                  inner xsep=7pt, inner ysep=5pt, font=\small\bfseries},
+  tintnode/.style = {fill=stint, draw=none, rounded corners=2pt, align=flush center,
+                  inner xsep=7pt, inner ysep=5pt, font=\small},
+  key/.style   = {node, draw=sorange, line width=1.1pt},
+  flow/.style  = {-{Stealth[length=2.6mm]}, line width=0.9pt, draw=snavy},
+  note/.style  = {font=\small, text=sgrey, align=flush center},
+}
+
+% 封面：深蓝满版
+\setbeamertemplate{title page}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[snavy] (current page.south west) rectangle (current page.north east);
+    \fill[sorange] ([xshift=1.2cm,yshift=-2.3cm]current page.north west) rectangle ++(1.6cm,0.12cm);
+    \node[anchor=north west,text=white,text width=0.78\paperwidth,align=flush left]
+      at ([xshift=1.2cm,yshift=-2.7cm]current page.north west)
+      {{\titlecjk\fontsize{25pt}{33pt}\selectfont\inserttitle}\par\vspace{0.45cm}
+       {\large\color{white!80!snavy}\insertsubtitle}};
+    \node[anchor=south west,text=white,text width=0.6\paperwidth,align=flush left]
+      at ([xshift=1.2cm,yshift=1.1cm]current page.south west)
+      {{\large\bfseries\insertauthor}\par\vspace{0.12cm}{\small\color{white!75!snavy}\trackname\quad\insertdate}};
+  \end{tikzpicture}}
+
+% 章节页：深蓝满版，左侧大号编号与本章要回答的问题，右侧故事进度
+\providecommand{\ChapterList}[1]{}
+\newcommand{\ChapterFrame}[4]{%
+  \section[#1\enspace #2]{#3}\gdef\chaplabel{#1\enspace #2}
+  {\setbeamertemplate{footline}{}
+  \begin{frame}[plain,noframenumbering]
+    \begin{tikzpicture}[remember picture,overlay]
+      \fill[snavy] (current page.south west) rectangle (current page.north east);
+      \node[anchor=north west,text=white,text width=0.46\paperwidth,align=flush left]
+        at ([xshift=1.2cm,yshift=-2.0cm]current page.north west)
+        {{\numfont\color{sorange}\fontsize{48pt}{50pt}\selectfont #1}\par\vspace{0.35cm}
+         {\titlecjk\fontsize{20pt}{26pt}\selectfont #3}\par\vspace{0.4cm}
+         {\normalsize\color{white!85!snavy}#4}};
+      \node[anchor=north west,text=white,text width=0.36\paperwidth,align=flush left]
+        at ([xshift=0.58\paperwidth,yshift=-2.1cm]current page.north west)
+        {\ChapterList{#1}};
+    \end{tikzpicture}
+  \end{frame}}}
+\newcommand{\chapitem}[3]{\ifnum#1=#2{\color{white}\bfseries #2\enspace #3}\else{\color{white!55!snavy}#2\enspace #3}\fi\par\vspace{0.3cm}}
+
+\hypersetup{colorlinks=true, linkcolor=snavy, urlcolor=snavy}

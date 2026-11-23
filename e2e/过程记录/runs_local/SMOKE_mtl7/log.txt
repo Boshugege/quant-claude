@@ -1,0 +1,27 @@
+17:33:46 训练设备 device=mps arch=e04 win_groups=shape,book,tod rss=0.3GB peak=0.3GB
+17:33:50 分片完成 start=2022-03-01 samples=14720 elapsed=3.7 rss=3.4GB peak=3.5GB
+17:33:50 train 集构建完成 samples=14720 rss=3.5GB peak=3.6GB
+17:33:50 多任务辅助目标 w=0.5 cover=[0.875, 0.875, 0.75, 0.875, 0.875, 0.875, 0.875] rss=3.5GB peak=3.6GB
+17:33:51 训练剔除特征 mode=proxy_ind cov=1.0 pind_cov=0.0 rss=3.8GB peak=3.9GB
+17:33:53 分片完成 start=2022-04-01 samples=5648 elapsed=2.0 rss=4.3GB peak=4.8GB
+17:33:53 train 集构建完成 samples=5648 rss=4.4GB peak=4.8GB
+17:33:53 已写入数据集缓存 e2e/cache/6f8d504b34232295
+17:33:54 [val] 平台口径：官方风格暴露覆盖率 0.987
+17:33:54 训练样本 samples=12880 models=1 skip_0930=True day_batch=0 turn_w=0.0 icir_w=0.0 aux_w=0.5 aux_n=2 n_params=202155 rss=4.5GB peak=4.8GB
+17:33:55 训练进度 member=0 epoch=1/1 pct=10% loss=3.597847 samples_per_s=1181 eta_s=10 rss=4.8GB peak=4.9GB
+17:33:56 训练进度 member=0 epoch=1/1 pct=20% loss=3.301575 samples_per_s=1963 eta_s=5 rss=4.8GB peak=4.9GB
+17:33:56 训练进度 member=0 epoch=1/1 pct=29% loss=3.23316 samples_per_s=2520 eta_s=3 rss=4.8GB peak=4.9GB
+17:33:56 训练进度 member=0 epoch=1/1 pct=39% loss=3.115259 samples_per_s=2937 eta_s=2 rss=4.8GB peak=4.9GB
+17:33:56 训练进度 member=0 epoch=1/1 pct=49% loss=3.204905 samples_per_s=3261 eta_s=2 rss=4.8GB peak=4.9GB
+17:33:56 训练进度 member=0 epoch=1/1 pct=59% loss=3.216859 samples_per_s=3525 eta_s=1 rss=4.8GB peak=4.9GB
+17:33:57 训练进度 member=0 epoch=1/1 pct=68% loss=3.24157 samples_per_s=3736 eta_s=1 rss=4.8GB peak=4.9GB
+17:33:57 训练进度 member=0 epoch=1/1 pct=78% loss=3.144666 samples_per_s=3918 eta_s=0 rss=4.8GB peak=4.9GB
+17:33:57 训练进度 member=0 epoch=1/1 pct=88% loss=2.912775 samples_per_s=4060 eta_s=0 rss=4.8GB peak=4.9GB
+17:33:57 训练进度 member=0 epoch=1/1 pct=98% loss=3.199072 samples_per_s=4193 eta_s=0 rss=4.8GB peak=4.9GB
+17:33:58 epoch 完成 member=0 epoch=1/1 loss=3.224969 elapsed=3.3 rss=4.8GB peak=4.9GB
+17:33:58 [val] member 0 epoch 1 平台口径(输出中性化1+09:30置零+风格剔除): ic=nan icir=nan ls=nan stress=nan turn=nan | 原始: ic=nan icir=nan | pred_std=0.289 nan=0 eval=0s rss=4.9GB
+17:33:58 模型已保存 path=e2e/runs/SMOKE_mtl7/transformer_model.json bytes=4429434 rss=4.8GB peak=5.0GB
+17:34:00 json=e2e/runs/SMOKE_mtl7/transformer_model.json bytes=4,429,434 (4.22 MiB) <50MB=True models=1 reload_maxdiff=0.00e+00
+17:34:00 分片完成 start=2022-04-01 samples=5760 elapsed=0.7 rss=5.0GB peak=5.1GB
+17:34:01 predict_range rows=5,760 matched=5,648 maxdiff=6.99e-02
+17:34:01 done 15s
